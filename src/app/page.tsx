@@ -1,7 +1,9 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Image from "next/image"
+import getAll from "@/services/notion"
+import styles from "./page.module.css"
 
 export default function Home() {
+  getAll()
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -91,5 +93,5 @@ export default function Home() {
         </a>
       </div>
     </main>
-  );
+  )
 }
