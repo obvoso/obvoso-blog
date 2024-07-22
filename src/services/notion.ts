@@ -16,13 +16,14 @@ const notion = new Client({
 const n2m = new NotionToMarkdown({
   notionClient: notion,
   config: {
-    separateChildPage: true, // default: false
+    // separateChildPage: true, // default: false
   },
 })
 
 export const getNotionData = async (id: string) => {
   const mdblocks = await n2m.pageToMarkdown(id)
-  return mdblocks
+  const mdString = n2m.toMarkdownString(mdblocks)
+  return mdString.parent
 }
 
 /**
