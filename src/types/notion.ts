@@ -1,6 +1,6 @@
-export type NotionBlock = {
-  type: string
-  blockId: string
-  parent: string
-  children: NotionBlock[]
+export type NotionData = {
+  id: number
+  title: string
+  slug: string
+  category: string
 }

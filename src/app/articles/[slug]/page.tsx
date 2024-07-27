@@ -1,4 +1,7 @@
-import { getAll, getNotionData } from "@/services/notion"
+import { getArticleData } from "@/services/article"
+import { getAll } from "@/services/notion"
+import { ArticleProps } from "@/types/article"
+import { NotionData } from "@/types/notion"
 import "highlight.js/styles/hybrid.css"
 import Markdown from "react-markdown"
 import rehypeHighlight from "rehype-highlight"
@@ -8,27 +11,24 @@ import remarkGfm from "remark-gfm"
 export async function generateStaticParams() {
   const data = await getAll()
 
-  return data.map((page) => ({
+  return data.map((page: NotionData) => ({
     slug: page.slug,
   }))
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: ArticleProps) {
   const data = await getAll()
-  const post = data.find(
-    (page) => page.slug === decodeURIComponent(params.slug),
-  )
+
+  const post = data.find((page: NotionData) => page.slug === params.slug)
 
   return {
     title: post.title,
+    slug: post.title,
   }
 }
 
-export default async function Post({ params }) {
-  const data = await getAll()
-  const post = await getNotionData(
-    data.find((page) => page.slug === decodeURIComponent(params.slug)).id,
-  )
+export default async function Article({ params }: ArticleProps) {
+  const post = await getArticleData(params.slug)
 
   return (
     <div>
