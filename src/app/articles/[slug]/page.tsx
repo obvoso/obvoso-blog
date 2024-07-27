@@ -7,6 +7,29 @@ import Markdown from "react-markdown"
 import rehypeHighlight from "rehype-highlight"
 import rehypeRaw from "rehype-raw"
 import remarkGfm from "remark-gfm"
+import "./Article.css"
+
+export default async function Article({ params }: ArticleProps) {
+  const post = await getArticleData(params.slug)
+  const markdown = `
+  * 상위 리스트1
+    * 하위 리스트1
+    * 하위 리스트2
+      * 하위의 하위 리스트1
+      * 하위의 하위 리스트2
+  `
+  console.log(post)
+  return (
+    <main className="article-container">
+      <Markdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeHighlight, rehypeRaw]}
+      >
+        {markdown}
+      </Markdown>
+    </main>
+  )
+}
 
 export async function generateStaticParams() {
   const data = await getAll()
@@ -18,26 +41,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: ArticleProps) {
   const data = await getAll()
-
   const post = data.find((page: NotionData) => page.slug === params.slug)
 
   return {
     title: post.title,
     slug: post.title,
   }
-}
-
-export default async function Article({ params }: ArticleProps) {
-  const post = await getArticleData(params.slug)
-
-  return (
-    <div>
-      <Markdown
-        remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeHighlight, rehypeRaw]}
-      >
-        {post}
-      </Markdown>
-    </div>
-  )
 }
