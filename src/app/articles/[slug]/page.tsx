@@ -2,12 +2,12 @@ import { getArticleData } from "@/services/article"
 import { getAll } from "@/services/notion"
 import { ArticleProps } from "@/types/article"
 import { NotionData } from "@/types/notion"
+import Box from "@mui/material/Box"
 import "highlight.js/styles/hybrid.css"
 import Markdown from "react-markdown"
 import rehypeHighlight from "rehype-highlight"
 import rehypeRaw from "rehype-raw"
 import remarkGfm from "remark-gfm"
-import "./Article.css"
 
 export default async function Article({ params }: ArticleProps) {
   const post = await getArticleData(params.slug)
@@ -18,16 +18,15 @@ export default async function Article({ params }: ArticleProps) {
       * 하위의 하위 리스트1
       * 하위의 하위 리스트2
   `
-  console.log(post)
   return (
-    <main className="article-container">
+    <Box component="main" sx={{ p: 2, border: "1px dashed grey" }}>
       <Markdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeHighlight, rehypeRaw]}
       >
         {markdown}
       </Markdown>
-    </main>
+    </Box>
   )
 }
 
