@@ -1,19 +1,21 @@
-import { getAll, getNotionData } from "@/services/notion"
-import styles from "./page.module.css"
-
-async function Post({ id }: { id: string }) {
-  const post = await getNotionData(id)
-  console.log(post)
-  return <div>aa</div>
-}
+import { getAll } from "@/services/notion"
+import { Box } from "@mui/material"
 
 export default async function Home() {
   const data = await getAll()
   console.log(data)
 
   return (
-    <main className={styles.main}>
-      <Post id={data.results[0].id} />
-    </main>
+    <Box component="main" sx={{ p: 2, border: "1px dashed grey" }}>
+      <ul>
+        {data.map((page: any) => {
+          return (
+            <li key={page.id}>
+              <a href={`/articles/${page.slug}`}>{page.title}</a>
+            </li>
+          )
+        })}
+      </ul>
+    </Box>
   )
 }

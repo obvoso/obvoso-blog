@@ -1,3 +1,5 @@
+import { generateSlug } from "./utils"
+
 const { Client } = require("@notionhq/client")
 const { NotionToMarkdown } = require("notion-to-md")
 
@@ -8,26 +10,21 @@ const notion = new Client({
   auth: token,
 })
 
-/**
- * todo: notion에서 받아온 데이터를 markdown으로 변환하는 함수
- * @param id
- * @returns list of markdown blocks
- */
 const n2m = new NotionToMarkdown({
   notionClient: notion,
-  config: {
-    separateChildPage: true, // default: false
-  },
 })
 
-export const getNotionData = async (id: string) => {
+/**
+ *
+ * @param id
+ * @returns string
+ */
+export const getNotionArticleData = async (id: string) => {
   const mdblocks = await n2m.pageToMarkdown(id)
-  return mdblocks
+  const mdString = n2m.toMarkdownString(mdblocks)
+  return mdString.parent
 }
 
-/**
- * todo: 받아온 id를 이용해서 notion에 있는 데이터를 get하는 함수
- */
 export const getPost = async (id: string) => {
   const data = await notion.pages.retrieve({ page_id: id })
   return data
@@ -47,5 +44,13 @@ export const getAll = async () => {
       direction: "descending",
     },
   })
-  return data
+
+  return data.results.map((page: any) => {
+    return {
+      id: page.id,
+      title: page.properties.title.title[0].plain_text,
+      slug: generateSlug(page.properties.title.title[0].plain_text),
+      category: page.properties.category.select.name,
+    }
+  })
 }
