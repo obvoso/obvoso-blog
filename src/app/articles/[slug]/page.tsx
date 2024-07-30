@@ -11,20 +11,14 @@ import remarkGfm from "remark-gfm"
 
 export default async function Article({ params }: ArticleProps) {
   const post = await getArticleData(params.slug)
-  const markdown = `
-  * 상위 리스트1
-    * 하위 리스트1
-    * 하위 리스트2
-      * 하위의 하위 리스트1
-      * 하위의 하위 리스트2
-  `
+
   return (
-    <Box component="main" sx={{ p: 2, border: "1px dashed grey" }}>
+    <Box>
       <Markdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeHighlight, rehypeRaw]}
       >
-        {markdown}
+        {post}
       </Markdown>
     </Box>
   )
