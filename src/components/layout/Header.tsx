@@ -1,4 +1,5 @@
 import { AppBar, Toolbar, Typography } from "@mui/material"
+import Link from "next/link"
 import ThemeToggle from "./ThemeToggle"
 
 export default function Header() {
@@ -13,7 +14,9 @@ export default function Header() {
       }}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
-        <Typography variant="h6">obvoso blog</Typography>
+        <Link href="/">
+          <Typography variant="h6">obvoso blog</Typography>
+        </Link>
         <ThemeToggle />
       </Toolbar>
     </AppBar>
