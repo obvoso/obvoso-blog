@@ -30,7 +30,7 @@ export const getPost = async (id: string) => {
   return data
 }
 
-export const getAll = async () => {
+export const getAllPost = async () => {
   const data = await notion.databases.query({
     database_id: dbID,
     filter: {
@@ -44,13 +44,13 @@ export const getAll = async () => {
       direction: "descending",
     },
   })
-
   return data.results.map((page: any) => {
     return {
       id: page.id,
       title: page.properties.title.title[0].plain_text,
       slug: generateSlug(page.properties.title.title[0].plain_text),
       category: page.properties.category.select.name,
+      tag: page.properties.tags.multi_select.map((tag: any) => tag.name),
     }
   })
 }

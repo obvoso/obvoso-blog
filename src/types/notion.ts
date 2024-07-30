@@ -3,4 +3,5 @@ export type NotionData = {
   title: string
   slug: string
   category: string
+  tag: string[]
 }
