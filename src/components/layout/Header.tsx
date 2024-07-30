@@ -5,9 +5,11 @@ export default function Header() {
   return (
     <AppBar
       position="static"
-      style={{
+      sx={{
         backgroundColor: "var(--background)",
         color: "var(--primary)",
+        boxShadow: "none",
+        borderBottom: "0.5px solid var(--border)",
       }}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>

@@ -48,7 +48,7 @@ const IOSSwitch = styled((props: SwitchProps) => (
 
 export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
@@ -60,10 +60,10 @@ export default function ThemeToggle() {
 
   return (
     <FormControlLabel
-      control={<IOSSwitch sx={{ m: 1 }} checked={theme === "dark"} />}
+      control={<IOSSwitch checked={resolvedTheme === "dark"} />}
       label=""
       onClick={() => {
-        setTheme(theme === "light" ? "dark" : "light")
+        setTheme(resolvedTheme === "light" ? "dark" : "light")
       }}
     />
   )

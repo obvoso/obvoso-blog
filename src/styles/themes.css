@@ -3,6 +3,7 @@ html.light {
   --text: #333;
   --primary: #51b7ae;
   --secondary: #26a69a;
+  --border: #bfbfbf;
 }
 
 html.dark {
@@ -10,6 +11,7 @@ html.dark {
   --text: #eee;
   --primary: #26a69a;
   --secondary: #51b7ae;
+  --border: #6f6f6f;
 }
 
 body {
