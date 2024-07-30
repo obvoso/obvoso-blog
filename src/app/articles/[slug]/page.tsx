@@ -1,5 +1,5 @@
 import { getArticleData } from "@/services/article"
-import { getAll } from "@/services/notion"
+import { getAllPost } from "@/services/notion"
 import { ArticleProps } from "@/types/article"
 import { NotionData } from "@/types/notion"
 import Box from "@mui/material/Box"
@@ -25,7 +25,7 @@ export default async function Article({ params }: ArticleProps) {
 }
 
 export async function generateStaticParams() {
-  const data = await getAll()
+  const data = await getAllPost()
 
   return data.map((page: NotionData) => ({
     slug: page.slug,
@@ -33,7 +33,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ArticleProps) {
-  const data = await getAll()
+  const data = await getAllPost()
   const post = data.find((page: NotionData) => page.slug === params.slug)
 
   return {
