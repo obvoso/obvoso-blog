@@ -1,21 +1,15 @@
-import { getAll } from "@/services/notion"
-import { Box } from "@mui/material"
+import Test from "@/components/home/Test"
+import { getAllPost } from "@/services/notion"
+import { getAllCategory } from "@/services/tags"
+import { Container } from "@mui/material"
 
 export default async function Home() {
-  const data = await getAll()
-  console.log(data)
+  const categories = await getAllCategory()
+  const posts = await getAllPost()
 
   return (
-    <Box component="main" sx={{ p: 2, border: "1px dashed grey" }}>
-      <ul>
-        {data.map((page: any) => {
-          return (
-            <li key={page.id}>
-              <a href={`/articles/${page.slug}`}>{page.title}</a>
-            </li>
-          )
-        })}
-      </ul>
-    </Box>
+    <Container maxWidth="lg">
+      <Test initialCategories={categories} initialPosts={posts} />
+    </Container>
   )
 }
