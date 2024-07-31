@@ -34,5 +34,10 @@ export function categorizeData(data: NotionData[]): Category[] {
     }
   })
 
+  result.unshift({
+    category: "전체보기",
+    tags: [],
+  })
+
   return result
 }

@@ -1,34 +1,15 @@
-import Articles from "@/components/home/Articles"
-import TagVerticalNavigation from "@/components/layout/TagVerticalNavigation"
+import Test from "@/components/home/Test"
 import { getAllPost } from "@/services/notion"
-import { Box, Container } from "@mui/material"
+import { getAllCategory } from "@/services/tags"
+import { Container } from "@mui/material"
 
 export default async function Home() {
-  const data = await getAllPost()
+  const categories = await getAllCategory()
+  const posts = await getAllPost()
 
   return (
     <Container maxWidth="lg">
-      <Box
-        component="main"
-        sx={{ p: 20, display: "flex", flexDirection: "row" }}
-      >
-        <TagVerticalNavigation />
-        <Box sx={{ px: 20 }}>
-          <Articles />
-        </Box>
-      </Box>
+      <Test initialCategories={categories} initialPosts={posts} />
     </Container>
   )
-}
-
-{
-  /* <ul>
-{data.map((page: any) => {
-  return (
-    <li key={page.id}>
-      <Link href={`/articles/${page.slug}`}>{page.title}</Link>
-    </li>
-  )
-})}
-</ul> */
 }
