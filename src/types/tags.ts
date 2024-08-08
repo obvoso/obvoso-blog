@@ -10,5 +10,5 @@ export type CategoryTag = {
 
 export type TagType = {
   tagName: string
-  type?: string
+  type: TagEnum
 }
