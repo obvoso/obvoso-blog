@@ -1,8 +1,14 @@
-export type CategoryTag = {
-  tag: string
-  count: number
+export const enum TagEnum {
+  CATEGORY = "category",
+  TAG = "tag",
 }
-export type Category = {
-  category: string
-  tags: CategoryTag[]
+
+export type CategoryTag = {
+  name: string
+  tags: string[]
+}
+
+export type TagType = {
+  tagName: string
+  type?: string
 }

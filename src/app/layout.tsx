@@ -1,3 +1,4 @@
+import RecoilRootWrapper from "@/components/RecoilWrapper"
 import Header from "@/components/layout/Header"
 import "@/styles/globals.css"
 import "@/styles/themes.css"
@@ -22,7 +23,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system">
           <Header />
-          <main>{children}</main>
+          <RecoilRootWrapper>
+            <main>{children}</main>
+          </RecoilRootWrapper>
         </ThemeProvider>
       </body>
     </html>
