@@ -13,6 +13,9 @@ const notion = new Client({
 const n2m = new NotionToMarkdown({
   notionClient: notion,
 })
+
+let cursor: undefined | null | string = undefined
+
 /**
  * 노션 데이터베이스에서 모든 태그와 카테고리를 가져옵니다.
  */
@@ -48,6 +51,7 @@ export const getNotionArticleData = async (id: string) => {
 export const getAllPost = async () => {
   const data = await notion.databases.query({
     database_id: dbID,
+    start_cursor: cursor,
     filter: {
       property: "isRelease",
       checkbox: {
@@ -60,13 +64,24 @@ export const getAllPost = async () => {
     },
   })
 
+  /**
+   * cursor가 null이면 데이터가 더 이상 없다는 뜻이므로 빈 배열을 반환합니다.
+   * 나중에 게시글이 100개 이상이 되면 페이지네이션을 구현해야 함
+   * https://developers.notion.com/reference/intro#pagination
+   *   if (data.has_more === true) cursor = data.next_cursor
+   */
+  // console.log("data", data)
   return data.results.map((page: any) => {
     return {
       id: page.id,
       title: page.properties.title.title[0].plain_text,
+      description: page.properties.description.rich_text[0].plain_text,
       slug: generateSlug(page.properties.title.title[0].plain_text),
       category: page.properties.category.select.name,
       tag: page.properties.tags.multi_select.map((tag: any) => tag.name),
+      thumbnail: page.properties.thumbnail.url
+        ? page.properties.thumbnail.url
+        : "",
     }
   })
 }
