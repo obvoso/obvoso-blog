@@ -1,17 +1,10 @@
-import { NotionData } from "@/types/notion"
+import { TagEnum, TagType } from "@/types/tags"
 import { atom } from "recoil"
 
-export const selectCategoryState = atom<string | null>({
-  key: "selectCategoryState",
-  default: "전체보기",
-})
-
-export const selectTagsState = atom<string | null>({
+export const selectTagsState = atom<TagType>({
   key: "selectTagsState",
-  default: null,
-})
-
-export const selectCategoryTagsState = atom<NotionData[]>({
-  key: "selectCategoryTagsState",
-  default: [],
+  default: {
+    tagName: "전체보기",
+    type: TagEnum.CATEGORY,
+  },
 })
