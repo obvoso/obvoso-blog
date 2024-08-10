@@ -20,7 +20,6 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
   )
     return null
 
-  console.log("article", article)
   return (
     <Box padding={4}>
       <Typography variant="h5">{article.title}</Typography>
