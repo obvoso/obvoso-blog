@@ -3,8 +3,8 @@ import { generateSlug } from "./utils"
 const { Client } = require("@notionhq/client")
 const { NotionToMarkdown } = require("notion-to-md")
 
-const token = process.env.NEXT_PUBLIC_NOTION_TOKEN
-const dbID = process.env.NEXT_PUBLIC_NOTION_DB_ID
+const token = process.env.NOTION_TOKEN
+const dbID = process.env.NOTION_DB_ID
 
 const notion = new Client({
   auth: token,
@@ -70,7 +70,6 @@ export const getAllPost = async () => {
    * https://developers.notion.com/reference/intro#pagination
    *   if (data.has_more === true) cursor = data.next_cursor
    */
-  // console.log("data", data)
   return data.results.map((page: any) => {
     return {
       id: page.id,
@@ -79,9 +78,7 @@ export const getAllPost = async () => {
       slug: generateSlug(page.properties.title.title[0].plain_text),
       category: page.properties.category.select.name,
       tag: page.properties.tags.multi_select.map((tag: any) => tag.name),
-      thumbnail: page.properties.thumbnail.url
-        ? page.properties.thumbnail.url
-        : "",
+      thumbnail: page.properties.thumbnail.files[0].file.url,
     }
   })
 }

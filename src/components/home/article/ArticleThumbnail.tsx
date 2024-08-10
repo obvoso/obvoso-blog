@@ -4,6 +4,7 @@ import { selectTagsState } from "@/app/atoms/selectCategoryTags"
 import { NotionData } from "@/types/notion"
 import { TagEnum } from "@/types/tags"
 import { Box, Typography } from "@mui/material"
+import Image from "next/image"
 import { useRecoilValue } from "recoil"
 
 type ArticleProps = {
@@ -24,6 +25,7 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
     <Box padding={4}>
       <Typography variant="h5">{article.title}</Typography>
       <Typography variant="body1">{article.description}</Typography>
+      <Image src={article.thumbnail} alt="thumbnail" width={100} height={100} />
     </Box>
   )
 }
