@@ -1,3 +1,4 @@
+import { convertThumbnailImage } from "./images"
 import { generateSlug } from "./utils"
 
 const { Client } = require("@notionhq/client")
@@ -49,7 +50,7 @@ export const getNotionArticleData = async (id: string) => {
  * 노션 데이터베이스에서 모든 게시글을 가져옵니다.
  */
 export const getAllPost = async () => {
-  const data = await notion.databases.query({
+  const res = await notion.databases.query({
     database_id: dbID,
     start_cursor: cursor,
     filter: {
@@ -70,7 +71,7 @@ export const getAllPost = async () => {
    * https://developers.notion.com/reference/intro#pagination
    *   if (data.has_more === true) cursor = data.next_cursor
    */
-  return data.results.map((page: any) => {
+  const data = res.results.map((page: any) => {
     return {
       id: page.id,
       title: page.properties.title.title[0].plain_text,
@@ -81,4 +82,5 @@ export const getAllPost = async () => {
       thumbnail: page.properties.thumbnail.files[0].file.url,
     }
   })
+  return convertThumbnailImage(data)
 }
