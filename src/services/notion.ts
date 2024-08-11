@@ -1,5 +1,5 @@
 import { convertThumbnailImage } from "./images"
-import { generateSlug } from "./utils"
+import { generateSlug, parseDate } from "./utils"
 
 const { Client } = require("@notionhq/client")
 const { NotionToMarkdown } = require("notion-to-md")
@@ -76,6 +76,7 @@ export const getAllPost = async () => {
       id: page.id,
       title: page.properties.title.title[0].plain_text,
       description: page.properties.description.rich_text[0].plain_text,
+      createdTime: parseDate(page.created_time),
       slug: generateSlug(page.properties.title.title[0].plain_text),
       category: page.properties.category.select.name,
       tag: page.properties.tags.multi_select.map((tag: any) => tag.name),
