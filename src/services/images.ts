@@ -57,7 +57,7 @@ const download = async (key: string) => {
   ])
 
   const blurBase64 = blurBuffer
-    ? `data:image/webp;base64,${Buffer.from(blurBuffer).toString("base64")}`
+    ? `data:image/svg+xml;base64,${Buffer.from(blurBuffer).toString("base64")}`
     : null
 
   return [url, blurBase64]
