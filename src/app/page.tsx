@@ -1,5 +1,5 @@
 import ArticlesList from "@/components/home/article/ArticlesList"
-import TagNavigation from "@/components/layout/tagSection/TagNavigation"
+import TagNavigation from "@/components/tagSection/TagNavigation"
 import { Box, Container } from "@mui/material"
 
 export default function Home() {
