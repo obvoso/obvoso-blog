@@ -5,6 +5,6 @@ export type NotionData = {
   slug: string
   category: string
   tag: string[]
-  thumbnail: string
-  blurThumbnail?: string
+  thumbnail: string | null
+  blurThumbnail: string | null
 }

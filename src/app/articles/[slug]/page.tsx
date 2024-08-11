@@ -28,10 +28,7 @@ export default async function Article({ params }: ArticleProps) {
 }
 
 export async function generateStaticParams() {
-  const data = await getAllPost()
-  data.forEach((page: NotionData) => {
-    console.log("--", page.slug)
-  })
+  const data: NotionData[] = await getAllPost()
   return data.map((page: NotionData) => ({
     slug: page.slug,
   }))

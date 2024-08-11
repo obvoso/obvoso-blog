@@ -80,6 +80,7 @@ export const getAllPost = async () => {
       category: page.properties.category.select.name,
       tag: page.properties.tags.multi_select.map((tag: any) => tag.name),
       thumbnail: page.properties.thumbnail.files[0].file.url,
+      blurThumbnail: "",
     }
   })
   return convertThumbnailImage(data)
