@@ -1,6 +1,7 @@
 html.light {
   --background: #ffffff;
   --text: #333;
+  --text-secondary: #555;
   --primary: #51b7ae;
   --secondary: #26a69a;
   --border: #bfbfbf;
@@ -9,6 +10,7 @@ html.light {
 html.dark {
   --background: #212222;
   --text: #eee;
+  --text-secondary: #ccc;
   --primary: #26a69a;
   --secondary: #51b7ae;
   --border: #6f6f6f;

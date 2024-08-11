@@ -23,7 +23,7 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
         <CustomTypography
           size={17}
           weight={500}
-          color="gray"
+          color="var(--text-secondary)"
           sx={{ paddingTop: 1 }}
         >
           {article.description}
