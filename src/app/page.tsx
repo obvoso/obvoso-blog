@@ -6,6 +6,7 @@ export default function Home() {
   return (
     <Container maxWidth="lg">
       <Box
+        paddingY={6}
         sx={{
           display: "flex",
           flexDirection: { xs: "column", sm: "row" },
