@@ -24,7 +24,16 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
     <Box padding={4}>
       <Typography variant="h5">{article.title}</Typography>
       <Typography variant="body1">{article.description}</Typography>
-      <Image src={article.thumbnail} alt="thumbnail" width={100} height={100} />
+      <Box padding={1}>
+        <Image
+          width={300}
+          height={200}
+          src={article.thumbnail}
+          alt="thumbnail"
+          placeholder={"blur"}
+          blurDataURL={article.blurThumbnail}
+        />
+      </Box>
     </Box>
   )
 }

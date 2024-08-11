@@ -22,10 +22,12 @@
     "@mui/material": "^5.16.5",
     "@mui/material-nextjs": "^5.16.4",
     "@notionhq/client": "^2.2.15",
+    "@plaiceholder/next": "^3.0.0",
     "highlight.js": "^11.10.0",
     "next": "14.2.5",
     "next-themes": "^0.3.0",
     "notion-to-md": "^3.1.1",
+    "plaiceholder": "^3.0.0",
     "react": "^18",
     "react-dom": "^18",
     "react-markdown": "^9.0.1",
@@ -33,7 +35,8 @@
     "rehype-highlight": "^7.0.0",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.0",
-    "remark-rehype": "^11.1.0"
+    "remark-rehype": "^11.1.0",
+    "sharp": "^0.33.4"
   },
   "devDependencies": {
     "@types/node": "^20",
