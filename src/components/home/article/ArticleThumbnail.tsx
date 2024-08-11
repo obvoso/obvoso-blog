@@ -29,6 +29,7 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
           position: "relative",
           width: "100%",
           paddingBottom: "56.26%",
+          backgroundColor: "var(--primary)",
         }}
       >
         <Image
@@ -36,10 +37,14 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
           alt="thumbnail"
           placeholder={"blur"}
           blurDataURL={article.blurThumbnail!}
-          priority={true}
-          layout="fill"
-          objectFit="cover"
-          style={{ borderRadius: "10px" }}
+          width={0}
+          height={0}
+          sizes="100vw"
+          fill
+          style={{
+            borderRadius: "10px",
+            objectFit: "cover",
+          }}
         />
       </Box>
     </Box>
