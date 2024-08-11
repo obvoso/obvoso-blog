@@ -1,5 +1,6 @@
 import { getAllPost } from "@/services/notion"
 import { NotionData } from "@/types/notion"
+import Link from "next/link"
 import ArticleThumbnail from "./ArticleThumbnail"
 
 export default async function ArticlesList() {
@@ -10,7 +11,9 @@ export default async function ArticlesList() {
       {data.map((post) => {
         return (
           <div key={post.id}>
-            <ArticleThumbnail article={post} />
+            <Link href={`/articles/${post.slug}`}>
+              <ArticleThumbnail article={post} />
+            </Link>
           </div>
         )
       })}
