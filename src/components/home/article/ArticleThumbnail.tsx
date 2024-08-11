@@ -1,8 +1,9 @@
 // "use client"
 
 import BlurImage from "@/components/common/BlurImage"
+import CustomTypography from "@/components/common/CustomTypography"
 import { NotionData } from "@/types/notion"
-import { Box, Typography } from "@mui/material"
+import { Box } from "@mui/material"
 
 type ArticleProps = {
   article: NotionData
@@ -11,12 +12,26 @@ type ArticleProps = {
 export default function ArticleThumbnail({ article }: ArticleProps) {
   return (
     <Box padding={4}>
-      <Typography variant="h5">{article.title}</Typography>
-      <Typography variant="body1">{article.description}</Typography>
       <BlurImage
         src={article.thumbnail!}
         blurDataURL={article.blurThumbnail!}
       />
+      <Box paddingTop={3}>
+        <CustomTypography size={20} weight={700}>
+          {article.title}
+        </CustomTypography>
+        <CustomTypography
+          size={17}
+          weight={500}
+          color="gray"
+          sx={{ paddingTop: 1 }}
+        >
+          {article.description}
+        </CustomTypography>
+        <CustomTypography size={14} color="gray">
+          {article.createdTime}
+        </CustomTypography>
+      </Box>
     </Box>
   )
 }
