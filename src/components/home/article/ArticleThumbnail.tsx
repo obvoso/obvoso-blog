@@ -1,6 +1,6 @@
 "use client"
 
-import { selectTagsState } from "@/app/atoms/selectCategoryTags"
+import { selectTagsState } from "@/atoms/selectCategoryTags"
 import { NotionData } from "@/types/notion"
 import { TagEnum } from "@/types/tags"
 import { Box, Typography } from "@mui/material"
