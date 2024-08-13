@@ -1,6 +1,6 @@
 "use client"
 
-import { selectTagsState } from "@/atoms/selectCategoryTags"
+import selectTagsState from "@/atoms/selectCategoryTags"
 import { TagType } from "@/types/tags"
 import { Button } from "@mui/material"
 import { useRecoilState } from "recoil"

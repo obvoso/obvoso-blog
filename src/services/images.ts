@@ -26,6 +26,14 @@ const checkIsExist = async (key: string) => {
   }
 }
 
+/* 이미지 블러 처리 함수 */
+const getBlurImage = async (body: Buffer) => {
+  const { base64 } = await getPlaiceholder(body, { size: 10 })
+  const base64Data = base64.replace(/^data:image\/\w+;base64,/, "")
+  const buffer = Buffer.from(base64Data, "base64")
+  return buffer
+}
+
 /* 버킷에 이미지 업로드 함수 */
 const upload = async (key: string, body: Buffer) => {
   await s3.putObject({
@@ -63,25 +71,17 @@ const download = async (key: string) => {
   return [url, blurBase64]
 }
 
-/* 이미지 블러 처리 함수 */
-const getBlurImage = async (body: Buffer) => {
-  const { base64 } = await getPlaiceholder(body, { size: 10 })
-  const base64Data = base64.replace(/^data:image\/\w+;base64,/, "")
-  const buffer = Buffer.from(base64Data, "base64")
-  return buffer
-}
-
 /**
  * 이미지 변환의 전체 흐름을 담당하는 함수
  * 변환된 url을 thumbnail에 할당하여 반환
  */
 export const convertThumbnailImage = async (stream: NotionData[]) => {
-  const data = await Promise.all(
+  const datas = await Promise.all(
     stream.map(async (data) => {
       const key = `${endpoint}/thumbnail/${data.id}`
       const isExist = await checkIsExist(key)
       if (!isExist) {
-        const imageUrl = data.thumbnail
+        const imageUrl = data.thumbnail!
         try {
           const response = await fetch(imageUrl)
           const arrayBuffer = await response.arrayBuffer()
@@ -95,5 +95,5 @@ export const convertThumbnailImage = async (stream: NotionData[]) => {
       return { ...data, thumbnail: url, blurThumbnail: blurBase64 }
     }),
   )
-  return data
+  return datas
 }

@@ -16,21 +16,19 @@ const n2m = new NotionToMarkdown({
   notionClient: notion,
 })
 
-let cursor: undefined | null | string = undefined
+// let cursor: undefined | null | string = undefined
 
 /**
  * 노션 데이터베이스에서 모든 태그와 카테고리를 가져옵니다.
  */
 export const getAllTagsWithCategory = async () => {
   const res = await notion.databases.retrieve({ database_id: dbID })
-  const data = res.properties.category.select.options.map((category: any) => {
-    return {
-      name: category.name,
-      tags: res.properties.tags.multi_select.options
-        .filter((tag: any) => tag.color === category.color)
-        .map((tag: any) => tag.name),
-    }
-  })
+  const data = res.properties.category.select.options.map((category: any) => ({
+    name: category.name,
+    tags: res.properties.tags.multi_select.options
+      .filter((tag: any) => tag.color === category.color)
+      .map((tag: any) => tag.name),
+  }))
   data.unshift({
     name: "전체보기",
     tags: [],
@@ -53,7 +51,7 @@ export const getNotionArticleData = async (id: string) => {
 export const getAllPost = cache(async () => {
   const res = await notion.databases.query({
     database_id: dbID,
-    start_cursor: cursor,
+    // start_cursor: cursor,
     filter: {
       property: "isRelease",
       checkbox: {
@@ -72,18 +70,16 @@ export const getAllPost = cache(async () => {
    * https://developers.notion.com/reference/intro#pagination
    *   if (data.has_more === true) cursor = data.next_cursor
    */
-  const data = res.results.map((page: any) => {
-    return {
-      id: page.id,
-      title: page.properties.title.title[0].plain_text,
-      description: page.properties.description.rich_text[0].plain_text,
-      createdTime: parseDate(page.created_time),
-      slug: generateSlug(page.properties.title.title[0].plain_text),
-      category: page.properties.category.select.name,
-      tag: page.properties.tags.multi_select.map((tag: any) => tag.name),
-      thumbnail: page.properties.thumbnail.files[0].file.url,
-      blurThumbnail: "",
-    }
-  })
+  const data = res.results.map((page: any) => ({
+    id: page.id,
+    title: page.properties.title.title[0].plain_text,
+    description: page.properties.description.rich_text[0].plain_text,
+    createdTime: parseDate(page.created_time),
+    slug: generateSlug(page.properties.title.title[0].plain_text),
+    category: page.properties.category.select.name,
+    tag: page.properties.tags.multi_select.map((tag: any) => tag.name),
+    thumbnail: page.properties.thumbnail.files[0].file.url,
+    blurThumbnail: "",
+  }))
   return convertThumbnailImage(data)
 })

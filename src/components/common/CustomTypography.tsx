@@ -19,7 +19,7 @@ export default function CustomTypography({
     <Typography
       variant="h6"
       sx={{
-        color: color,
+        color,
         fontSize: size,
         fontWeight: weight,
         ...sx,

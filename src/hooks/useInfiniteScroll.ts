@@ -1,17 +1,17 @@
-import { selectTagsState } from "@/atoms/selectCategoryTags"
+import selectTagsState from "@/atoms/selectCategoryTags"
 import { fetchTagArticles } from "@/components/home/article/actions"
 import { NotionData } from "@/types/notion"
 import { useEffect, useState } from "react"
 import { useInView } from "react-intersection-observer"
 import { useRecoilValue } from "recoil"
 
-type infiniteScrollProps = {
+type InfiniteScrollProps = {
   initialArticles: NotionData[]
 }
 export default function useInfiniteScroll({
   initialArticles,
-}: infiniteScrollProps) {
-  const [articles, setArticles] = useState<NotionData[]>(initialArticles)
+}: InfiniteScrollProps) {
+  const [articleList, setArticleList] = useState<NotionData[]>(initialArticles)
   const [page, setPage] = useState(0)
   const [ref, inView] = useInView()
   const tag = useRecoilValue(selectTagsState)
@@ -25,7 +25,7 @@ export default function useInfiniteScroll({
 
     if (articles?.length) {
       setPage(next)
-      setArticles((prev) => [...prev, ...articles])
+      setArticleList((prev) => [...prev, ...articles])
     }
   }
 
@@ -42,9 +42,9 @@ export default function useInfiniteScroll({
     const articles = await fetchTagArticles({ tag, page: 0 })
     if (articles?.length) {
       setPage(1)
-      setArticles(articles)
+      setArticleList(articles)
     }
-    setArticles(articles)
+    setArticleList(articles)
   }
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function useInfiniteScroll({
   }, [tag])
 
   return {
-    articles,
+    articleList,
     ref,
   }
 }

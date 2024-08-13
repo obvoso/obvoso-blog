@@ -13,12 +13,12 @@ type FilterArticleProps = {
 export default function InfiniteScrollArticles({
   initialArticles,
 }: FilterArticleProps) {
-  const { articles, ref } = useInfiniteScroll({ initialArticles })
+  const { articleList, ref } = useInfiniteScroll({ initialArticles })
 
   return (
     <Box sx={{ flexDirection: "row", width: "100%" }}>
       <Grid container spacing={2}>
-        {articles.map((post) => (
+        {articleList.map((post) => (
           <Grid item xs={12} md={6} key={post.id}>
             <Link href={`/articles/${post.slug}`}>
               <ArticleThumbnail article={post} />

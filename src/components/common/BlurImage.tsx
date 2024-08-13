@@ -19,7 +19,7 @@ export default function BlurImage({ src, blurDataURL }: BlurImageProps) {
       <Image
         src={src}
         alt="thumbnail"
-        placeholder={"blur"}
+        placeholder="blur"
         blurDataURL={blurDataURL}
         width={0}
         height={0}

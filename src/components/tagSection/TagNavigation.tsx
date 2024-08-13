@@ -21,7 +21,7 @@ export default async function TagNavigation() {
         <div key={category.name}>
           <Tag tagName={category.name} type={TagEnum.CATEGORY} />
           {category.tags.map((tag, idx) => (
-            <Tag key={idx} tagName={tag} type={TagEnum.TAG} />
+            <Tag key={tag} tagName={tag} type={TagEnum.TAG} />
           ))}
         </div>
       ))}
