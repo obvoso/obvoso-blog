@@ -41,7 +41,7 @@ export default function useInfiniteScroll({
   async function loadTagArticles() {
     const articles = await fetchTagArticles({ tag, page: 0 })
     if (articles?.length) {
-      setPage(1)
+      setPage(0)
       setArticleList(articles)
     }
     setArticleList(articles)
