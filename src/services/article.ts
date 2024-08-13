@@ -2,8 +2,12 @@ import { NotionData } from "@/types/notion"
 import { getAllPost, getNotionArticleData } from "./notion"
 
 export async function getArticleData(slug: string) {
+  const decodeSlug = decodeURIComponent(slug)
   const data = await getAllPost()
-  const page = data.find((item: NotionData) => item.slug === slug)
+  const page = data.find(
+    (item: NotionData) => item.slug === decodeSlug || item.slug === slug,
+  )
+
   if (!page) {
     throw new Error("Notion data not found")
   }
