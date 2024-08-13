@@ -1,14 +1,11 @@
-import { getAllPost } from "@/services/notion"
-import { NotionData } from "@/types/notion"
-import { Grid } from "@mui/material"
-import FilterArticle from "./FilterArticle"
+import { TagEnum } from "@/types/tags"
+import InfiniteScrollArticles from "./InfiniteScrollArticles"
+import { fetchTagArticles } from "./actions"
 
 export default async function ArticlesList() {
-  const data: NotionData[] = await getAllPost()
+  const data = await fetchTagArticles({
+    tag: { tagName: "전체보기", type: TagEnum.CATEGORY },
+  })
 
-  return (
-    <Grid container spacing={2}>
-      <FilterArticle articles={data} />
-    </Grid>
-  )
+  return <InfiniteScrollArticles initialArticles={data} />
 }
