@@ -1,3 +1,4 @@
+import { cache } from "react"
 import { convertThumbnailImage } from "./images"
 import { generateSlug, parseDate } from "./utils"
 
@@ -49,7 +50,7 @@ export const getNotionArticleData = async (id: string) => {
 /**
  * 노션 데이터베이스에서 모든 게시글을 가져옵니다.
  */
-export const getAllPost = async () => {
+export const getAllPost = cache(async () => {
   const res = await notion.databases.query({
     database_id: dbID,
     start_cursor: cursor,
@@ -85,4 +86,4 @@ export const getAllPost = async () => {
     }
   })
   return convertThumbnailImage(data)
-}
+})
