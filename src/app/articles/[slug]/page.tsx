@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: ArticleProps) {
     (page: NotionData) => page.slug === decodeSlug || page.slug === params.slug,
   )
 
-  return data.map((page) => ({
+  return data.map((page: NotionData) => ({
     slug: post?.title,
   }))
 }

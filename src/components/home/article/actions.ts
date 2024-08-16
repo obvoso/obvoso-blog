@@ -1,6 +1,7 @@
 "use server"
 
 import { getAllPost } from "@/services/notion"
+import { NotionData } from "@/types/notion"
 import { TagEnum, TagType } from "@/types/tags"
 
 export async function fetchTagArticles({
@@ -12,7 +13,7 @@ export async function fetchTagArticles({
 }) {
   const itemsPerPage = 6
   const res = await getAllPost()
-  const filteredData = res.filter((post) => {
+  const filteredData = res.filter((post: NotionData) => {
     if (tag.tagName === "전체보기") return true
     if (tag.type === TagEnum.TAG && post.tag.includes(tag.tagName)) return true
     if (tag.type === TagEnum.CATEGORY && post.category === tag.tagName)

@@ -1,5 +1,4 @@
-import { cache } from "react"
-import { convertThumbnailImage } from "./images"
+import { unstable_cache } from "next/cache"
 import { generateSlug, parseDate } from "./utils"
 
 const { Client } = require("@notionhq/client")
@@ -48,7 +47,8 @@ export const getNotionArticleData = async (id: string) => {
 /**
  * 노션 데이터베이스에서 모든 게시글을 가져옵니다.
  */
-export const getAllPost = cache(async () => {
+export const getAllPost = unstable_cache(async () => {
+  console.log("Fetching data from Notion API...")
   const res = await notion.databases.query({
     database_id: dbID,
     // start_cursor: cursor,
@@ -81,5 +81,6 @@ export const getAllPost = cache(async () => {
     thumbnail: page.properties.thumbnail.files[0].file.url,
     blurThumbnail: "",
   }))
-  return convertThumbnailImage(data)
+  return data
+  // return convertThumbnailImage(data)
 })
