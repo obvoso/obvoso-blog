@@ -14,7 +14,6 @@ export default async function TagNavigation() {
         alignItems: "start",
         flexDirection: { xs: "row", sm: "column" },
         overflowX: { xs: "auto", sm: "visible" },
-        gap: 2,
       }}
     >
       {data.map((category) => (
