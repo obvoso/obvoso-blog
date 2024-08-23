@@ -1,4 +1,4 @@
-import RecoilRootWrapper from "@/components/RecoilWrapper"
+import RecoilRootWrapper from "@/app/RecoilWrapper"
 import Header from "@/components/layout/Header"
 import "@/styles/globals.css"
 import "@/styles/themes.css"
