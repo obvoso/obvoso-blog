@@ -11,10 +11,12 @@ type InfiniteScrollProps = {
 export default function useInfiniteScroll({
   initialArticles,
 }: InfiniteScrollProps) {
-  const [articleList, setArticleList] = useState<NotionData[]>(initialArticles)
+  const tag = useRecoilValue(selectTagsState)
+  const [articleList, setArticleList] = useState<NotionData[]>(
+    tag.tagName === "전체보기" ? initialArticles : [],
+  )
   const [page, setPage] = useState(0)
   const [ref, inView] = useInView()
-  const tag = useRecoilValue(selectTagsState)
 
   /**
    * Load more articles when the user scrolls to the bottom of the page
@@ -40,15 +42,14 @@ export default function useInfiniteScroll({
    */
   async function loadTagArticles() {
     const articles = await fetchTagArticles({ tag, page: 0 })
-    if (articles?.length) {
-      setPage(0)
-      setArticleList(articles)
-    }
     setArticleList(articles)
   }
 
   useEffect(() => {
     loadTagArticles()
+    return () => {
+      setPage(0)
+    }
   }, [tag])
 
   return {
