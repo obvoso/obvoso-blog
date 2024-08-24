@@ -13,12 +13,12 @@ export default function Tag({ tagName, type }: TagType) {
   const ButtonStyle = {
     tag: {
       color: isSelected ? "var(--primary)" : "var(--text)",
-      // weight: isSelected ? 700 : 300,
+      size: 12,
     },
     category: {
       color: isSelected ? "var(--primary)" : "var(--text-secondary)",
-      weight: 600,
-      size: 13,
+      weight: 500,
+      size: 12,
     },
   }
 
@@ -30,12 +30,15 @@ export default function Tag({ tagName, type }: TagType) {
     <div>
       <Button
         onClick={handleClick}
-        sx={{ paddingX: "0px", justifyContent: "left" }}
+        sx={{
+          justifyContent: "left",
+          whiteSpace: "nowrap",
+        }}
       >
         <CustomTypography
           {...(type === "category" ? ButtonStyle.category : ButtonStyle.tag)}
         >
-          {type === "category" ? `# ${tagName}` : tagName}
+          {type === "category" ? tagName : `# ${tagName}`}
         </CustomTypography>
       </Button>
     </div>

@@ -1,4 +1,5 @@
 import ArticlesList from "@/components/home/article/ArticlesList"
+import MobileTagNavigation from "@/components/tagSection/MobileTagNavigation"
 import TagNavigation from "@/components/tagSection/TagNavigation"
 import { Box, Container } from "@mui/material"
 
@@ -13,6 +14,7 @@ export default function Home() {
         }}
       >
         <TagNavigation />
+        <MobileTagNavigation />
         <ArticlesList />
       </Box>
     </Container>

@@ -1,29 +1,30 @@
 import { getAllTagsWithCategory } from "@/services/notion"
 import { CategoryTag, TagEnum } from "@/types/tags"
-import { Box } from "@mui/material"
+import { Divider, List } from "@mui/material"
 import Tag from "./Tag"
 
 export default async function TagNavigation() {
   const data: CategoryTag[] = await getAllTagsWithCategory()
-
   return (
-    <Box
-      padding={4}
+    <List
       sx={{
-        display: "flex",
+        padding: 4,
+        display: { xs: "none", sm: "flex" },
         alignItems: "start",
-        flexDirection: { xs: "row", sm: "column" },
+        flexDirection: "column",
         overflowX: { xs: "auto", sm: "visible" },
       }}
     >
       {data.map((category) => (
         <div key={category.name}>
+          <Divider />
           <Tag tagName={category.name} type={TagEnum.CATEGORY} />
+          {category.name !== "전체보기" ? <Divider /> : null}
           {category.tags.map((tag, idx) => (
             <Tag key={tag} tagName={tag} type={TagEnum.TAG} />
           ))}
         </div>
       ))}
-    </Box>
+    </List>
   )
 }

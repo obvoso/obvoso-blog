@@ -17,7 +17,6 @@ export default function CustomTypography({
 }: TypograhpyProps) {
   return (
     <Typography
-      variant="h6"
       sx={{
         color,
         fontSize: size,
