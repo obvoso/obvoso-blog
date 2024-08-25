@@ -17,9 +17,19 @@ export default async function TagNavigation() {
     >
       {data.map((category) => (
         <div key={category.name}>
-          <Divider />
+          <Divider
+            sx={{
+              bgcolor: "var(--text)",
+            }}
+          />
           <Tag tagName={category.name} type={TagEnum.CATEGORY} />
-          {category.name !== "전체보기" ? <Divider /> : null}
+          {category.name !== "전체보기" && (
+            <Divider
+              sx={{
+                bgcolor: "var(--text)",
+              }}
+            />
+          )}
           {category.tags.map((tag, idx) => (
             <Tag key={tag} tagName={tag} type={TagEnum.TAG} />
           ))}
