@@ -15,18 +15,17 @@ export default async function MobileTagNavigation() {
         flexWrap: "wrap",
         width: "100%",
         alignItems: "center",
+        justifyContent: "center",
         overflowX: "auto",
+        gap: 1,
+        padding: 4,
       }}
     >
       {data.map((category) => (
         <React.Fragment key={category.name}>
-          <Box sx={{ marginRight: 2 }}>
-            <Tag tagName={category.name} type={TagEnum.CATEGORY} />
-          </Box>
+          <Tag tagName={category.name} type={TagEnum.CATEGORY} style="button" />
           {category.tags.map((tag) => (
-            <Box key={tag} sx={{ marginRight: 2 }}>
-              <Tag tagName={tag} type={TagEnum.TAG} />
-            </Box>
+            <Tag tagName={tag} type={TagEnum.TAG} style="button" />
           ))}
         </React.Fragment>
       ))}

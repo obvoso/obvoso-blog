@@ -1,24 +1,30 @@
 "use client"
 
 import selectTagsState from "@/atoms/selectCategoryTags"
-import { TagType } from "@/types/tags"
+import { TagEnum } from "@/types/tags"
 import { Button } from "@mui/material"
 import { useRecoilState } from "recoil"
 import CustomTypography from "../common/CustomTypography"
 
-export default function Tag({ tagName, type }: TagType) {
+type TagProps = {
+  tagName: string
+  type: TagEnum
+  style?: string
+}
+export default function Tag({ tagName, type, style = "list" }: TagProps) {
   const [tag, setTag] = useRecoilState(selectTagsState)
   const isSelected = tag.tagName === tagName && tag.type === type
 
   const ButtonStyle = {
-    tag: {
-      color: isSelected ? "var(--primary)" : "var(--text)",
-      size: 12,
+    button: {
+      justifyContent: "center",
+      whiteSpace: "nowrap",
+      border: isSelected ? "1px solid var(--primary)" : "1px solid var(--text)",
+      borderRadius: 50,
     },
-    category: {
-      color: isSelected ? "var(--primary)" : "var(--text-secondary)",
-      weight: 500,
-      size: 12,
+    list: {
+      justifyContent: "flex-start",
+      whiteSpace: "nowrap",
     },
   }
 
@@ -31,12 +37,12 @@ export default function Tag({ tagName, type }: TagType) {
       <Button
         onClick={handleClick}
         sx={{
-          justifyContent: "left",
-          whiteSpace: "nowrap",
+          ...(style === "list" ? ButtonStyle.list : ButtonStyle.button),
         }}
       >
         <CustomTypography
-          {...(type === "category" ? ButtonStyle.category : ButtonStyle.tag)}
+          color={isSelected ? "var(--primary)" : "var(--text)"}
+          size={12}
         >
           {type === "category" ? tagName : `# ${tagName}`}
         </CustomTypography>
