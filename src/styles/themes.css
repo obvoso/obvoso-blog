@@ -4,6 +4,7 @@ html.light {
   --text-secondary: #555;
   --primary: #51b7ae;
   --secondary: #26a69a;
+  --imsi: #edf7f6;
   --border: #bfbfbf;
 }
 
@@ -12,6 +13,7 @@ html.dark {
   --text: #eee;
   --text-secondary: #ccc;
   --primary: #26a69a;
+  --imsi: #f2faf8;
   --secondary: #51b7ae;
   --border: #6f6f6f;
 }
