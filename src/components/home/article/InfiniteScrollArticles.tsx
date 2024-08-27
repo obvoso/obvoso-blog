@@ -17,7 +17,7 @@ export default function InfiniteScrollArticles({
 
   return (
     <Box sx={{ flexDirection: "row", width: "100%" }}>
-      <Grid container spacing={2}>
+      <Grid container>
         {articleList.map((post) => (
           <Grid item xs={12} md={6} key={post.id}>
             <Link href={`/articles/${post.slug}`}>
