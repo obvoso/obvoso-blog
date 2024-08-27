@@ -4,6 +4,10 @@ import Markdown from "react-markdown"
 import rehypeHighlight from "rehype-highlight"
 import rehypeRaw from "rehype-raw"
 import remarkGfm from "remark-gfm"
+import Anchor from "./markdownRender/Anchor"
+import BlockQuote from "./markdownRender/BlockQuote"
+import Heading from "./markdownRender/Heading"
+import List from "./markdownRender/List"
 
 type ArticleProps = {
   slug: string
@@ -19,64 +23,28 @@ export default async function ArticleContent({ slug }: ArticleProps) {
         flexDirection: "column",
         gap: 2,
         width: "100%",
-        padding: 4,
+        paddingY: 4,
       }}
     >
       <Markdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeHighlight, rehypeRaw, remarkGfm]}
         components={{
-          h1: ({ children, ...props }) => (
-            <h1 {...props} style={{ fontSize: "2rem", fontWeight: "700" }}>
-              {children}
-            </h1>
-          ),
-          h2: ({ children, ...props }) => (
-            <h2 {...props} style={{ fontSize: "1.5rem", fontWeight: "600" }}>
-              {children}
-            </h2>
-          ),
-          h3: ({ children, ...props }) => (
-            <h3 {...props} style={{ fontSize: "1.25rem", fontWeight: "500" }}>
-              {children}
-            </h3>
-          ),
-          p: ({ children, ...props }) => (
-            <p {...props} style={{ fontSize: "1rem", fontWeight: "400" }}>
-              {children}
-            </p>
-          ),
+          h1: ({ children }) => <Heading level={1}>{children}</Heading>,
+          h2: ({ children }) => <Heading level={2}>{children}</Heading>,
+          h3: ({ children }) => <Heading level={3}>{children}</Heading>,
+          h4: ({ children }) => <Heading level={4}>{children}</Heading>,
           a: ({ children, ...props }) => (
-            <a {...props} style={{ color: "var(--primary)" }}>
-              {children}
-            </a>
+            <Anchor href={props.href}>{children}</Anchor>
+          ),
+          blockquote: ({ children, ...props }) => (
+            <BlockQuote props={props}>{children}</BlockQuote>
           ),
           img: ({ children, ...props }) => (
             <img {...props} style={{ maxWidth: "100%" }} />
           ),
-          blockquote: ({ children, ...props }) => (
-            <blockquote
-              {...props}
-              style={{
-                borderLeft: "4px solid var(--primary)",
-                backgroundColor: "var(--background-secondary)",
-                paddingLeft: "1rem",
-                margin: "1rem 0",
-              }}
-            >
-              {children}
-            </blockquote>
-          ),
-          ul: ({ children, ...props }) => (
-            <ul {...props} style={{ paddingLeft: "1rem" }}>
-              {children}
-            </ul>
-          ),
-          ol: ({ children, ...props }) => (
-            <ol {...props} style={{ paddingLeft: "1rem" }}>
-              {children}
-            </ol>
-          ),
+          ul: ({ children }) => <List listType="ul">{children}</List>,
+          ol: ({ children }) => <List listType="ol">{children}</List>,
           li: ({ children, ...props }) => (
             <li {...props} style={{ marginBottom: "0.5rem" }}>
               {children}
