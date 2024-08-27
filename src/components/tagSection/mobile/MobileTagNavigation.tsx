@@ -2,7 +2,7 @@ import { getAllTagsWithCategory } from "@/services/notion"
 import { CategoryTag, TagEnum } from "@/types/tags"
 import { Box } from "@mui/material"
 import React from "react"
-import Tag from "./Tag"
+import Tag from "../Tag"
 
 export default async function MobileTagNavigation() {
   const data: CategoryTag[] = await getAllTagsWithCategory()
