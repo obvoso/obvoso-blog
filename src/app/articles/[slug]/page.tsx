@@ -54,7 +54,7 @@ export default async function Article({ params }: ArticleProps) {
               {...props}
               style={{
                 borderLeft: "4px solid var(--primary)",
-                backgroundColor: "var(--imsi)",
+                backgroundColor: "var(--background-secondary)",
                 paddingLeft: "1rem",
                 margin: "1rem 0",
               }}
@@ -124,12 +124,12 @@ export default async function Article({ params }: ArticleProps) {
               <code
                 {...props}
                 style={{
-                  backgroundColor: "var(--imsi)",
+                  backgroundColor: "var(--background-secondary)",
                   padding: "0.2rem 0.4rem",
                   borderRadius: "4px",
                   fontSize: "0.9rem",
                   fontFamily: "monospace",
-                  color: "var(--primary)",
+                  color: "var(--tertiary)",
                 }}
               >
                 {children}
