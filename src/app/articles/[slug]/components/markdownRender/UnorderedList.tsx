@@ -14,7 +14,7 @@ function ListWrapper({ children }: { children: React.ReactNode }) {
   return (
     <Box
       sx={{
-        padding: "2rem",
+        padding: "1.5rem",
         backgroundColor: "var(--background-secondary)",
         borderRadius: 4,
         color: "var(--tertiary)",
@@ -32,10 +32,10 @@ export default function UnorderedList({ children }: ListProps) {
     <ListContext.Provider value={false}>
       {isTopLevel ? (
         <ListWrapper>
-          <ul style={{ paddingLeft: "1rem" }}>{children}</ul>
+          <ul style={{ paddingLeft: "1.75rem" }}>{children}</ul>
         </ListWrapper>
       ) : (
-        <ul style={{ paddingLeft: "1rem" }}>{children}</ul>
+        <ul style={{ paddingLeft: "1.75rem" }}>{children}</ul>
       )}
     </ListContext.Provider>
   )

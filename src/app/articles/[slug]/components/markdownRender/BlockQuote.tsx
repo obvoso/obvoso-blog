@@ -1,12 +1,13 @@
+"use client"
+
 type BlockQuoteProps = {
   children: React.ReactNode
-  props: any
-}
+} & React.HTMLProps<HTMLQuoteElement>
 
-export default function BlockQuote({ children, props }: BlockQuoteProps) {
-  console.log(props)
+export default function BlockQuote({ children, ...props }: BlockQuoteProps) {
   return (
     <blockquote
+      {...props}
       style={{
         borderLeft: "4px solid var(--primary)",
         backgroundColor: "var(--background-secondary)",

@@ -9,6 +9,8 @@ import BlockQuote from "./markdownRender/BlockQuote"
 import Heading from "./markdownRender/Heading"
 import OrderedList from "./markdownRender/OrderedList"
 import UnorderedList from "./markdownRender/UnorderedList"
+import Code from "./markdownRender/Code"
+import { Table } from "./Table"
 
 type ArticleProps = {
   slug: string
@@ -34,84 +36,39 @@ export default async function ArticleContent({ slug }: ArticleProps) {
           h1: ({ children }) => <Heading level={1}>{children}</Heading>,
           h2: ({ children }) => <Heading level={2}>{children}</Heading>,
           h3: ({ children }) => <Heading level={3}>{children}</Heading>,
-          h4: ({ children }) => <Heading level={4}>{children}</Heading>,
           a: ({ children, ...props }) => (
             // eslint-disable-next-line react/prop-types
             <Anchor href={props.href}>{children}</Anchor>
           ),
           blockquote: ({ children, ...props }) => (
-            <BlockQuote props={props}>{children}</BlockQuote>
+            <BlockQuote {...props}>{children}</BlockQuote>
           ),
           ul: ({ children }) => <UnorderedList>{children}</UnorderedList>,
           ol: ({ children }) => <OrderedList>{children}</OrderedList>,
           li: ({ children, ...props }) => (
-            <li {...props} style={{ marginBottom: "0.5rem" }}>
+            <li {...props} style={{ margin: "3px 2px" }}>
               {children}
             </li>
           ),
           table: ({ children, ...props }) => (
-            <table
-              {...props}
-              style={{
-                width: "100%",
-                borderCollapse: "collapse",
-                borderSpacing: 0,
-              }}
-            >
-              {children}
-            </table>
+            <Table {...props}>{children}</Table>
           ),
           th: ({ children, ...props }) => (
-            <th
-              {...props}
-              style={{
-                padding: "0.5rem",
-                borderBottom: "1px solid var(--border)",
-              }}
-            >
-              {children}
-            </th>
+            <Table.Th {...props}>{children}</Table.Th>
           ),
           td: ({ children, ...props }) => (
-            <td
-              {...props}
-              style={{
-                padding: "0.5rem",
-                borderBottom: "1px solid var(--border)",
-              }}
-            >
-              {children}
-            </td>
+            <Table.Td {...props}>{children}</Table.Td>
           ),
           strong: ({ children, ...props }) => (
             <strong {...props} style={{ fontWeight: "bold" }}>
               {children}
             </strong>
           ),
-          code: ({ className, children, ...props }) => {
-            // className이 없으면 인라인 코드, 있으면 블록 코드로 가정
-            const isInline = !className
-
-            return isInline ? (
-              <code
-                {...props}
-                style={{
-                  backgroundColor: "var(--background-secondary)",
-                  padding: "0.2rem 0.4rem",
-                  borderRadius: "4px",
-                  fontSize: "0.9rem",
-                  fontFamily: "monospace",
-                  color: "var(--tertiary)",
-                }}
-              >
-                {children}
-              </code>
-            ) : (
-              <code {...props} className={className}>
-                {children}
-              </code>
-            )
-          },
+          code: ({ className, children, ...props }) => (
+            <Code className={className} {...props}>
+              {children}
+            </Code>
+          ),
         }}
       >
         {post}
