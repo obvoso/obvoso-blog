@@ -35,13 +35,11 @@ export default async function ArticleContent({ slug }: ArticleProps) {
           h3: ({ children }) => <Heading level={3}>{children}</Heading>,
           h4: ({ children }) => <Heading level={4}>{children}</Heading>,
           a: ({ children, ...props }) => (
+            // eslint-disable-next-line react/prop-types
             <Anchor href={props.href}>{children}</Anchor>
           ),
           blockquote: ({ children, ...props }) => (
             <BlockQuote props={props}>{children}</BlockQuote>
-          ),
-          img: ({ children, ...props }) => (
-            <img {...props} style={{ maxWidth: "100%" }} />
           ),
           ul: ({ children }) => <List listType="ul">{children}</List>,
           ol: ({ children }) => <List listType="ol">{children}</List>,

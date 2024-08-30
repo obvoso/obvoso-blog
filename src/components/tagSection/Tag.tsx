@@ -9,10 +9,10 @@ import CustomTypography from "../common/CustomTypography"
 type TagProps = {
   tagName: string
   type: TagEnum
-  style?: string
+  viewStyle?: string
 }
 
-export default function Tag({ tagName, type, style = "list" }: TagProps) {
+export default function Tag({ tagName, type, viewStyle = "list" }: TagProps) {
   const [tag, setTag] = useRecoilState(selectTagsState)
   const isSelected = tag.tagName === tagName && tag.type === type
 
@@ -38,7 +38,7 @@ export default function Tag({ tagName, type, style = "list" }: TagProps) {
       <Button
         onClick={handleClick}
         sx={{
-          ...(style === "list" ? ButtonStyle.list : ButtonStyle.button),
+          ...(viewStyle === "list" ? ButtonStyle.list : ButtonStyle.button),
         }}
       >
         <CustomTypography

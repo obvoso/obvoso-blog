@@ -23,9 +23,13 @@ export default async function MobileTagNavigation() {
     >
       {data.map((category) => (
         <React.Fragment key={category.name}>
-          <Tag tagName={category.name} type={TagEnum.CATEGORY} style="button" />
+          <Tag
+            tagName={category.name}
+            type={TagEnum.CATEGORY}
+            viewStyle="button"
+          />
           {category.tags.map((tag) => (
-            <Tag tagName={tag} type={TagEnum.TAG} style="button" />
+            <Tag tagName={tag} type={TagEnum.TAG} viewStyle="button" />
           ))}
         </React.Fragment>
       ))}

@@ -12,7 +12,7 @@ type SidebarProps = {
   data: CategoryTag[]
 }
 
-const Sidebar = ({ data }: SidebarProps) => {
+function Sidebar({ data }: SidebarProps) {
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>(
     {},
   )
@@ -37,7 +37,8 @@ const Sidebar = ({ data }: SidebarProps) => {
         <div key={category.name}>
           <ListItem>
             <Tag tagName={category.name} type={TagEnum.CATEGORY} />
-            <span
+            <button
+              type="button"
               onClick={() => handleToggle(category.name)}
               style={{ cursor: "pointer" }}
             >
@@ -47,7 +48,7 @@ const Sidebar = ({ data }: SidebarProps) => {
                 ) : (
                   <ExpandMore />
                 ))}
-            </span>
+            </button>
           </ListItem>
           <Collapse
             in={openCategories[category.name]}
