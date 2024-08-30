@@ -1,6 +1,8 @@
 import { getArticleData } from "@/services/article"
 import { Box } from "@mui/material"
 import Markdown from "react-markdown"
+// eslint-disable-next-line import/no-extraneous-dependencies
+import remarkBreaks from "remark-breaks"
 import rehypeHighlight from "rehype-highlight"
 import rehypeRaw from "rehype-raw"
 import remarkGfm from "remark-gfm"
@@ -30,8 +32,8 @@ export default async function ArticleContent({ slug }: ArticleProps) {
       }}
     >
       <Markdown
-        remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeHighlight, rehypeRaw, remarkGfm]}
+        remarkPlugins={[remarkBreaks, remarkGfm]}
+        rehypePlugins={[rehypeHighlight, rehypeRaw]}
         components={{
           h1: ({ children }) => <Heading level={1}>{children}</Heading>,
           h2: ({ children }) => <Heading level={2}>{children}</Heading>,

@@ -17,7 +17,7 @@ export default function Heading({ level, children }: HeadingProps) {
     <CustomTypography
       size={styles.size}
       weight={styles.weight}
-      sx={{ marginBottom: styles.marginBottom }}
+      sx={{ marginBottom: styles.marginBottom, marginTop: styles.marginTop }}
     >
       {children}
     </CustomTypography>
