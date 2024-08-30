@@ -7,6 +7,23 @@ type ArticleHeaderProps = {
   slug: string
 }
 
+function ArticleHeaderTag({ tag }: { tag: string }) {
+  return (
+    <Box
+      sx={{
+        paddingY: 0.5,
+        paddingX: 1.5,
+        backgroundColor: "var(--background-secondary)",
+        color: "var(--tertiary)",
+        borderRadius: 4,
+        display: "inline-block",
+      }}
+    >
+      {tag}
+    </Box>
+  )
+}
+
 export default async function ArticleHeader({ slug }: ArticleHeaderProps) {
   const {
     title,
@@ -39,23 +56,6 @@ export default async function ArticleHeader({ slug }: ArticleHeaderProps) {
         {createdTime}
       </CustomTypography>
       <BlurImage src={thumbnail} blurDataURL={blurThumbnail} />
-    </Box>
-  )
-}
-
-function ArticleHeaderTag({ tag }: { tag: string }) {
-  return (
-    <Box
-      sx={{
-        paddingY: 0.5,
-        paddingX: 1.5,
-        backgroundColor: "var(--background-secondary)",
-        color: "var(--tertiary)",
-        borderRadius: 4,
-        display: "inline-block",
-      }}
-    >
-      {tag}
     </Box>
   )
 }

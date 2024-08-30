@@ -7,7 +7,8 @@ import remarkGfm from "remark-gfm"
 import Anchor from "./markdownRender/Anchor"
 import BlockQuote from "./markdownRender/BlockQuote"
 import Heading from "./markdownRender/Heading"
-import List from "./markdownRender/List"
+import OrderedList from "./markdownRender/OrderedList"
+import UnorderedList from "./markdownRender/UnorderedList"
 
 type ArticleProps = {
   slug: string
@@ -41,8 +42,8 @@ export default async function ArticleContent({ slug }: ArticleProps) {
           blockquote: ({ children, ...props }) => (
             <BlockQuote props={props}>{children}</BlockQuote>
           ),
-          ul: ({ children }) => <List listType="ul">{children}</List>,
-          ol: ({ children }) => <List listType="ol">{children}</List>,
+          ul: ({ children }) => <UnorderedList>{children}</UnorderedList>,
+          ol: ({ children }) => <OrderedList>{children}</OrderedList>,
           li: ({ children, ...props }) => (
             <li {...props} style={{ marginBottom: "0.5rem" }}>
               {children}
