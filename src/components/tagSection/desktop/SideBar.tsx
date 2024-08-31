@@ -28,7 +28,7 @@ function Sidebar({ data }: SidebarProps) {
   return (
     <List
       sx={{
-        padding: 4,
+        padding: 2,
         display: { xs: "none", sm: "flex" },
         alignItems: "start",
         flexDirection: "column",

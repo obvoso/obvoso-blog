@@ -6,6 +6,7 @@ type TypograhpyProps = {
   size?: number
   weight?: number
   sx?: object
+  className?: string
 }
 
 export default function CustomTypography({
@@ -14,9 +15,11 @@ export default function CustomTypography({
   size = 14,
   weight = 400,
   sx = {},
+  className,
 }: TypograhpyProps) {
   return (
     <Typography
+      className={className}
       sx={{
         color,
         fontSize: size,
