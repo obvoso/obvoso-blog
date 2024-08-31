@@ -4,7 +4,12 @@ import selectTagsState from "@/atoms/selectCategoryTags"
 import { TagEnum } from "@/types/tags"
 import { Button } from "@mui/material"
 import { useRecoilState } from "recoil"
-import CustomTypography from "../common/CustomTypography"
+import { Noto_Serif_KR } from "next/font/google"
+
+const notoSerifKr = Noto_Serif_KR({
+  subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600", "700", "900"],
+})
 
 type TagProps = {
   tagName: string
@@ -20,8 +25,8 @@ export default function Tag({ tagName, type, viewStyle = "list" }: TagProps) {
     button: {
       justifyContent: "center",
       whiteSpace: "nowrap",
-      backgroundColor: "var(--background-secondary)",
-      borderRadius: 50,
+      borderBottom: isSelected ? "1px solid var(--text-tertiatry)" : "none",
+      borderRadius: 0,
     },
     list: {
       justifyContent: "flex-start",
@@ -36,17 +41,21 @@ export default function Tag({ tagName, type, viewStyle = "list" }: TagProps) {
   return (
     <div>
       <Button
+        disableRipple
         onClick={handleClick}
+        className={notoSerifKr.className}
         sx={{
           ...(viewStyle === "list" ? ButtonStyle.list : ButtonStyle.button),
+          color: isSelected ? "var(--text-tertiatry)" : "var(--text)",
+          fontWeight: isSelected ? "500" : "200",
+          "&:hover": {
+            color: "var(--text-tertiatry)",
+            backgroundColor: "var(--background)",
+          },
+          "&:click": { backgroundColor: "var(--background)" },
         }}
       >
-        <CustomTypography
-          color={isSelected ? "var(--primary)" : "var(--tertiary)"}
-          size={type === TagEnum.CATEGORY ? 14 : 12}
-        >
-          {tagName}
-        </CustomTypography>
+        {tagName}
       </Button>
     </div>
   )

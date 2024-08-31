@@ -6,6 +6,7 @@ import Collapse from "@mui/material/Collapse"
 import List from "@mui/material/List"
 import ListItem from "@mui/material/ListItem"
 import { useState } from "react"
+import { Button } from "@mui/material"
 import Tag from "../Tag"
 
 type SidebarProps = {
@@ -37,18 +38,23 @@ function Sidebar({ data }: SidebarProps) {
         <div key={category.name}>
           <ListItem>
             <Tag tagName={category.name} type={TagEnum.CATEGORY} />
-            <button
-              type="button"
-              onClick={() => handleToggle(category.name)}
-              style={{ cursor: "pointer" }}
-            >
-              {category.name !== "전체보기" &&
-                (openCategories[category.name] ? (
-                  <ExpandLess />
+            {category.name !== "전체보기" && (
+              <Button
+                disableRipple
+                onClick={() => handleToggle(category.name)}
+                sx={{
+                  cursor: "pointer",
+                  color: "var(--text)",
+                  "&:hover": { backgroundColor: "var(--background)" },
+                }}
+              >
+                {openCategories[category.name] ? (
+                  <ExpandLess sx={{ fontSize: 15 }} />
                 ) : (
-                  <ExpandMore />
-                ))}
-            </button>
+                  <ExpandMore sx={{ fontSize: 15 }} />
+                )}
+              </Button>
+            )}
           </ListItem>
           <Collapse
             in={openCategories[category.name]}
