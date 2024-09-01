@@ -1,28 +1,34 @@
-import { getArticleData } from "@/services/article"
 import { getAllPost } from "@/services/notion"
 import { NotionData } from "@/types/notion"
 import Box from "@mui/material/Box"
 import "highlight.js/styles/hybrid.css"
-import Markdown from "react-markdown"
-import rehypeHighlight from "rehype-highlight"
-import rehypeRaw from "rehype-raw"
-import remarkGfm from "remark-gfm"
+import ArticleContent from "./components/ArticleContent"
+import ArticleHeader from "./components/ArticleHeader"
 
 type ArticleProps = {
-  params: { slug: string }
+  params: {
+    slug: string
+  }
 }
 
 export default async function Article({ params }: ArticleProps) {
-  const post = await getArticleData(params.slug)
-
   return (
-    <Box>
-      <Markdown
-        remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeHighlight, rehypeRaw]}
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        padding: 4,
+      }}
+    >
+      <Box
+        sx={{
+          maxWidth: "800px",
+          width: "100%",
+        }}
       >
-        {post}
-      </Markdown>
+        <ArticleHeader slug={params.slug} />
+        <ArticleContent slug={params.slug} />
+      </Box>
     </Box>
   )
 }

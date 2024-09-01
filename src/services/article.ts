@@ -17,3 +17,24 @@ export async function getArticleData(slug: string) {
   }
   return post
 }
+
+export async function getArticleHeader(slug: string) {
+  const decodeSlug = decodeURIComponent(slug)
+  const data = await getAllPost()
+  const page = data.find(
+    (item: NotionData) => item.slug === decodeSlug || item.slug === slug,
+  )
+
+  if (!page) {
+    throw new Error("Notion data not found")
+  }
+  return {
+    title: page.title,
+    description: page.description,
+    createdTime: page.createdTime,
+    category: page.category,
+    tag: page.tag,
+    thumbnail: page.thumbnail,
+    blurThumbnail: page.blurThumbnail,
+  }
+}

@@ -1,5 +1,7 @@
-import { AppBar, Toolbar, Typography } from "@mui/material"
+import { AppBar, Toolbar, Box } from "@mui/material"
 import Link from "next/link"
+import CustomTypography from "../common/CustomTypography"
+import AudioHeader from "./AudioHeader"
 import ThemeToggle from "./ThemeToggle"
 
 export default function Header() {
@@ -8,16 +10,20 @@ export default function Header() {
       position="static"
       sx={{
         backgroundColor: "var(--background)",
-        color: "var(--primary)",
         boxShadow: "none",
         borderBottom: "0.5px solid var(--border)",
       }}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
+        <Box sx={{ flex: 1 }}>
+          <AudioHeader />
+        </Box>
         <Link href="/">
-          <Typography variant="h6">obvoso blog</Typography>
+          <CustomTypography fontFamily="var(--noto)">obvoso</CustomTypography>
         </Link>
-        <ThemeToggle />
+        <Box sx={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
+          <ThemeToggle />
+        </Box>
       </Toolbar>
     </AppBar>
   )

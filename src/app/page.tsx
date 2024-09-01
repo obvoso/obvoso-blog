@@ -1,5 +1,6 @@
 import ArticlesList from "@/components/home/article/ArticlesList"
-import TagNavigation from "@/components/tagSection/TagNavigation"
+import DesktopTagNavigation from "@/components/tagSection/desktop/DesktopTagNavigation"
+import MobileTagNavigation from "@/components/tagSection/mobile/MobileTagNavigation"
 import { Box, Container } from "@mui/material"
 
 export default function Home() {
@@ -12,7 +13,8 @@ export default function Home() {
           flexDirection: { xs: "column", sm: "row" },
         }}
       >
-        <TagNavigation />
+        <DesktopTagNavigation />
+        <MobileTagNavigation />
         <ArticlesList />
       </Box>
     </Container>

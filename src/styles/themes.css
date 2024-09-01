@@ -1,19 +1,27 @@
 html.light {
   --background: #ffffff;
+  --background-secondary: #edf7f6;
   --text: #333;
   --text-secondary: #555;
+  --text-tertiatry: #999;
   --primary: #51b7ae;
   --secondary: #26a69a;
+  --tertiary: #388079;
   --border: #bfbfbf;
+  --border-secondary: #212222;
 }
 
 html.dark {
   --background: #212222;
+  --background-secondary: #2e4644;
   --text: #eee;
   --text-secondary: #ccc;
+  --text-tertiatry: #aaa;
   --primary: #26a69a;
   --secondary: #51b7ae;
+  --tertiary: #96d3ce;
   --border: #6f6f6f;
+  --border-secondary: #fff;
 }
 
 body {
