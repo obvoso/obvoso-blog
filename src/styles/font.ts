@@ -1,6 +1,9 @@
-import { Inter, Noto_Serif_KR } from "next/font/google"
+import { Noto_Sans_KR, Noto_Serif_KR } from "next/font/google"
 
-export const inter = Inter({ subsets: ["latin"] })
+export const notoSansKr = Noto_Sans_KR({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "700", "900"],
+})
 
 export const notoSerifKr = Noto_Serif_KR({
   subsets: ["latin"],
