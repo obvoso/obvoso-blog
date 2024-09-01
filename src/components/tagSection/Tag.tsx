@@ -1,7 +1,6 @@
 "use client"
 
 import selectTagsState from "@/atoms/selectCategoryTags"
-import { notoSerifKr } from "@/styles/font"
 import { TagEnum } from "@/types/tags"
 import { Button } from "@mui/material"
 import { useRecoilState } from "recoil"
@@ -38,10 +37,10 @@ export default function Tag({ tagName, type, viewStyle = "list" }: TagProps) {
       <Button
         disableRipple
         onClick={handleClick}
-        className={notoSerifKr.className}
         sx={{
           ...(viewStyle === "list" ? ButtonStyle.list : ButtonStyle.button),
           color: isSelected ? "var(--text-tertiatry)" : "var(--text)",
+          fontFamily: "var(--noto)",
           fontWeight: isSelected ? "500" : "200",
           "&:hover": {
             color: "var(--text-tertiatry)",

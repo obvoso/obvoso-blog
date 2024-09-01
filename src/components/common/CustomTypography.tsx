@@ -6,7 +6,7 @@ type TypograhpyProps = {
   size?: number
   weight?: number
   sx?: object
-  className?: string
+  fontFamily?: string
 }
 
 export default function CustomTypography({
@@ -15,19 +15,22 @@ export default function CustomTypography({
   size = 14,
   weight = 400,
   sx = {},
-  className,
+  fontFamily,
 }: TypograhpyProps) {
-  return (
-    <Typography
-      className={className}
-      sx={{
-        color,
-        fontSize: size,
-        fontWeight: weight,
-        ...sx,
-      }}
-    >
-      {children}
-    </Typography>
-  )
+  const customSx: {
+    color: string
+    fontSize: number
+    fontWeight: number
+    fontFamily?: string
+  } = {
+    color,
+    fontSize: size,
+    fontWeight: weight,
+    ...sx,
+  }
+
+  if (fontFamily) {
+    customSx.fontFamily = "var(--noto)"
+  }
+  return <Typography sx={customSx}>{children}</Typography>
 }

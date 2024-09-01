@@ -1,12 +1,10 @@
 import RecoilRootWrapper from "@/app/RecoilWrapper"
 import Header from "@/components/layout/Header"
+import { inter, notoSerifKr } from "@/styles/font"
 import "@/styles/globals.css"
 import "@/styles/themes.css"
 import type { Metadata } from "next"
 import { ThemeProvider } from "next-themes"
-import { Inter } from "next/font/google"
-
-const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "obvoso blog",
@@ -20,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${inter.className}, ${notoSerifKr.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system">
           <Header />
           <RecoilRootWrapper>

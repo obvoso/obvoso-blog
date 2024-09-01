@@ -1,5 +1,4 @@
 import { AppBar, Toolbar, Box } from "@mui/material"
-import { notoSerifKr } from "@/styles/font"
 import Link from "next/link"
 import CustomTypography from "../common/CustomTypography"
 import AudioHeader from "./AudioHeader"
@@ -20,9 +19,7 @@ export default function Header() {
           <AudioHeader />
         </Box>
         <Link href="/">
-          <CustomTypography className={notoSerifKr.className}>
-            obvoso
-          </CustomTypography>
+          <CustomTypography fontFamily="var(--noto)">obvoso</CustomTypography>
         </Link>
         <Box sx={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
           <ThemeToggle />
