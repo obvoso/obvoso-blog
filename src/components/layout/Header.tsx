@@ -1,14 +1,9 @@
 import { AppBar, Toolbar, Box } from "@mui/material"
+import { notoSerifKr } from "@/styles/font"
 import Link from "next/link"
-import { Noto_Serif_KR } from "next/font/google"
 import CustomTypography from "../common/CustomTypography"
 import AudioHeader from "./AudioHeader"
 import ThemeToggle from "./ThemeToggle"
-
-const notoSerifKr = Noto_Serif_KR({
-  subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "900"],
-})
 
 export default function Header() {
   return (

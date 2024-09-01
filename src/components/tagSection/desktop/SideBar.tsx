@@ -45,7 +45,7 @@ function Sidebar({ data }: SidebarProps) {
                 onClick={() => handleToggle(category.name)}
                 sx={{
                   cursor: "pointer",
-                  color: "var(--text)",
+                  color: "var(--text-secondary)",
                   "&:hover": { backgroundColor: "var(--background)" },
                 }}
               >

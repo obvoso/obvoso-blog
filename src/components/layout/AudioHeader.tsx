@@ -70,7 +70,13 @@ export default function AudioHeader() {
         <IconButton onClick={handlePlayPause} sx={{ color: "var(--primary)" }}>
           {isPlaying ? <Pause /> : <PlayArrow />}
         </IconButton>
-        <Box sx={{ overflow: "hidden", whiteSpace: "nowrap", width: "150px" }}>
+        <Box
+          sx={{
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            width: { xs: "120px", sm: "150px", md: "250px" },
+          }}
+        >
           <CustomTypography
             sx={{
               color: "var(--primary)",
