@@ -30,7 +30,7 @@ export default function CustomTypography({
   }
 
   if (fontFamily) {
-    customSx.fontFamily = "var(--noto)"
+    customSx.fontFamily = fontFamily
   }
   return <Typography sx={customSx}>{children}</Typography>
 }
