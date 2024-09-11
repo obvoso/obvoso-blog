@@ -1,6 +1,6 @@
-import BlurImage from "@/components/common/BlurImage"
-import CustomTypography from "@/components/common/CustomTypography"
-import { getArticleHeader } from "@/services/article"
+import BlurImage from "@/app/components/common/BlurImage"
+import CustomTypography from "@/app/components/common/CustomTypography"
+import { getArticleHeader } from "@/lib/api/article"
 import { Box } from "@mui/material"
 
 type ArticleHeaderProps = {

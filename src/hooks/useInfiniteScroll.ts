@@ -1,5 +1,5 @@
+import { fetchTagArticles } from "@/app/(home)/components/article/actions"
 import selectTagsState from "@/atoms/selectCategoryTags"
-import { fetchTagArticles } from "@/components/home/article/actions"
 import { NotionData } from "@/types/notion"
 import { useEffect, useState } from "react"
 import { useInView } from "react-intersection-observer"

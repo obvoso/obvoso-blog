@@ -1,18 +1,18 @@
-import { getArticleData } from "@/services/article"
+import { getArticleData } from "@/lib/api/article"
 import { Box } from "@mui/material"
 import Markdown from "react-markdown"
 // eslint-disable-next-line import/no-extraneous-dependencies
-import remarkBreaks from "remark-breaks"
 import rehypeHighlight from "rehype-highlight"
 import rehypeRaw from "rehype-raw"
+import remarkBreaks from "remark-breaks"
 import remarkGfm from "remark-gfm"
+import { Table } from "./Table"
 import Anchor from "./markdownRender/Anchor"
 import BlockQuote from "./markdownRender/BlockQuote"
+import Code from "./markdownRender/Code"
 import Heading from "./markdownRender/Heading"
 import OrderedList from "./markdownRender/OrderedList"
 import UnorderedList from "./markdownRender/UnorderedList"
-import Code from "./markdownRender/Code"
-import { Table } from "./Table"
 
 type ArticleProps = {
   slug: string

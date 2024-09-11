@@ -1,6 +1,6 @@
 "use server"
 
-import { getAllPost } from "@/services/notion"
+import { getAllPost } from "@/lib/api/notion"
 import { NotionData } from "@/types/notion"
 import { TagEnum, TagType } from "@/types/tags"
 

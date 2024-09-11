@@ -1,4 +1,4 @@
-import { getAllPost } from "@/services/notion"
+import { getAllPost } from "@/lib/api/notion"
 import { NotionData } from "@/types/notion"
 import Box from "@mui/material/Box"
 import "highlight.js/styles/hybrid.css"

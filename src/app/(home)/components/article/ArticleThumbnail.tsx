@@ -1,5 +1,5 @@
-import BlurImage from "@/components/common/BlurImage"
-import CustomTypography from "@/components/common/CustomTypography"
+import BlurImage from "@/app/components/common/BlurImage"
+import CustomTypography from "@/app/components/common/CustomTypography"
 import { NotionData } from "@/types/notion"
 import { Box } from "@mui/material"
 

@@ -1,4 +1,4 @@
-import { getAllTagsWithCategory } from "@/services/notion"
+import { getAllTagsWithCategory } from "@/lib/api/notion"
 import { CategoryTag } from "@/types/tags"
 import Sidebar from "./SideBar"
 

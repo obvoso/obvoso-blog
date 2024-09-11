@@ -1,4 +1,4 @@
-import CustomTypography from "@/components/common/CustomTypography"
+import CustomTypography from "@/app/components/common/CustomTypography"
 import React from "react"
 
 type HeadingProps = {

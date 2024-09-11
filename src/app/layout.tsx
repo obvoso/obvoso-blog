@@ -1,5 +1,5 @@
 import RecoilRootWrapper from "@/app/RecoilWrapper"
-import Header from "@/components/layout/Header"
+import Header from "@/app/components/layout/Header"
 import { notoSansKr, notoSerifKr } from "@/styles/font"
 import "@/styles/globals.css"
 import "@/styles/themes.css"

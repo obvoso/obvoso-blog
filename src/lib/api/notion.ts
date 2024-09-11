@@ -1,5 +1,5 @@
 import { unstable_cache } from "next/cache"
-import { generateSlug, parseDate } from "./utils"
+import { generateSlug, parseDate } from "../utils/utils"
 
 const { Client } = require("@notionhq/client")
 const { NotionToMarkdown } = require("notion-to-md")

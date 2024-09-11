@@ -1,4 +1,4 @@
-import { getAllTagsWithCategory } from "@/services/notion"
+import { getAllTagsWithCategory } from "@/lib/api/notion"
 import { CategoryTag, TagEnum } from "@/types/tags"
 import { Box } from "@mui/material"
 import React from "react"
