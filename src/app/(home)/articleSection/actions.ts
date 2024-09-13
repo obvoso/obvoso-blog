@@ -11,7 +11,7 @@ export async function fetchTagArticles({
   tag: TagType
   page?: number
 }) {
-  const itemsPerPage = 6
+  const itemsPerPage = 4
   const res = await getAllPost()
   const filteredData = res.filter((post: NotionData) => {
     if (tag.tagName === "전체보기") return true

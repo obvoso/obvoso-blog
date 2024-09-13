@@ -1,5 +1,4 @@
 import RecoilRootWrapper from "@/app/RecoilWrapper"
-import Header from "@/app/components/layout/Header"
 import { notoSansKr, notoSerifKr } from "@/styles/font"
 import "@/styles/globals.css"
 import "@/styles/themes.css"
@@ -20,7 +19,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${notoSansKr.className}, ${notoSerifKr.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system">
-          <Header />
+          {/* <Header /> */}
           <RecoilRootWrapper>
             <main>{children}</main>
           </RecoilRootWrapper>

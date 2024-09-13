@@ -1,4 +1,4 @@
-import { fetchTagArticles } from "@/app/(home)/components/article/actions"
+import { fetchTagArticles } from "@/app/(home)/articleSection/actions"
 import selectTagsState from "@/atoms/selectCategoryTags"
 import { NotionData } from "@/types/notion"
 import { useEffect, useState } from "react"

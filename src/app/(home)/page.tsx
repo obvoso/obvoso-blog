@@ -1,23 +1,33 @@
-import { Box, Container } from "@mui/material"
-import HomeDesktop from "./desktop/HomeDesktop"
-import HomeMobile from "./mobile/HomeMobile"
+import { Box } from "@mui/material"
+import ArticlesList from "./articleSection/ArticlesList"
+import HotArticle from "./hotArticleSection/HotArticle"
+import DesktopSideProfile from "./profileSection/desktop/DesktopSideProfile"
+import MobileHeader from "./profileSection/mobile/MobileHeader"
 
-export default function Home() {
+export default async function Home() {
   return (
-    <Container maxWidth="lg">
+    <Box
+      paddingY={6}
+      sx={{
+        display: "flex",
+        maxHeight: "100vh",
+        flexDirection: { xs: "column", sm: "row" },
+      }}
+    >
+      {/* mint */}
+      <DesktopSideProfile />
+      <MobileHeader />
       <Box
-        paddingY={6}
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
+          flexDirection: "column",
         }}
       >
-        <HomeDesktop />
-        <HomeMobile />
-        {/* <DesktopTagNavigation />
-        <MobileTagNavigation />
-        <ArticlesList /> */}
+        {/* purple */}
+        <HotArticle />
+        {/* pink */}
+        <ArticlesList />
       </Box>
-    </Container>
+    </Box>
   )
 }

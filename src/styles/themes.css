@@ -7,8 +7,12 @@ html.light {
   --primary: #51b7ae;
   --secondary: #26a69a;
   --tertiary: #388079;
-  --border: #bfbfbf;
+  --primary-gradient: linear-gradient(180deg, #aafaff 0%, #19c0c0 83%);
+  --hover-primary-gradient: linear-gradient(180deg, #ffffff 0%, #aafaff 83%);
+  --silver-gradient: linear-gradient(180deg, #fff 0%, #b7b7b7 65%, #fff 100%);
+  --border: #b7b7b7;
   --border-secondary: #212222;
+  --border-tertiary: #d9d9d9;
 }
 
 html.dark {
