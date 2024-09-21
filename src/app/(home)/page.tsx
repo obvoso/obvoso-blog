@@ -7,7 +7,7 @@ import MobileHeader from "./profileSection/mobile/MobileHeader"
 export default async function Home() {
   return (
     <Box
-      paddingY={6}
+      paddingY={10}
       sx={{
         display: "flex",
         maxHeight: "100vh",

@@ -1,4 +1,5 @@
 "use client"
+
 import CustomBox from "@/app/components/common/CustomBox"
 import CustomTypography from "@/app/components/common/CustomTypography"
 import GradientButton from "@/app/components/common/GradientButton"
@@ -12,11 +13,24 @@ export default function Introduce() {
   return (
     <CustomBox sx={{ borderRadius: "8px 8px 16px 16px ", padding: 0 }}>
       <StarTextBox text="See My Profile" />
-      <Box sx={{ paddingX: 4, paddingY: 3 }}>
-        <CustomTypography>obvoso</CustomTypography>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          gap: 0.5,
+          paddingY: 2,
+        }}
+      >
+        <CustomTypography size={24} weight={600}>
+          obvoso
+        </CustomTypography>
         <CustomTypography>안뇽허삽니까</CustomTypography>
         <GradientButton text="GitHub" onClick={onClickButton} />
-        <CustomTypography>FrontEnd Developer</CustomTypography>
+        <CustomTypography sx={{ marginTop: 1 }}>
+          FrontEnd Developer
+        </CustomTypography>
       </Box>
     </CustomBox>
   )

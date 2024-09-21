@@ -1,5 +1,5 @@
+import DesktopJukebox from "@/app/(home)/profileSection/desktop/component/DesktopZukebox"
 import CustomBox from "@/app/components/common/CustomBox"
-import Jukebox from "@/app/components/layout/Zukebox"
 import Avatar from "./component/Avatar"
 import Introduce from "./component/Introduce"
 
@@ -10,7 +10,7 @@ export default function DesktopSideProfile() {
     >
       <Avatar />
       <Introduce />
-      <Jukebox />
+      <DesktopJukebox />
     </CustomBox>
   )
 }

@@ -1,8 +1,8 @@
 import { AppBar, Box, Toolbar } from "@mui/material"
 import Link from "next/link"
+import AudioHeader from "../../(home)/profileSection/desktop/component/DesktopZukebox"
 import CustomTypography from "../common/CustomTypography"
 import ThemeToggle from "./ThemeToggle"
-import AudioHeader from "./Zukebox"
 
 export default function Header() {
   return (

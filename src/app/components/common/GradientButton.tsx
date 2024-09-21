@@ -10,34 +10,32 @@ export default function GradientButton({ text, onClick }: GradientButtonProps) {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 100,
-        padding: 1,
         background: "var(--silver-gradient)",
+        borderRadius: 100,
+        padding: 0.6,
         boxShadow: 2,
+        width: "fit-content",
       }}
     >
       <Button
         onClick={onClick}
+        style={{ textTransform: "none" }}
         sx={{
-          display: "flex",
-          alignItems: "center",
           justifyContent: "center",
           borderRadius: 100,
-          boxShadow: "inset 0px 4px 6px rgba(0, 0, 0, 0.1)",
+          boxShadow: "inset 1px 2px 6px rgba(0, 0, 0, 0.3)",
           background: "var(--primary-gradient)",
-          color: "var(--text)",
-          padding: "2px 4px",
+          padding: "5px 20px",
           "&:hover": {
-            backgroundColor: "var(--hover-primary-gradient)",
+            background: "var(--hover-primary-gradient)",
           },
         }}
       >
         <CustomTypography
           sx={{
-            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
+            textShadow: "0px 1px 2px rgba(0, 0, 0, 0.3)",
+            fontSize: 16,
+            color: "var(--background)",
           }}
         >
           {text}

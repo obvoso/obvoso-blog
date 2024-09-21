@@ -16,7 +16,14 @@ export default function InfiniteScrollArticles({
   const { articleList, ref } = useInfiniteScroll({ initialArticles })
 
   return (
-    <Box sx={{ flexDirection: "row", width: "100%" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        width: "100%",
+        overflowY: "auto",
+      }}
+    >
       <Grid
         container
         spacing={2}
