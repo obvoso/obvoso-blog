@@ -4,6 +4,7 @@ import CustomBox from "@/app/components/common/CustomBox"
 import CustomTypography from "@/app/components/common/CustomTypography"
 import StarTextBox from "@/app/components/common/StarTextBox"
 import cd from "@/assets/images/cd.png"
+import { playlistInfo } from "@/lib/utils/playlist"
 import { Box } from "@mui/material"
 import Image from "next/image"
 import { useState } from "react"
@@ -12,35 +13,7 @@ import ControlButtons from "./jukebox/ControlButtons"
 import PlaylistInfo from "./jukebox/PlaylistInfo"
 import Volume from "./jukebox/Volume"
 
-const PLAYLIST_ID = "RDlhhV41VL0BU"
-
-export type playlistInfo = {
-  title: string
-  artist: string
-}
-
-const playlistInfo: playlistInfo[] = [
-  {
-    title: "Blinding Lights",
-    artist: "The Weeknd",
-  },
-  {
-    title: "Don't Start Now",
-    artist: "Dua Lipa",
-  },
-  {
-    title: "bad guy",
-    artist: "Billie Eilish",
-  },
-  {
-    title: "Dance Monkey",
-    artist: "Tones And I",
-  },
-  {
-    title: "Someone You Loved",
-    artist: "Lewis Capaldi",
-  },
-]
+const PLAYLIST_ID = process.env.NEXT_PUBLIC_YOUTUBE_PLAYLIST_ID
 
 export default function DesktopJukebox() {
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
@@ -77,6 +50,12 @@ export default function DesktopJukebox() {
       setCurrentTrack(
         (prev) => (prev - 1 + playlistInfo.length) % playlistInfo.length,
       )
+    }
+  }
+
+  const handleReplay = () => {
+    if (player) {
+      player.seekTo(0)
     }
   }
 
@@ -165,6 +144,7 @@ export default function DesktopJukebox() {
                 handlePlayPause={handlePlayPause}
                 handlePrevious={handlePrevious}
                 handleNext={handleNext}
+                handleReplay={handleReplay}
                 isPlaying={isPlaying}
               />
               <Box

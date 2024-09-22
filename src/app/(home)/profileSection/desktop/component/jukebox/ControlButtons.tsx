@@ -44,12 +44,14 @@ type ControlButtonsProps = {
   handlePlayPause: () => void
   handlePrevious: () => void
   handleNext: () => void
+  handleReplay: () => void
   isPlaying: boolean
 }
 export default function ControlButtons({
   handlePlayPause,
   handlePrevious,
   handleNext,
+  handleReplay,
   isPlaying,
 }: ControlButtonsProps) {
   return (
@@ -102,10 +104,10 @@ export default function ControlButtons({
           </IconButton>
         </Box>
         <CircularButton transform={0}>
-          <SkipNext onClick={handlePrevious} fontSize={"inherit"} />
+          <SkipNext onClick={handleNext} fontSize={"inherit"} />
         </CircularButton>
         <CircularButton transform={90}>
-          <StopCircleIcon fontSize={"inherit"} />
+          <StopCircleIcon onClick={handleReplay} fontSize={"inherit"} />
         </CircularButton>
         <CircularButton transform={180}>
           <SkipNext onClick={handlePrevious} fontSize={"inherit"} />
