@@ -1,6 +1,6 @@
 import CustomTypography from "@/app/components/common/CustomTypography"
+import { playlistInfo } from "@/lib/utils/playlist"
 import { Box } from "@mui/material"
-import { playlistInfo } from "../DesktopZukebox"
 
 type PlaylistInfoProps = {
   info: playlistInfo
