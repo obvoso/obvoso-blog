@@ -26,6 +26,13 @@ export default function DesktopJukebox() {
     event.target.setVolume(volume)
   }
 
+  const onStateChange = (event: { target: YouTubePlayer; data: number }) => {
+    if (event.data === 1) {
+      const currentIndex = event.target.getPlaylistIndex()
+      if (currentIndex !== currentTrack) setCurrentTrack(currentIndex)
+    }
+  }
+
   const handlePlayPause = () => {
     if (player) {
       if (isPlaying) {
@@ -41,6 +48,9 @@ export default function DesktopJukebox() {
     if (player) {
       player.nextVideo()
       setCurrentTrack((prev) => (prev + 1) % playlistInfo.length)
+      if (!isPlaying) {
+        setIsPlaying(!isPlaying)
+      }
     }
   }
 
@@ -50,6 +60,9 @@ export default function DesktopJukebox() {
       setCurrentTrack(
         (prev) => (prev - 1 + playlistInfo.length) % playlistInfo.length,
       )
+      if (!isPlaying) {
+        setIsPlaying(!isPlaying)
+      }
     }
   }
 
@@ -76,6 +89,7 @@ export default function DesktopJukebox() {
       autoplay: 1,
       controls: 0,
       loop: 1,
+      rel: 0,
     },
   }
 
@@ -166,6 +180,7 @@ export default function DesktopJukebox() {
           videoId=""
           opts={opts}
           onReady={onReady}
+          onStateChange={onStateChange}
           style={{
             display: "none",
           }}
