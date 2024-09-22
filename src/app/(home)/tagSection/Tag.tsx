@@ -24,7 +24,7 @@ export default function Tag({ tagName, type, viewStyle = "list" }: TagProps) {
       text={tagName}
       onClick={handleClick}
       isSelected={isSelected}
-      size={12}
+      size={13}
     />
   )
 }

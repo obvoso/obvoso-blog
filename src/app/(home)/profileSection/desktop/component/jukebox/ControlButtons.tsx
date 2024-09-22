@@ -32,6 +32,7 @@ function CircularButton({ transform, children }: CircularButtonProps) {
           justifyContent: "flex-end",
           alignItems: "center",
           padding: 0.2,
+          color: "var(--gray)",
         }}
       >
         {children}

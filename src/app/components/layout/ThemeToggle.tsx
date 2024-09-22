@@ -1,24 +1,33 @@
 "use client"
 
-import { FormControlLabel, Switch, SwitchProps, styled } from "@mui/material"
+import {
+  Box,
+  FormControlLabel,
+  Switch,
+  SwitchProps,
+  styled,
+} from "@mui/material"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 
 const IOSSwitch = styled((props: SwitchProps) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
 ))(({ theme }) => ({
-  width: 42,
+  width: 72,
   height: 26,
   padding: 0,
   "& .MuiSwitch-switchBase": {
     padding: 0,
     margin: 2,
+    color: "red",
     transitionDuration: "300ms",
     "&.Mui-checked": {
-      transform: "translateX(16px)",
-      color: "#fff",
+      transform: "translateX(46px)",
+      "& .MuiSwitch-thumb": {
+        background: "var(--dark-radial-primary-gradient)",
+      },
       "& + .MuiSwitch-track": {
-        backgroundColor: "var(--primary)",
+        background: "var(--primary-gradient)",
         opacity: 1,
         border: 0,
       },
@@ -27,18 +36,21 @@ const IOSSwitch = styled((props: SwitchProps) => (
       },
     },
     "&.Mui-focusVisible .MuiSwitch-thumb": {
-      color: "#33cf4d",
       border: "6px solid #fff",
     },
   },
   "& .MuiSwitch-thumb": {
+    background: "var(--radial-primary-gradient)",
     boxSizing: "border-box",
     width: 22,
     height: 22,
   },
   "& .MuiSwitch-track": {
     borderRadius: 26 / 2,
-    backgroundColor: theme.palette.mode === "light" ? "#E9E9EA" : "#39393D",
+    background:
+      theme.palette.mode === "light"
+        ? "var(--hover-primary-gradient)"
+        : "var(--primary-gradient)",
     opacity: 1,
     transition: theme.transitions.create(["background-color"], {
       duration: 500,
@@ -59,12 +71,20 @@ export default function ThemeToggle() {
   }
 
   return (
-    <FormControlLabel
-      control={<IOSSwitch checked={resolvedTheme === "dark"} />}
-      label=""
-      onClick={() => {
-        setTheme(resolvedTheme === "light" ? "dark" : "light")
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "flex-end",
       }}
-    />
+    >
+      <FormControlLabel
+        control={<IOSSwitch checked={resolvedTheme === "dark"} />}
+        label=""
+        sx={{ margin: 0 }}
+        onClick={() => {
+          setTheme(resolvedTheme === "light" ? "dark" : "light")
+        }}
+      />
+    </Box>
   )
 }

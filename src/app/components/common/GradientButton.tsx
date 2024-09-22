@@ -39,10 +39,10 @@ export default function GradientButton({
         }}
       >
         <CustomTypography
+          size={size ? size : 16}
+          color="white"
           sx={{
             textShadow: "1px 1px 2px rgba(0, 0, 0, 0.7)",
-            fontSize: size ? size : 16,
-            color: "var(--background)",
           }}
         >
           {text}

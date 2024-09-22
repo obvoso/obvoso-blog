@@ -8,11 +8,11 @@
 
 html,
 body {
-  overflow-x: hidden;
+  /* overflow-x: hidden;
   overflow-y: hidden;
   @media screen and (max-width: 768px) {
     overflow-y: auto;
-  }
+  } */
 }
 main {
   max-width: 1200px;

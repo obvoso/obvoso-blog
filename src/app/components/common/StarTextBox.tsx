@@ -21,7 +21,7 @@ export default function StarTextBox({ text }: StarTextBoxProps) {
       }}
     >
       <Image src={star} alt="star" width={24} height={24} />
-      <CustomTypography size={20} color="var(--text-secondary)">
+      <CustomTypography size={20} color="var(--gray)">
         {text}
       </CustomTypography>
     </Box>
