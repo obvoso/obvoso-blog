@@ -4,9 +4,16 @@ import CustomTypography from "./CustomTypography"
 type GradientButtonProps = {
   text: string
   onClick: () => void
+  isSelected?: boolean
+  size?: number | string
 }
 
-export default function GradientButton({ text, onClick }: GradientButtonProps) {
+export default function GradientButton({
+  text,
+  onClick,
+  isSelected,
+  size,
+}: GradientButtonProps) {
   return (
     <Box
       sx={{
@@ -24,7 +31,7 @@ export default function GradientButton({ text, onClick }: GradientButtonProps) {
           justifyContent: "center",
           borderRadius: 100,
           boxShadow: "inset 1px 2px 6px rgba(0, 0, 0, 0.3)",
-          background: "var(--primary-gradient)",
+          background: `${isSelected ? "var(--hover-primary-gradient)" : "var(--primary-gradient)"}`,
           padding: "5px 20px",
           "&:hover": {
             background: "var(--hover-primary-gradient)",
@@ -33,8 +40,8 @@ export default function GradientButton({ text, onClick }: GradientButtonProps) {
       >
         <CustomTypography
           sx={{
-            textShadow: "0px 1px 2px rgba(0, 0, 0, 0.3)",
-            fontSize: 16,
+            textShadow: "1px 1px 2px rgba(0, 0, 0, 0.7)",
+            fontSize: size ? size : 16,
             color: "var(--background)",
           }}
         >

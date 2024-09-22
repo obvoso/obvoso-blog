@@ -6,7 +6,15 @@ import Introduce from "./component/Introduce"
 export default function DesktopSideProfile() {
   return (
     <CustomBox
-      sx={{ display: "flex", flexDirection: "column", paddingTop: 4, gap: 3 }}
+      sx={{
+        display: {
+          xs: "none",
+          md: "flex",
+        },
+        flexDirection: "column",
+        paddingTop: 4,
+        gap: 3,
+      }}
     >
       <Avatar />
       <Introduce />

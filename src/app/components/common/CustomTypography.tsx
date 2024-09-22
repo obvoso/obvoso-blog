@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography"
 type TypograhpyProps = {
   children: React.ReactNode
   color?: string
-  size?: number
+  size?: number | string
   weight?: number
   sx?: object
   fontFamily?: string
@@ -19,7 +19,7 @@ export default function CustomTypography({
 }: TypograhpyProps) {
   const customSx: {
     color: string
-    fontSize: number
+    fontSize: number | string
     fontWeight: number
     fontFamily?: string
   } = {

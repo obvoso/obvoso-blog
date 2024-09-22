@@ -11,7 +11,7 @@ export default async function Home() {
       sx={{
         display: "flex",
         maxHeight: "100vh",
-        flexDirection: { xs: "column", sm: "row" },
+        flexDirection: { xs: "column", md: "row" },
       }}
     >
       {/* mint */}

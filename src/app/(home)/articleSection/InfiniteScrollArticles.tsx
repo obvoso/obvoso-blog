@@ -32,7 +32,7 @@ export default function InfiniteScrollArticles({
         }}
       >
         {articleList.map((post) => (
-          <Grid item xs={12} md={6} key={post.id}>
+          <Grid item xs={12} sm={6} key={post.id}>
             <Link href={`/articles/${post.slug}`}>
               <ArticleThumbnail article={post} />
             </Link>
