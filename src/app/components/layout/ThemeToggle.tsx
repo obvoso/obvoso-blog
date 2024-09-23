@@ -1,73 +1,68 @@
 "use client"
 
-import {
-  Box,
-  FormControlLabel,
-  Switch,
-  SwitchProps,
-  styled,
-} from "@mui/material"
+import { Box, styled } from "@mui/material"
 import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
 
-const IOSSwitch = styled((props: SwitchProps) => (
-  <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
-))(({ theme }) => ({
+function BorderRadius({ children }: { children: React.ReactNode }) {
+  return (
+    <Box
+      sx={{
+        background: "var(--silver-gradient)",
+        padding: 0.5,
+        borderRadius: 26 / 2,
+        boxShadow: "1px 3px 3px rgba(0, 0, 0, 0.3)",
+      }}
+    >
+      {children}
+    </Box>
+  )
+}
+
+const ToggleContainer = styled(Box)(({ checked }: { checked: boolean }) => ({
   width: 72,
   height: 26,
-  padding: 0,
-  "& .MuiSwitch-switchBase": {
-    padding: 0,
-    margin: 2,
-    color: "red",
-    transitionDuration: "300ms",
-    "&.Mui-checked": {
-      transform: "translateX(46px)",
-      "& .MuiSwitch-thumb": {
-        background: "var(--dark-radial-primary-gradient)",
-      },
-      "& + .MuiSwitch-track": {
-        background: "var(--primary-gradient)",
-        opacity: 1,
-        border: 0,
-      },
-      "&.Mui-disabled + .MuiSwitch-track": {
-        opacity: 0.5,
-      },
-    },
-    "&.Mui-focusVisible .MuiSwitch-thumb": {
-      border: "6px solid #fff",
-    },
-  },
-  "& .MuiSwitch-thumb": {
-    background: "var(--radial-primary-gradient)",
-    boxSizing: "border-box",
-    width: 22,
-    height: 22,
-  },
-  "& .MuiSwitch-track": {
-    borderRadius: 26 / 2,
-    background:
-      theme.palette.mode === "light"
-        ? "var(--hover-primary-gradient)"
-        : "var(--primary-gradient)",
-    opacity: 1,
-    transition: theme.transitions.create(["background-color"], {
-      duration: 500,
-    }),
-  },
+  borderRadius: 26 / 2,
+  background: checked
+    ? "var(--primary-gradient)"
+    : "var(--hover-primary-gradient)",
+  position: "relative",
+  cursor: "pointer",
+  transition: "background-color 0.3s ease",
+  boxShadow: "inset 2px 2px 3px rgba(0, 0, 0, 0.3)",
+}))
+
+const ToggleThumb = styled(Box)(({ checked }: { checked: boolean }) => ({
+  width: 22,
+  height: 22,
+  borderRadius: "50%",
+  background: checked
+    ? "var(--dark-radial-primary-gradient)"
+    : "var(--radial-primary-gradient)",
+  position: "absolute",
+  top: 2,
+  left: checked ? "46px" : "2px",
+  transition: "left 0.3s ease",
+  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
 }))
 
 export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
   const { resolvedTheme, setTheme } = useTheme()
+  const [checked, setChecked] = useState(false)
 
   useEffect(() => {
     setMounted(true)
-  }, [])
+    setChecked(resolvedTheme === "dark")
+  }, [resolvedTheme])
 
   if (!mounted) {
     return null
+  }
+
+  const handleToggle = () => {
+    setChecked(!checked)
+    setTheme(checked ? "light" : "dark")
   }
 
   return (
@@ -76,15 +71,13 @@ export default function ThemeToggle() {
         display: "flex",
         justifyContent: "flex-end",
       }}
+      onClick={handleToggle}
     >
-      <FormControlLabel
-        control={<IOSSwitch checked={resolvedTheme === "dark"} />}
-        label=""
-        sx={{ margin: 0 }}
-        onClick={() => {
-          setTheme(resolvedTheme === "light" ? "dark" : "light")
-        }}
-      />
+      <BorderRadius>
+        <ToggleContainer checked={checked}>
+          <ToggleThumb checked={checked} />
+        </ToggleContainer>
+      </BorderRadius>
     </Box>
   )
 }
