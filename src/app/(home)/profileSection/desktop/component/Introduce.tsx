@@ -2,7 +2,7 @@
 
 import CustomBox from "@/app/components/common/CustomBox"
 import CustomTypography from "@/app/components/common/CustomTypography"
-import GradientButton from "@/app/components/common/GradientButton"
+import GradientBox from "@/app/components/common/GradientBox"
 import StarTextBox from "@/app/components/common/StarTextBox"
 import { Box } from "@mui/material"
 
@@ -27,7 +27,17 @@ export default function Introduce() {
           obvoso
         </CustomTypography>
         <CustomTypography>안뇽허삽니까</CustomTypography>
-        <GradientButton text="GitHub" onClick={onClickButton} />
+        <GradientBox type={"button"} onClick={onClickButton}>
+          <CustomTypography
+            size={16}
+            color="white"
+            sx={{
+              textShadow: "1px 1px 2px rgba(0, 0, 0, 0.7)",
+            }}
+          >
+            GitHub
+          </CustomTypography>
+        </GradientBox>
         <CustomTypography sx={{ marginTop: 1 }}>
           FrontEnd Developer
         </CustomTypography>

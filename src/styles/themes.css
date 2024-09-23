@@ -20,6 +20,7 @@ html.light {
   --border: #b7b7b7;
   --border-secondary: #212222;
   --border-tertiary: #d9d9d9;
+  --gradient: var(--hover-primary-gradient);
 }
 
 html.dark {
@@ -34,6 +35,7 @@ html.dark {
   --border: #6f6f6f;
   --border-secondary: #fff;
   --border-tertiary: #d9d9d9;
+  --gradient: var(--primary-gradient);
 }
 
 body {

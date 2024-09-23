@@ -13,9 +13,9 @@ export default function DesktopSideProfile() {
           md: "flex",
         },
         flexDirection: "column",
+        height: "100%",
         paddingTop: 4,
         gap: 3,
-        minHeight: "894px",
       }}
     >
       <Avatar />

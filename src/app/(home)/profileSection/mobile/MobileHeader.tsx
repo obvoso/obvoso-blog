@@ -1,38 +1,49 @@
-import { getAllTagsWithCategory } from "@/lib/api/notion"
-import { CategoryTag, TagEnum } from "@/types/tags"
-
-import { Box } from "@mui/material"
 import React from "react"
-import Tag from "../../tagSection/Tag"
+import { Box } from "@mui/material"
+import ThemeToggle from "@/app/components/layout/ThemeToggle"
+import Image from "next/image"
+import star from "@/assets/images/star.svg"
+import MobileZukebox from "./MobileZukebox"
+import CustomTypography from "@/app/components/common/CustomTypography"
 
-export default async function MobileTagNavigation() {
-  const data: CategoryTag[] = await getAllTagsWithCategory()
-
+export default async function MobileHeader() {
   return (
     <Box
       sx={{
-        display: { xs: "flex", md: "none" },
-        flexDirection: "row",
-        flexWrap: "wrap",
-        width: "100%",
+        display: "flex",
+        justifyContent: "space-between",
         alignItems: "center",
-        justifyContent: "center",
-        gap: 1,
-        padding: 4,
+        padding: 2,
+        width: "100vw",
+        position: "fixed",
+        inset: 0,
+        height: "fit-content",
+        zIndex: 1,
+        background: "var(--background)",
       }}
     >
-      {data.map((category) => (
-        <React.Fragment key={category.name}>
-          <Tag
-            tagName={category.name}
-            type={TagEnum.CATEGORY}
-            viewStyle="button"
-          />
-          {category.tags.map((tag) => (
-            <Tag tagName={tag} type={TagEnum.TAG} viewStyle="button" />
-          ))}
-        </React.Fragment>
-      ))}
+      <MobileZukebox />
+      <CustomTypography
+        color="var(--gray)"
+        size={20}
+        sx={{
+          letterSpacing: "-0.02em",
+          position: "absolute",
+          left: "50%",
+          transform: "translateX(-50%) scaleX(0.9)",
+        }}
+      >
+        obvoso
+      </CustomTypography>
+      <Box
+        sx={{
+          display: "flex",
+          gap: 2,
+        }}
+      >
+        <Image src={star} alt="star" width={26} height={26} />
+        <ThemeToggle scale={0.8} />
+      </Box>
     </Box>
   )
 }
