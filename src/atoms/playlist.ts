@@ -1,73 +1,22 @@
-import { Playlist } from "@/types/playlist"
+import { atom } from "recoil"
 import { YouTubePlayer } from "react-youtube"
-import { atom, selector } from "recoil"
 
-export const playlistState = atom<Playlist>({
-  key: "playlistState",
-  default: {
-    isPlaying: false,
-    player: null,
-    volume: 50,
-    currentTrack: 0,
-  },
-})
-
-export const isPlayingState = selector<boolean>({
+export const isPlayingState = atom<boolean>({
   key: "isPlayingState",
-  get: ({ get }) => {
-    const playlist = get(playlistState)
-    return playlist.isPlaying
-  },
-  set: ({ set, get }, newValue) => {
-    const playlist = get(playlistState)
-    set(playlistState, {
-      ...playlist,
-      isPlaying: newValue as boolean,
-    })
-  },
+  default: false,
 })
 
-export const playerState = selector<YouTubePlayer | null>({
+export const playerState = atom<YouTubePlayer | null>({
   key: "playerState",
-  get: ({ get }) => {
-    const playlist = get(playlistState)
-    return playlist.player
-  },
-  set: ({ set, get }, newValue) => {
-    const playlist = get(playlistState)
-    set(playlistState, {
-      ...playlist,
-      player: newValue as YouTubePlayer | null,
-    })
-  },
+  default: null,
 })
 
-export const volumeState = selector<number>({
+export const volumeState = atom<number>({
   key: "volumeState",
-  get: ({ get }) => {
-    const playlist = get(playlistState)
-    return playlist.volume
-  },
-  set: ({ set, get }, newValue) => {
-    const playlist = get(playlistState)
-    set(playlistState, {
-      ...playlist,
-      volume: newValue as number,
-    })
-  },
+  default: 50,
 })
 
-export const currentTrackState = selector<number>({
+export const currentTrackState = atom<number>({
   key: "currentTrackState",
-  get: ({ get }) => {
-    const playlist = get(playlistState)
-    return playlist.currentTrack
-  },
-  set: ({ set, get }, newValue) => {
-    const playlist = get(playlistState)
-    set(playlistState, {
-      ...playlist,
-      currentTrack: newValue as number,
-    })
-  },
+  default: 0,
 })

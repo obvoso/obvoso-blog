@@ -5,9 +5,9 @@ import {
   currentTrackState,
 } from "@/atoms/playlist"
 import { playlistInfo } from "@/lib/utils/playlist"
-import React from "react"
 import { YouTubePlayer, YouTubeProps } from "react-youtube"
 import { useRecoilState } from "recoil"
+import { cloneDeep } from "lodash"
 
 const PLAYLIST_ID = process.env.NEXT_PUBLIC_YOUTUBE_PLAYLIST_ID
 
@@ -18,12 +18,15 @@ export default function usePlaylist() {
   const [currentTrack, setCurrentTrack] = useRecoilState(currentTrackState)
 
   const onReady = (event: { target: YouTubePlayer }) => {
-    setPlayer(event.target)
+    const deepCopyPlayer = cloneDeep(event.target)
+    setPlayer(deepCopyPlayer)
     event.target.setVolume(volume)
   }
 
   const onStateChange = (event: { target: YouTubePlayer; data: number }) => {
+    console.log("event", event)
     if (event.data === 1) {
+      console.log("playing")
       const currentIndex = event.target.getPlaylistIndex()
       if (currentIndex !== currentTrack) setCurrentTrack(currentIndex)
     }

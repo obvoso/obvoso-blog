@@ -10,8 +10,15 @@ import CustomTypography from "@/app/components/common/CustomTypography"
 import GradientBox from "@/app/components/common/GradientBox"
 
 export default function MobileZukebox() {
-  const { isPlaying, currentTrack, onReady, handlePlayPause, opts } =
-    usePlaylist()
+  const {
+    isPlaying,
+    currentTrack,
+    onReady,
+    onStateChange,
+    handlePlayPause,
+    opts,
+  } = usePlaylist()
+
   const { title, artist } = playlistInfo[currentTrack]
   return (
     <GradientBox type={"box"}>
@@ -56,6 +63,7 @@ export default function MobileZukebox() {
           videoId=""
           opts={opts}
           onReady={onReady}
+          onStateChange={onStateChange}
           style={{
             display: "none",
           }}
