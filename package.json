@@ -40,7 +40,8 @@
     "remark-breaks": "^4.0.0",
     "remark-gfm": "^4.0.0",
     "remark-rehype": "^11.1.0",
-    "sharp": "^0.33.4"
+    "sharp": "^0.33.4",
+    "swiper": "^11.1.14"
   },
   "devDependencies": {
     "@types/node": "^20",
