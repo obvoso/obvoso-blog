@@ -45,7 +45,7 @@ export default function GradientBox({
             background:
               type === "button"
                 ? "var(--hover-primary-gradient)"
-                : "var(--primary-gradient)",
+                : "var(--gradient)",
           },
         }}
       >
