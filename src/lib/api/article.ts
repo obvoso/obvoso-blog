@@ -38,3 +38,9 @@ export async function getArticleHeader(slug: string) {
     blurThumbnail: page.blurThumbnail,
   }
 }
+
+export async function getHotArticle() {
+  const res = await getAllPost()
+  const data = res.filter((item: NotionData) => item.hotAtcicle)
+  return data
+}

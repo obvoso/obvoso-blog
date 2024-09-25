@@ -24,9 +24,7 @@ export default function usePlaylist() {
   }
 
   const onStateChange = (event: { target: YouTubePlayer; data: number }) => {
-    console.log("event", event)
     if (event.data === 1) {
-      console.log("playing")
       const currentIndex = event.target.getPlaylistIndex()
       if (currentIndex !== currentTrack) setCurrentTrack(currentIndex)
     }

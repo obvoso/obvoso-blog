@@ -34,7 +34,6 @@ export const getAllTagsWithCategory = async () => {
   })
   return data
 }
-
 /**
  * 노션 페이지의 데이터를 마크다운 형식으로 변환합니다.
  */
@@ -74,6 +73,7 @@ export const getAllPost = unstable_cache(async () => {
     id: page.id,
     title: page.properties.title.title[0].plain_text,
     description: page.properties.description.rich_text[0].plain_text,
+    hotAtcicle: page.properties.hotArticle.checkbox,
     createdTime: parseDate(page.created_time),
     slug: generateSlug(page.properties.title.title[0].plain_text),
     category: page.properties.category.select.name,

@@ -5,12 +5,14 @@ type BlurImageProps = {
   src: string
   blurDataURL: string
   ratio?: string
+  imageStyle?: React.CSSProperties
 }
 
 export default function BlurImage({
   src,
   blurDataURL,
   ratio = "56.26%",
+  imageStyle,
 }: BlurImageProps) {
   return (
     <Box
@@ -32,6 +34,7 @@ export default function BlurImage({
         fill
         style={{
           objectFit: "cover",
+          ...imageStyle,
         }}
       />
     </Box>

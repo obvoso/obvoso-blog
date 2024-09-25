@@ -2,6 +2,7 @@ export type NotionData = {
   id: number
   title: string
   description: string
+  hotAtcicle: boolean
   createdTime: string
   slug: string
   category: string
