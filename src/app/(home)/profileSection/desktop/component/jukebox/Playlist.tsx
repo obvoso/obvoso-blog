@@ -77,7 +77,7 @@ export default function Playlist({
               }}
             >
               <CustomTypography size={12} color="var(--gray)" weight={600}>
-                Time: 01:48:18
+                Time: 01:52:21
               </CustomTypography>
             </Box>
             <Box

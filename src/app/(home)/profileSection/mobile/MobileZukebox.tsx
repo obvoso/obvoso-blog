@@ -1,13 +1,16 @@
 "use client"
 
-import usePlaylist from "@/hooks/usePlaylist"
-import React from "react"
-import YouTube from "react-youtube"
-import { playlistInfo } from "@/lib/utils/playlist"
-import { AddBoxSharp, Pause, PlayArrow } from "@mui/icons-material"
-import { Box, IconButton } from "@mui/material"
 import CustomTypography from "@/app/components/common/CustomTypography"
 import GradientBox from "@/app/components/common/GradientBox"
+import cd from "@/assets/images/cd.png"
+import usePlaylist from "@/hooks/usePlaylist"
+import useShowPlaylist from "@/hooks/useShowPlaylist"
+import { playlistInfo } from "@/lib/utils/playlist"
+import { Pause, PlayArrow } from "@mui/icons-material"
+import { Box, IconButton } from "@mui/material"
+import Image from "next/image"
+import YouTube from "react-youtube"
+import Playlist from "../desktop/component/jukebox/Playlist"
 
 export default function MobileZukebox() {
   const {
@@ -16,16 +19,18 @@ export default function MobileZukebox() {
     onReady,
     onStateChange,
     handlePlayPause,
+    handleVideoAt,
     opts,
   } = usePlaylist()
-
+  const { showPlayList, handleShowPlayList } = useShowPlaylist()
   const { title, artist } = playlistInfo[currentTrack]
+
   return (
     <GradientBox type={"box"}>
       <Box
         sx={{
           display: "flex",
-          width: "20vw",
+          maxWidth: "30vw",
           alignItems: "center",
           padding: "0px 5px",
           gap: 0.5,
@@ -59,6 +64,13 @@ export default function MobileZukebox() {
             {`${title} - ${artist}`}
           </CustomTypography>
         </Box>
+        <Image
+          src={cd}
+          alt="cd"
+          width={20}
+          height={20}
+          onClick={handleShowPlayList}
+        />
         <YouTube
           videoId=""
           opts={opts}
@@ -69,6 +81,12 @@ export default function MobileZukebox() {
           }}
         />
       </Box>
+      <Playlist
+        open={showPlayList}
+        handleClose={handleShowPlayList}
+        handleVideoAt={handleVideoAt}
+        currentTrack={currentTrack}
+      />
     </GradientBox>
   )
 }
