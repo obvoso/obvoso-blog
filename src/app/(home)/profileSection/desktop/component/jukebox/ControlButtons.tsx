@@ -1,8 +1,8 @@
+import useShowPlaylist from "@/hooks/useShowPlaylist"
 import { Pause, PlayArrow, SkipNext } from "@mui/icons-material"
 import AttachFileIcon from "@mui/icons-material/AttachFile"
 import StopCircleIcon from "@mui/icons-material/StopCircle"
 import { Box, IconButton } from "@mui/material"
-import { useState } from "react"
 import Playlist from "./Playlist"
 
 type CircularButtonProps = {
@@ -62,11 +62,7 @@ export default function ControlButtons({
   currentTrack,
   isPlaying,
 }: ControlButtonsProps) {
-  const [showPlayList, setShowPlayList] = useState(false)
-
-  const handleShowPlayList = () => {
-    setShowPlayList(!showPlayList)
-  }
+  const { showPlayList, handleShowPlayList } = useShowPlaylist()
 
   return (
     <Box
