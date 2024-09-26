@@ -22,6 +22,7 @@ export default function DesktopJukebox() {
     handlePrevious,
     handleReplay,
     handleVolumeChange,
+    handleVideoAt,
   } = usePlaylist()
 
   return (
@@ -90,6 +91,8 @@ export default function DesktopJukebox() {
                 handlePrevious={handlePrevious}
                 handleNext={handleNext}
                 handleReplay={handleReplay}
+                handleVideoAt={handleVideoAt}
+                currentTrack={currentTrack}
                 isPlaying={isPlaying}
               />
               <Box

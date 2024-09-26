@@ -2,6 +2,8 @@ import { Pause, PlayArrow, SkipNext } from "@mui/icons-material"
 import AttachFileIcon from "@mui/icons-material/AttachFile"
 import StopCircleIcon from "@mui/icons-material/StopCircle"
 import { Box, IconButton } from "@mui/material"
+import { useState } from "react"
+import Playlist from "./Playlist"
 
 type CircularButtonProps = {
   transform: number
@@ -10,6 +12,7 @@ type CircularButtonProps = {
 
 function CircularButton({ transform, children }: CircularButtonProps) {
   const clipPath = "polygon(50% 50%, 100% 0, 100% 100%)"
+
   return (
     <Box
       component="button"
@@ -46,6 +49,8 @@ type ControlButtonsProps = {
   handlePrevious: () => void
   handleNext: () => void
   handleReplay: () => void
+  handleVideoAt: (index: number) => void
+  currentTrack: number
   isPlaying: boolean
 }
 export default function ControlButtons({
@@ -53,8 +58,16 @@ export default function ControlButtons({
   handlePrevious,
   handleNext,
   handleReplay,
+  handleVideoAt,
+  currentTrack,
   isPlaying,
 }: ControlButtonsProps) {
+  const [showPlayList, setShowPlayList] = useState(false)
+
+  const handleShowPlayList = () => {
+    setShowPlayList(!showPlayList)
+  }
+
   return (
     <Box
       sx={{
@@ -114,9 +127,15 @@ export default function ControlButtons({
           <SkipNext onClick={handlePrevious} fontSize={"inherit"} />
         </CircularButton>
         <CircularButton transform={270}>
-          <AttachFileIcon fontSize={"inherit"} />
+          <AttachFileIcon onClick={handleShowPlayList} fontSize={"inherit"} />
         </CircularButton>
       </Box>
+      <Playlist
+        open={showPlayList}
+        handleClose={handleShowPlayList}
+        handleVideoAt={handleVideoAt}
+        currentTrack={currentTrack}
+      />
     </Box>
   )
 }

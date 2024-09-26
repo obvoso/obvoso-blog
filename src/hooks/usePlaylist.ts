@@ -63,6 +63,16 @@ export default function usePlaylist() {
     }
   }
 
+  const handleVideoAt = (index: number) => {
+    if (player) {
+      player.playVideoAt(index)
+      setCurrentTrack(index)
+      if (!isPlaying) {
+        setIsPlaying(!isPlaying)
+      }
+    }
+  }
+
   const handleReplay = () => {
     if (player) {
       player.seekTo(0)
@@ -84,9 +94,8 @@ export default function usePlaylist() {
       listType: "playlist",
       list: PLAYLIST_ID,
       autoplay: 1,
-      controls: 0,
+      controls: 1,
       loop: 1,
-      rel: 0,
     },
   }
   return {
@@ -103,6 +112,7 @@ export default function usePlaylist() {
     handlePrevious,
     handleReplay,
     handleVolumeChange,
+    handleVideoAt,
     opts,
   }
 }
