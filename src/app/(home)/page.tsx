@@ -2,7 +2,8 @@ import { Box } from "@mui/material"
 import ArticlesList from "./articleSection/ArticlesList"
 import HotArticle from "./hotArticleSection/HotArticle"
 import DesktopSideProfile from "./profileSection/desktop/DesktopSideProfile"
-import MobileTagNavigation from "./profileSection/mobile/MobileTagNavigation"
+import DesktopTagNavigation from "./tagSection/desktop/DesktopTagNavigation"
+import MobileTagNavigation from "./tagSection/mobile/MobileTagNavigation"
 
 export default async function Home() {
   return (
@@ -25,6 +26,7 @@ export default async function Home() {
       >
         {/* purple */}
         <HotArticle />
+        <DesktopTagNavigation />
         {/* pink */}
         <ArticlesList />
       </Box>

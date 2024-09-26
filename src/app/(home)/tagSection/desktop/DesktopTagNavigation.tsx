@@ -1,9 +1,9 @@
 import { getAllTagsWithCategory } from "@/lib/api/notion"
 import { CategoryTag } from "@/types/tags"
-import Sidebar from "./SideBar"
+import SelectCategory from "./SelectCategory"
 
 export default async function DesktopTagNavigation() {
   const data: CategoryTag[] = await getAllTagsWithCategory()
 
-  return <Sidebar data={data} />
+  return <SelectCategory data={data} />
 }
