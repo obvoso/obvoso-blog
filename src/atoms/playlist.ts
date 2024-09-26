@@ -1,5 +1,5 @@
-import { atom } from "recoil"
 import { YouTubePlayer } from "react-youtube"
+import { atom } from "recoil"
 
 export const isPlayingState = atom<boolean>({
   key: "isPlayingState",

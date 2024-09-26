@@ -4,6 +4,7 @@ import "@/styles/globals.css"
 import "@/styles/themes.css"
 import type { Metadata } from "next"
 import { ThemeProvider } from "next-themes"
+import MobileHeader from "./(home)/profileSection/mobile/MobileHeader"
 
 export const metadata: Metadata = {
   title: "obvoso blog",
@@ -19,8 +20,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${notoSansKr.className}, ${notoSerifKr.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system">
-          {/* <Header /> */}
           <RecoilRootWrapper>
+            <MobileHeader />
             <main>{children}</main>
           </RecoilRootWrapper>
         </ThemeProvider>

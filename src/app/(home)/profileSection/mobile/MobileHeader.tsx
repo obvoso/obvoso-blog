@@ -1,12 +1,26 @@
-import React from "react"
-import { Box } from "@mui/material"
-import ThemeToggle from "@/app/components/layout/ThemeToggle"
-import Image from "next/image"
-import star from "@/assets/images/star.svg"
-import MobileZukebox from "./MobileZukebox"
-import CustomTypography from "@/app/components/common/CustomTypography"
+"use client"
 
-export default async function MobileHeader() {
+import CustomTypography from "@/app/components/common/CustomTypography"
+import ThemeToggle from "@/app/components/layout/ThemeToggle"
+import star from "@/assets/images/star.svg"
+import { Box, useMediaQuery, useTheme } from "@mui/material"
+import Image from "next/image"
+import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
+import MobileZukebox from "./MobileZukebox"
+
+export default function MobileHeader() {
+  const pathname = usePathname()
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
+
+  const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    const isArticlePage = pathname.startsWith("/articles")
+    setShow(isMobile || isArticlePage)
+  }, [pathname, isMobile])
+
   return (
     <Box
       sx={{
@@ -20,6 +34,7 @@ export default async function MobileHeader() {
         height: "fit-content",
         zIndex: 1,
         background: "var(--background)",
+        visibility: show ? "visible" : "hidden",
       }}
     >
       <MobileZukebox />

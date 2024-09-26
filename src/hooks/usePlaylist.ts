@@ -1,13 +1,13 @@
 import {
+  currentTrackState,
   isPlayingState,
   playerState,
   volumeState,
-  currentTrackState,
 } from "@/atoms/playlist"
 import { playlistInfo } from "@/lib/utils/playlist"
+import { cloneDeep } from "lodash"
 import { YouTubePlayer, YouTubeProps } from "react-youtube"
 import { useRecoilState } from "recoil"
-import { cloneDeep } from "lodash"
 
 const PLAYLIST_ID = process.env.NEXT_PUBLIC_YOUTUBE_PLAYLIST_ID
 
@@ -92,8 +92,6 @@ export default function usePlaylist() {
   return {
     isPlaying,
     setIsPlaying,
-    player,
-    setPlayer,
     volume,
     setVolume,
     currentTrack,

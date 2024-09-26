@@ -1,7 +1,5 @@
-import React from "react"
-import MobileHeader from "./MobileHeader"
-import MobileTagNavigation from "./MobileTagNavigation"
 import { Box } from "@mui/material"
+import MobileTagNavigation from "./MobileTagNavigation"
 
 export default function MobileTop() {
   return (
@@ -12,7 +10,6 @@ export default function MobileTop() {
         padding: 1,
       }}
     >
-      <MobileHeader />
       <MobileTagNavigation />
     </Box>
   )

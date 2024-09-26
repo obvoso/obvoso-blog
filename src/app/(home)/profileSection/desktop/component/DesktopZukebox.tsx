@@ -4,28 +4,24 @@ import CustomBox from "@/app/components/common/CustomBox"
 import CustomTypography from "@/app/components/common/CustomTypography"
 import StarTextBox from "@/app/components/common/StarTextBox"
 import cd from "@/assets/images/cd.png"
+import usePlaylist from "@/hooks/usePlaylist"
 import { playlistInfo } from "@/lib/utils/playlist"
 import { Box } from "@mui/material"
 import Image from "next/image"
-import YouTube, { YouTubePlayer } from "react-youtube"
 import ControlButtons from "./jukebox/ControlButtons"
 import PlaylistInfo from "./jukebox/PlaylistInfo"
 import Volume from "./jukebox/Volume"
-import usePlaylist from "@/hooks/usePlaylist"
 
 export default function DesktopJukebox() {
   const {
     isPlaying,
     volume,
     currentTrack,
-    onReady,
-    onStateChange,
     handlePlayPause,
     handleNext,
     handlePrevious,
     handleReplay,
     handleVolumeChange,
-    opts,
   } = usePlaylist()
 
   return (
@@ -111,15 +107,6 @@ export default function DesktopJukebox() {
             </Box>
           </Box>
         </Box>
-        <YouTube
-          videoId=""
-          opts={opts}
-          onReady={onReady}
-          onStateChange={onStateChange}
-          style={{
-            display: "none",
-          }}
-        />
       </Box>
     </CustomBox>
   )
