@@ -134,4 +134,9 @@ export const playlistInfo: playlistInfo[] = [
     artist: "EXO-M",
     time: "4:07",
   },
+  {
+    title: "사람이 사랑하면 안돼요",
+    artist: "zunhozoon",
+    time: "4:02",
+  },
 ]
