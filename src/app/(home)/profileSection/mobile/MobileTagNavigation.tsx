@@ -11,7 +11,7 @@ export default async function MobileTagNavigation() {
   return (
     <Box
       sx={{
-        display: "flex",
+        display: { xs: "flex", md: "none" },
         flexDirection: "row",
         flexWrap: "wrap",
         width: "100%",

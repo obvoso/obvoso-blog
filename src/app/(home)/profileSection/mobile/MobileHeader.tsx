@@ -35,9 +35,11 @@ export default function MobileHeader() {
         position: "fixed",
         inset: 0,
         height: "fit-content",
-        zIndex: 1,
-        background: "var(--background)",
+        zIndex: 1000,
+        background: "var(--silver-gradient)",
         visibility: show ? "visible" : "hidden",
+        borderRadius: "0 0 10px 10px",
+        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.4)",
       }}
     >
       <Box

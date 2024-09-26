@@ -2,6 +2,7 @@ import { Box } from "@mui/material"
 import ArticlesList from "./articleSection/ArticlesList"
 import HotArticle from "./hotArticleSection/HotArticle"
 import DesktopSideProfile from "./profileSection/desktop/DesktopSideProfile"
+import MobileTagNavigation from "./profileSection/mobile/MobileTagNavigation"
 
 export default async function Home() {
   return (
@@ -15,6 +16,7 @@ export default async function Home() {
     >
       {/* mint */}
       <DesktopSideProfile />
+      <MobileTagNavigation />
       <Box
         sx={{
           display: "flex",
