@@ -1,4 +1,5 @@
 import BlurImage from "@/app/components/common/BlurImage"
+import CustomBox from "@/app/components/common/CustomBox"
 import CustomTypography from "@/app/components/common/CustomTypography"
 import { NotionData } from "@/types/notion"
 import { Box } from "@mui/material"
@@ -9,16 +10,15 @@ type ArticleProps = {
 
 export default function ArticleThumbnail({ article }: ArticleProps) {
   return (
-    <Box
-      padding={0}
+    <CustomBox
       sx={{
-        border: "0.5px solid var(--border-secondary)",
+        borderRadius: 2,
+        padding: 2,
       }}
     >
       <BlurImage
         src={article.thumbnail!}
         blurDataURL={article.blurThumbnail!}
-        ratio="100%"
       />
       <Box padding={1} paddingTop={3}>
         <CustomTypography size={20} weight={700} fontFamily="var(--noto">
@@ -37,6 +37,6 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
           {article.createdTime}
         </CustomTypography>
       </Box>
-    </Box>
+    </CustomBox>
   )
 }

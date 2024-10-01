@@ -13,7 +13,7 @@ export default function IndexSectionTag({
   onClick,
 }: IndexSectionTagProps) {
   return (
-    <Button onClick={onClick}>
+    <Button onClick={onClick} sx={{ minWidth: 0 }}>
       <CustomTypography
         size={15}
         color={isSelected ? "black" : "var(--gray)"}

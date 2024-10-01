@@ -1,5 +1,6 @@
 "use client"
 
+import CustomBox from "@/app/components/common/CustomBox"
 import useInfiniteScroll from "@/hooks/useInfiniteScroll"
 import { NotionData } from "@/types/notion"
 import { Box, Grid } from "@mui/material"
@@ -16,19 +17,31 @@ export default function InfiniteScrollArticles({
   const { articleList, ref } = useInfiniteScroll({ initialArticles })
 
   return (
-    <Box
+    <CustomBox
       sx={{
-        display: "flex",
-        flexDirection: "row",
-        width: "100%",
-        overflowY: "auto",
+        borderRadius: "0px 0px 32px 32px",
+        paddingX: 0,
+        border: {
+          xs: "none",
+          md: "1px solid var(--border)",
+        },
+        boxShadow: {
+          xs: "none",
+          md: "0 5px 5px 0 rgba(0, 0, 0, 0.2)",
+        },
       }}
     >
       <Grid
         container
-        spacing={2}
+        spacing={{
+          xs: 4,
+          md: 2,
+        }}
         sx={{
-          padding: 4,
+          padding: {
+            xs: "32px 0px",
+            md: "32px 32px",
+          },
         }}
       >
         {articleList.map((post) => (
@@ -45,6 +58,6 @@ export default function InfiniteScrollArticles({
           height: "20px",
         }}
       />
-    </Box>
+    </CustomBox>
   )
 }

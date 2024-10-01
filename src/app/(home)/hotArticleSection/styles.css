@@ -2,10 +2,6 @@
   --swiper-theme-color: var(--primary) !important;
 }
 
-.container {
-  padding: 0px 32px;
-}
-
 .container .swiper {
   max-width: 100%;
 }

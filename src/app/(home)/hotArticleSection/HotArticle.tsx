@@ -1,9 +1,9 @@
-import { getHotArticle } from "@/lib/api/article"
-import Carousel from "./Carousel"
-import "./styles.css"
 import CustomBox from "@/app/components/common/CustomBox"
 import StarTextBox from "@/app/components/common/StarTextBox"
+import { getHotArticle } from "@/lib/api/article"
 import { Box } from "@mui/material"
+import Carousel from "./Carousel"
+import "./styles.css"
 
 export default async function HotArticle() {
   const data = await getHotArticle()

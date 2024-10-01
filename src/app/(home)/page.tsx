@@ -11,23 +11,22 @@ export default async function Home() {
       paddingY={10}
       sx={{
         display: "flex",
-        maxHeight: "100vh",
+        height: "100%",
+        flexGrow: 1,
         flexDirection: { xs: "column", md: "row" },
       }}
     >
-      {/* mint */}
       <DesktopSideProfile />
       <MobileTagNavigation />
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
+          paddingX: 4,
         }}
       >
-        {/* purple */}
         <HotArticle />
         <DesktopTagNavigation />
-        {/* pink */}
         <ArticlesList />
       </Box>
     </Box>

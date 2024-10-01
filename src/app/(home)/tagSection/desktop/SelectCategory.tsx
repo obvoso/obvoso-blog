@@ -35,8 +35,7 @@ function SelectCategory({ data }: SelectCategoryProps) {
           md: "flex",
         },
         width: "100%",
-        padding: 4,
-        paddingBottom: 0,
+        marginTop: 4,
         flexDirection: "column",
       }}
     >
@@ -63,7 +62,7 @@ function SelectCategory({ data }: SelectCategoryProps) {
                   ? "none"
                   : "1px solid var(--border)",
               width: "fit-content",
-              padding: "0px 6px",
+              padding: "0px 10px",
               marginBottom: "-1.5px",
               zIndex: openCategories === category.name ? 1 : "auto",
             }}
