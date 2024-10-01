@@ -2,7 +2,7 @@
 
 import { Box, styled } from "@mui/material"
 import { useTheme } from "next-themes"
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 
 function BorderRadius({
   children,
@@ -80,6 +80,8 @@ export default function ThemeToggle({ scale = 1 }: { scale?: number }) {
       sx={{
         display: "flex",
         justifyContent: "flex-end",
+        alignItems: "flex-end",
+        flexGrow: 1,
       }}
       onClick={handleToggle}
     >

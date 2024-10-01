@@ -13,9 +13,16 @@ export default function DesktopSideProfile() {
           md: "flex",
         },
         flexDirection: "column",
-        height: "100%",
         paddingTop: 4,
         gap: 3,
+        height: "fit-content",
+        /* 고정시킬지 말지 고민중 */
+        // height: "100%"
+        // "@media (max-height: 1080px)": {
+        //   height: "fit-content",
+        // },
+        position: "sticky",
+        top: 50,
       }}
     >
       <Avatar />
