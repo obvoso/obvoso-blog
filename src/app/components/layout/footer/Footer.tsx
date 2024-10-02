@@ -9,9 +9,8 @@ export default function Footer() {
         display: "flex",
         height: "100%",
         flexDirection: "column",
-        justifyContent: "center",
         alignItems: "center",
-        marginTop: "20px",
+        marginTop: "150px",
       }}
     >
       <CustomTypography

@@ -8,7 +8,7 @@ import MobileTagNavigation from "./tagSection/mobile/MobileTagNavigation"
 export default async function Home() {
   return (
     <Box
-      paddingY={10}
+      paddingY={20}
       sx={{
         display: "flex",
         height: "100%",
