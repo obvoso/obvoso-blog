@@ -48,7 +48,7 @@ export default function MobileHeader() {
           justifyContent: "space-between",
           alignItems: "center",
           width: "100%",
-          padding: "5px 10px",
+          padding: "5px 32px",
           maxWidth: 1200,
         }}
       >

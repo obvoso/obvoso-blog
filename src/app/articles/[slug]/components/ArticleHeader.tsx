@@ -37,7 +37,7 @@ export default async function ArticleHeader({ slug }: ArticleHeaderProps) {
   return (
     <Box
       sx={{
-        paddingY: 5,
+        paddingY: 10,
       }}
     >
       <CustomTypography weight={900} size={32}>

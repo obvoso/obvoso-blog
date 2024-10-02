@@ -1,3 +1,4 @@
+import CustomBox from "@/app/components/common/CustomBox"
 import { getAllPost } from "@/lib/api/notion"
 import { NotionData } from "@/types/notion"
 import Box from "@mui/material/Box"
@@ -13,11 +14,13 @@ type ArticleProps = {
 
 export default async function Article({ params }: ArticleProps) {
   return (
-    <Box
+    <CustomBox
       sx={{
         display: "flex",
         justifyContent: "center",
-        padding: 4,
+        paddingX: 4,
+        paddingY: 10,
+        background: "var(--background)",
       }}
     >
       <Box
@@ -29,7 +32,7 @@ export default async function Article({ params }: ArticleProps) {
         <ArticleHeader slug={params.slug} />
         <ArticleContent slug={params.slug} />
       </Box>
-    </Box>
+    </CustomBox>
   )
 }
 
