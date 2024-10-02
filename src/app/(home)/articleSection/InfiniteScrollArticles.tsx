@@ -19,7 +19,6 @@ export default function InfiniteScrollArticles({
   return (
     <CustomBox
       sx={{
-        backgroundColor: "var(--background-opacity)",
         borderRadius: "0px 0px 32px 32px",
         paddingX: 0,
         border: {
@@ -30,6 +29,7 @@ export default function InfiniteScrollArticles({
           xs: "none",
           md: "0 5px 5px 0 rgba(0, 0, 0, 0.2)",
         },
+        background: { xs: "none", md: "var(--background-opacity)" },
       }}
     >
       <Grid
