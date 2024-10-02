@@ -4,12 +4,10 @@ import CustomBox from "@/app/components/common/CustomBox"
 import CustomTypography from "@/app/components/common/CustomTypography"
 import GradientBox from "@/app/components/common/GradientBox"
 import StarTextBox from "@/app/components/common/StarTextBox"
+import { onClickGithub } from "@/lib/utils/utils"
 import { Box } from "@mui/material"
 
 export default function Introduce() {
-  const onClickButton = () => {
-    window.open("https://github.com/obvoso", "_blank")
-  }
   return (
     <CustomBox sx={{ borderRadius: "8px 8px 16px 16px ", padding: 0 }}>
       <StarTextBox text="See My Profile" />
@@ -27,7 +25,7 @@ export default function Introduce() {
           obvoso
         </CustomTypography>
         <CustomTypography>안뇽허삽니까</CustomTypography>
-        <GradientBox type={"button"} onClick={onClickButton}>
+        <GradientBox type={"button"} onClick={onClickGithub}>
           <CustomTypography
             size={16}
             color="white"

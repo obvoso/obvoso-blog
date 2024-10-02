@@ -9,3 +9,7 @@ export function parseDate(date: string) {
     day: "numeric",
   })
 }
+
+export function onClickGithub() {
+  window.open("https://github.com/obvoso", "_blank")
+}

@@ -19,7 +19,7 @@ main {
   position: relative;
   z-index: 1;
   background-color: var(--background);
-  margin-bottom: 240px;
+  margin-bottom: 200px;
   box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
   border-radius: 0 0 32px 32px;
 }

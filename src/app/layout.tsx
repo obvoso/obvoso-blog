@@ -5,7 +5,7 @@ import "@/styles/themes.css"
 import type { Metadata } from "next"
 import { ThemeProvider } from "next-themes"
 import MobileHeader from "./(home)/profileSection/mobile/MobileHeader"
-import Footer from "./components/layout/Footer"
+import Footer from "./components/layout/footer/Footer"
 
 export const metadata: Metadata = {
   title: "obvoso blog",
