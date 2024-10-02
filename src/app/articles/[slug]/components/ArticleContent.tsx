@@ -29,6 +29,8 @@ export default async function ArticleContent({ slug }: ArticleProps) {
         gap: 2,
         width: "100%",
         paddingY: 4,
+        wordBreak: "break-word",
+        overflowWrap: "break-word",
       }}
     >
       <Markdown
