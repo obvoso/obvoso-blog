@@ -2,7 +2,6 @@ import RecoilRootWrapper from "@/app/RecoilWrapper"
 import { notoSansKr, notoSerifKr } from "@/styles/font"
 import "@/styles/globals.css"
 import "@/styles/themes.css"
-import { Box } from "@mui/material"
 import type { Metadata } from "next"
 import { ThemeProvider } from "next-themes"
 import MobileHeader from "./(home)/profileSection/mobile/MobileHeader"
@@ -12,7 +11,6 @@ export const metadata: Metadata = {
   title: "obvoso blog",
   description: "hihi",
 }
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,19 +20,17 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${notoSansKr.className}, ${notoSerifKr.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system">
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              minHeight: "100vh",
-            }}
-          >
-            <RecoilRootWrapper>
+          <RecoilRootWrapper>
+            <header>
               <MobileHeader />
-              <main>{children}</main>
+            </header>
+            <main>
+              <div className="main-container">{children}</div>
+            </main>
+            <footer>
               <Footer />
-            </RecoilRootWrapper>
-          </Box>
+            </footer>
+          </RecoilRootWrapper>
         </ThemeProvider>
       </body>
     </html>

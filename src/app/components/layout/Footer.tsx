@@ -4,13 +4,17 @@ export default function Footer() {
   return (
     <Box
       sx={{
-        marginTop: 4,
-        width: "100%",
-        height: "100px",
-        backgroundColor: "orange",
+        display: "flex",
+        height: "100%",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "black",
       }}
     >
-      bottom
+      <span>dhdhdhdh</span>
+      <span>2222</span>
+      <span>dhdhdhdh</span>
     </Box>
   )
 }
