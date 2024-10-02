@@ -12,6 +12,7 @@ export default async function HotArticle() {
     <div className="container">
       <CustomBox
         sx={{
+          backgroundColor: "var(--background-opacity)",
           borderRadius: "8px 8px 16px 16px ",
           padding: 0,
         }}

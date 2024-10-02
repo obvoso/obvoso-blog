@@ -14,6 +14,7 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
       sx={{
         borderRadius: 2,
         padding: 2,
+        background: "var(--background)",
       }}
     >
       <BlurImage

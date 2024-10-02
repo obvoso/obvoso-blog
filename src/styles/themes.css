@@ -11,6 +11,7 @@ html {
 html.light {
   --background: #ffffff;
   --background-secondary: #edf7f6;
+  --background-opacity: rgba(255, 255, 255, 0.5);
   --text: #333;
   --text-secondary: #555;
   --text-tertiatry: #999;
@@ -26,6 +27,7 @@ html.light {
 html.dark {
   --background: #212222;
   --background-secondary: #2e4644;
+  --background-opacity: rgba(33, 34, 34, 0.5);
   --text: #eee;
   --text-secondary: #ccc;
   --text-tertiatry: #aaa;

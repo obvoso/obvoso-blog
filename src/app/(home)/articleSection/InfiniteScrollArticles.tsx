@@ -19,6 +19,7 @@ export default function InfiniteScrollArticles({
   return (
     <CustomBox
       sx={{
+        backgroundColor: "var(--background-opacity)",
         borderRadius: "0px 0px 32px 32px",
         paddingX: 0,
         border: {

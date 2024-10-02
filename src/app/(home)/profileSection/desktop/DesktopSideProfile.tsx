@@ -12,6 +12,7 @@ export default function DesktopSideProfile() {
           xs: "none",
           md: "flex",
         },
+        backgroundColor: "var(--background-opacity)",
         flexDirection: "column",
         paddingTop: 4,
         gap: 3,
