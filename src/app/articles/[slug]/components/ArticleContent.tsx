@@ -6,12 +6,12 @@ import rehypeHighlight from "rehype-highlight"
 import rehypeRaw from "rehype-raw"
 import remarkBreaks from "remark-breaks"
 import remarkGfm from "remark-gfm"
-import { Table } from "./Table"
 import Anchor from "./markdownRender/Anchor"
 import BlockQuote from "./markdownRender/BlockQuote"
 import Code from "./markdownRender/Code"
 import Heading from "./markdownRender/Heading"
 import OrderedList from "./markdownRender/OrderedList"
+import { Table } from "./markdownRender/Table"
 import UnorderedList from "./markdownRender/UnorderedList"
 
 type ArticleProps = {
