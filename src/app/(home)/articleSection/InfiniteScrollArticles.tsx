@@ -53,12 +53,7 @@ export default function InfiniteScrollArticles({
           </Grid>
         ))}
       </Grid>
-      <Box
-        ref={ref}
-        sx={{
-          height: "20px",
-        }}
-      />
+      <Box ref={ref} />
     </CustomBox>
   )
 }

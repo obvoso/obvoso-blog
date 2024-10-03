@@ -1,7 +1,7 @@
 import { fetchTagArticles } from "@/app/(home)/articleSection/actions"
 import selectTagsState from "@/atoms/selectCategoryTags"
 import { NotionData } from "@/types/notion"
-import { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import { useInView } from "react-intersection-observer"
 import { useRecoilValue } from "recoil"
 
@@ -35,7 +35,7 @@ export default function useInfiniteScroll({
     if (inView) {
       loadMoreArticles()
     }
-  }, [inView])
+  }, [inView, tag])
 
   /**
    * Load articles based on the selected tag
@@ -45,7 +45,7 @@ export default function useInfiniteScroll({
     setArticleList(articles)
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     loadTagArticles()
     return () => {
       setPage(0)
