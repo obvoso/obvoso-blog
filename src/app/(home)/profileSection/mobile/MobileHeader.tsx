@@ -35,7 +35,7 @@ export default function MobileHeader() {
         position: "fixed",
         inset: 0,
         height: "fit-content",
-        zIndex: 1000,
+        zIndex: 2,
         background: "var(--silver-gradient)",
         visibility: show ? "visible" : "hidden",
         borderRadius: "0 0 10px 10px",

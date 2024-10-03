@@ -22,7 +22,6 @@ export default function Playlist({
       onClose={handleClose}
       sx={{
         zIndex: 10,
-        position: "absolute",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
