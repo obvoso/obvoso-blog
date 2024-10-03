@@ -114,16 +114,16 @@ export default function ControlButtons({
           </IconButton>
         </Box>
         <CircularButton transform={0}>
-          <SkipNext onClick={handleNext} fontSize={"inherit"} />
+          <SkipNext onClick={handleNext} fontSize="inherit" />
         </CircularButton>
         <CircularButton transform={90}>
-          <StopCircleIcon onClick={handleReplay} fontSize={"inherit"} />
+          <StopCircleIcon onClick={handleReplay} fontSize="inherit" />
         </CircularButton>
         <CircularButton transform={180}>
-          <SkipNext onClick={handlePrevious} fontSize={"inherit"} />
+          <SkipNext onClick={handlePrevious} fontSize="inherit" />
         </CircularButton>
         <CircularButton transform={270}>
-          <AttachFileIcon onClick={handleShowPlayList} fontSize={"inherit"} />
+          <AttachFileIcon onClick={handleShowPlayList} fontSize="inherit" />
         </CircularButton>
       </Box>
       <Playlist

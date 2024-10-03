@@ -4,7 +4,7 @@ import {
   playerState,
   volumeState,
 } from "@/atoms/playlist"
-import { playlistInfo } from "@/lib/utils/playlist"
+import { playlist } from "@/lib/utils/playlist"
 import { cloneDeep } from "lodash"
 import { YouTubePlayer, YouTubeProps } from "react-youtube"
 import { useRecoilState } from "recoil"
@@ -44,7 +44,7 @@ export default function usePlaylist() {
   const handleNext = () => {
     if (player) {
       player.nextVideo()
-      setCurrentTrack((prev) => (prev + 1) % playlistInfo.length)
+      setCurrentTrack((prev) => (prev + 1) % playlist.length)
       if (!isPlaying) {
         setIsPlaying(!isPlaying)
       }
@@ -54,9 +54,7 @@ export default function usePlaylist() {
   const handlePrevious = () => {
     if (player) {
       player.previousVideo()
-      setCurrentTrack(
-        (prev) => (prev - 1 + playlistInfo.length) % playlistInfo.length,
-      )
+      setCurrentTrack((prev) => (prev - 1 + playlist.length) % playlist.length)
       if (!isPlaying) {
         setIsPlaying(!isPlaying)
       }

@@ -25,7 +25,7 @@ export default function Introduce() {
           obvoso
         </CustomTypography>
         <CustomTypography>안뇽허삽니까</CustomTypography>
-        <GradientBox type={"button"} onClick={onClickGithub}>
+        <GradientBox type="button" onClick={onClickGithub}>
           <CustomTypography
             size={16}
             color="white"

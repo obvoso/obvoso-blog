@@ -1,9 +1,9 @@
-export type playlistInfo = {
+export type PlayListInfo = {
   title: string
   artist: string
   time: string
 }
-export const playlistInfo: playlistInfo[] = [
+export const playlist: PlayListInfo[] = [
   {
     title: "Low Love",
     artist: "King Gnu",

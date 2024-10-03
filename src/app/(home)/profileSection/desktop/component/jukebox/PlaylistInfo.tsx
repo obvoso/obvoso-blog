@@ -1,9 +1,9 @@
 import CustomTypography from "@/app/components/common/CustomTypography"
-import { playlistInfo } from "@/lib/utils/playlist"
+import { PlayListInfo } from "@/lib/utils/playlist"
 import { Box } from "@mui/material"
 
 type PlaylistInfoProps = {
-  info: playlistInfo
+  info: PlayListInfo
   isPlaying: boolean
 }
 export default function PlaylistInfo({ info, isPlaying }: PlaylistInfoProps) {

@@ -1,8 +1,6 @@
 import CustomTypography from "@/app/components/common/CustomTypography"
-import { playlistInfo } from "@/lib/utils/playlist"
-import { Box, Button } from "@mui/material"
-
-import { Modal } from "@mui/material"
+import { playlist } from "@/lib/utils/playlist"
+import { Box, Button, Modal } from "@mui/material"
 
 type PlaylistProps = {
   currentTrack: number
@@ -104,8 +102,9 @@ export default function Playlist({
                 },
               }}
             >
-              {playlistInfo.map((info, index) => (
+              {playlist.map((info, index) => (
                 <Box
+                  /* eslint-disable-next-line react/no-array-index-key */
                   key={index}
                   sx={{
                     display: "flex",

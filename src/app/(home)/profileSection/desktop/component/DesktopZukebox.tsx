@@ -5,10 +5,11 @@ import CustomTypography from "@/app/components/common/CustomTypography"
 import StarTextBox from "@/app/components/common/StarTextBox"
 import cd from "@/assets/images/cd.png"
 import usePlaylist from "@/hooks/usePlaylist"
-import { playlistInfo } from "@/lib/utils/playlist"
+import { playlist } from "@/lib/utils/playlist"
 import { Box } from "@mui/material"
 import Image from "next/image"
 import ControlButtons from "./jukebox/ControlButtons"
+
 import PlaylistInfo from "./jukebox/PlaylistInfo"
 import Volume from "./jukebox/Volume"
 
@@ -62,7 +63,7 @@ export default function DesktopJukebox() {
             }}
           >
             <Image src={cd} alt="cd" width={20} height={20} />
-            <CustomTypography size={12} weight={500} color={"var(--tertiary)"}>
+            <CustomTypography size={12} weight={500} color="var(--tertiary)">
               media player
             </CustomTypography>
           </Box>
@@ -102,7 +103,7 @@ export default function DesktopJukebox() {
                 }}
               >
                 <PlaylistInfo
-                  info={playlistInfo[currentTrack]}
+                  info={playlist[currentTrack]}
                   isPlaying={isPlaying}
                 />
                 <Volume value={volume} onChange={handleVolumeChange} />

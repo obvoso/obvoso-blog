@@ -5,7 +5,7 @@ import GradientBox from "@/app/components/common/GradientBox"
 import cd from "@/assets/images/cd.png"
 import usePlaylist from "@/hooks/usePlaylist"
 import useShowPlaylist from "@/hooks/useShowPlaylist"
-import { playlistInfo } from "@/lib/utils/playlist"
+import { playlist } from "@/lib/utils/playlist"
 import { Pause, PlayArrow } from "@mui/icons-material"
 import { Box, IconButton } from "@mui/material"
 import Image from "next/image"
@@ -23,10 +23,10 @@ export default function MobileZukebox() {
     opts,
   } = usePlaylist()
   const { showPlayList, handleShowPlayList } = useShowPlaylist()
-  const { title, artist } = playlistInfo[currentTrack]
+  const { title, artist } = playlist[currentTrack]
 
   return (
-    <GradientBox type={"box"}>
+    <GradientBox type="box">
       <Box
         sx={{
           display: "flex",

@@ -1,19 +1,18 @@
 "use client"
 
-import React from "react"
 import BlurImage from "@/app/components/common/BlurImage"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Autoplay, Navigation, Pagination, A11y } from "swiper/modules"
 import { Box } from "@mui/material"
-import { NotionData } from "types"
+import { A11y, Autoplay, Navigation, Pagination } from "swiper/modules"
+import { Swiper, SwiperSlide } from "swiper/react"
 
-import "./styles.css"
-import "swiper/css"
-import "swiper/css/pagination"
-import "swiper/css/navigation"
-import "swiper/css/autoplay"
 import CustomTypography from "@/app/components/common/CustomTypography"
+import { NotionData } from "@/types/notion"
 import Link from "next/link"
+import "swiper/css"
+import "swiper/css/autoplay"
+import "swiper/css/navigation"
+import "swiper/css/pagination"
+import "./styles.css"
 
 type CarouselProps = {
   data: NotionData[]
@@ -53,8 +52,8 @@ export default function Carousel({ data }: CarouselProps) {
                 }}
               >
                 <BlurImage
-                  src={item.thumbnail}
-                  blurDataURL={item.thumbnail}
+                  src={item.thumbnail || ""}
+                  blurDataURL={item.thumbnail || ""}
                   imageStyle={{
                     borderRadius: "8px",
                   }}
