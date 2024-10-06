@@ -55,7 +55,7 @@ export default async function ArticleHeader({ slug }: ArticleHeaderProps) {
       <CustomTypography size={14} color="gray" sx={{ paddingBottom: 2 }}>
         {createdTime}
       </CustomTypography>
-      <BlurImage src={thumbnail} blurDataURL={blurThumbnail} />
+      <BlurImage src={thumbnail} blurDataURL="" />
     </Box>
   )
 }

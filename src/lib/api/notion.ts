@@ -1,49 +1,16 @@
-import { NotionBlock, NotionBlockChildList } from "@/types/image"
 import { unstable_cache } from "next/cache"
 import { cache } from "react"
+import { notion } from "../utils/notionClient"
 import { generateSlug, parseDate } from "../utils/utils"
 import { convertNotionImage } from "./images"
 
-const { Client } = require("@notionhq/client")
 const { NotionToMarkdown } = require("notion-to-md")
 
-const token = process.env.NOTION_TOKEN
 const dbID = process.env.NOTION_DB_ID
-
-export const notion = new Client({
-  auth: token,
-})
 
 const n2m = new NotionToMarkdown({
   notionClient: notion,
 })
-
-export const getBlocks = async (blockId: string): Promise<NotionBlock[]> => {
-  let cursor: undefined | null | string = undefined
-  let hasMore = true
-  const blocks: NotionBlock[] = []
-
-  while (hasMore) {
-    const { has_more, next_cursor, results }: NotionBlockChildList =
-      await notion.blocks.children.list({
-        block_id: blockId,
-        start_cursor: cursor,
-      })
-    blocks.push(...results)
-    hasMore = has_more
-    cursor = next_cursor
-  }
-
-  const childBlocks = await Promise.all(
-    blocks
-      .filter((block) => "has_children" in block && block.has_children)
-      .map(async (block) => {
-        const childBlocks = await getBlocks(block.id)
-        return childBlocks
-      }),
-  )
-  return [...blocks, ...childBlocks.flat()]
-}
 
 /**
  * 노션 데이터베이스에서 모든 태그와 카테고리를 가져옵니다.

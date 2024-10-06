@@ -2,8 +2,13 @@ import { NotionData } from "@/types/notion"
 import { S3, S3Client } from "@aws-sdk/client-s3"
 import { getPlaiceholder } from "plaiceholder"
 import { cache } from "react"
-import { getAllNotionImageBlocks } from "../utils/images"
-import { notion } from "./notion"
+
+import {
+  NotionBlock,
+  NotionBlockChildList,
+  NotionImageBlock,
+} from "@/types/image"
+import { notion } from "../utils/notionClient"
 
 const region = process.env.AWS_REGION
 const accessKeyId = process.env.AWS_ACCESS_KEY_ID!
@@ -19,9 +24,8 @@ const client = new S3Client({
 const s3 = new S3(client)
 
 /* 버킷에 이미지 존재 여부 확인 함수 */
-const checkIsExist = (url: string, id: string) => {
-  return url.includes(`/image/thumbnail/${id}`)
-}
+const checkIsExist = (url: string, id: string) =>
+  url.includes(`/image/thumbnail/${id}`)
 
 /* 이미지 블러 처리 함수 */
 const getBlurImage = async (imageUrl: string) => {
@@ -95,6 +99,50 @@ const upload = async (imageUrl: string, keyBase: string) => {
 //   return [url, blurBase64]
 // }
 
+export const getBlocks = async (blockId: string): Promise<NotionBlock[]> => {
+  let cursor: string | null = null
+  let hasMore = true
+  const blocks: NotionBlock[] = []
+
+  while (hasMore) {
+    /* eslint-disable no-await-in-loop, @typescript-eslint/naming-convention */
+    const { has_more, next_cursor, results }: NotionBlockChildList =
+      await notion.blocks.children.list({
+        block_id: blockId,
+        start_cursor: cursor ?? undefined,
+      })
+    blocks.push(...results)
+    hasMore = has_more
+    cursor = next_cursor
+  }
+
+  const childBlocks = await Promise.all(
+    blocks
+      .filter((block) => "has_children" in block && block.has_children)
+      .map(async (block) => {
+        const childBlock = await getBlocks(block.id)
+        return childBlock
+      }),
+  )
+  return [...blocks, ...childBlocks.flat()]
+}
+
+export async function getAllNotionImageBlocks(
+  blockId: string,
+): Promise<NotionImageBlock[]> {
+  const allNotionBlocks = await getBlocks(blockId)
+
+  const imageBlocks = allNotionBlocks.filter(
+    (block) => "type" in block && block.type === "image",
+  )
+
+  const ret = imageBlocks.map((block) => ({
+    id: block.id,
+    image: block.image,
+  }))
+  return ret
+}
+
 export const convertThumbnail = async (notionData: NotionData) => {
   let convertImageUrl = notionData.thumbnail
   const isExist = checkIsExist(notionData.thumbnail, notionData.id)
@@ -138,28 +186,29 @@ export const convertThumbnail = async (notionData: NotionData) => {
 export const convertImageBlocks = async (id: string) => {
   const imageBlocks = await getAllNotionImageBlocks(id)
 
-  for (const [idx, block] of imageBlocks.entries()) {
-    const { id: blockId, image } = block
+  await Promise.all(
+    Array.from(imageBlocks).map(async (block, idx) => {
+      const { id: blockId, image } = block
 
-    if (image.type === "file") {
-      const key = `${endpoint}/block/${id}--${idx}`
-      const imageUrl = image.file.url
-      try {
-        const convertUrl = await upload(imageUrl, key)
-
-        await notion.blocks.update({
-          block_id: blockId,
-          image: {
-            external: {
-              url: convertUrl,
+      if (image.type === "file") {
+        const key = `${endpoint}/block/${id}--${idx}`
+        const imageUrl = image.file.url
+        try {
+          const convertUrl = await upload(imageUrl, key)
+          await notion.blocks.update({
+            block_id: blockId,
+            image: {
+              external: {
+                url: convertUrl,
+              },
             },
-          },
-        })
-      } catch (e) {
-        throw new Error(`Failed to fetch image from Notion: ${e}`)
+          })
+        } catch (e) {
+          throw new Error(`Failed to fetch image from Notion: ${e}`)
+        }
       }
-    }
-  }
+    }),
+  )
 }
 
 /**

@@ -1,6 +1,19 @@
 import { NotionData } from "@/types/notion"
 import { getAllPost, getNotionArticleData } from "./notion"
 
+export async function getSlugPage(slug: string) {
+  const decodeSlug = decodeURIComponent(slug)
+  const data = await getAllPost()
+  const page = data.find(
+    (item: NotionData) => item.slug === decodeSlug || item.slug === slug,
+  )
+
+  if (!page) {
+    throw new Error("Notion data not found")
+  }
+  return page
+}
+
 export async function getArticleData(slug: string) {
   const page = await getSlugPage(slug)
   const post = await getNotionArticleData(String(page.id))
@@ -28,17 +41,4 @@ export async function getHotArticle() {
   const res = await getAllPost()
   const data = res.filter((item: NotionData) => item.hotAtcicle)
   return data
-}
-
-export async function getSlugPage(slug: string) {
-  const decodeSlug = decodeURIComponent(slug)
-  const data = await getAllPost()
-  const page = data.find(
-    (item: NotionData) => item.slug === decodeSlug || item.slug === slug,
-  )
-
-  if (!page) {
-    throw new Error("Notion data not found")
-  }
-  return page
 }
