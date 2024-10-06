@@ -1,5 +1,8 @@
+import { NotionBlock, NotionBlockChildList } from "@/types/image"
 import { unstable_cache } from "next/cache"
+import { cache } from "react"
 import { generateSlug, parseDate } from "../utils/utils"
+import { convertNotionImage } from "./images"
 
 const { Client } = require("@notionhq/client")
 const { NotionToMarkdown } = require("notion-to-md")
@@ -7,7 +10,7 @@ const { NotionToMarkdown } = require("notion-to-md")
 const token = process.env.NOTION_TOKEN
 const dbID = process.env.NOTION_DB_ID
 
-const notion = new Client({
+export const notion = new Client({
   auth: token,
 })
 
@@ -15,7 +18,32 @@ const n2m = new NotionToMarkdown({
   notionClient: notion,
 })
 
-// let cursor: undefined | null | string = undefined
+export const getBlocks = async (blockId: string): Promise<NotionBlock[]> => {
+  let cursor: undefined | null | string = undefined
+  let hasMore = true
+  const blocks: NotionBlock[] = []
+
+  while (hasMore) {
+    const { has_more, next_cursor, results }: NotionBlockChildList =
+      await notion.blocks.children.list({
+        block_id: blockId,
+        start_cursor: cursor,
+      })
+    blocks.push(...results)
+    hasMore = has_more
+    cursor = next_cursor
+  }
+
+  const childBlocks = await Promise.all(
+    blocks
+      .filter((block) => "has_children" in block && block.has_children)
+      .map(async (block) => {
+        const childBlocks = await getBlocks(block.id)
+        return childBlocks
+      }),
+  )
+  return [...blocks, ...childBlocks.flat()]
+}
 
 /**
  * 노션 데이터베이스에서 모든 태그와 카테고리를 가져옵니다.
@@ -37,50 +65,60 @@ export const getAllTagsWithCategory = async () => {
 /**
  * 노션 페이지의 데이터를 마크다운 형식으로 변환합니다.
  */
-export const getNotionArticleData = async (id: string) => {
+export const getNotionArticleData = unstable_cache(async (id: string) => {
   const mdblocks = await n2m.pageToMarkdown(id)
   const mdString = n2m.toMarkdownString(mdblocks)
   return mdString.parent
-}
+})
 
 /**
  * 노션 데이터베이스에서 모든 게시글을 가져옵니다.
  */
-export const getAllPost = unstable_cache(async () => {
-  console.log("Fetching data from Notion API...")
-  const res = await notion.databases.query({
-    database_id: dbID,
-    // start_cursor: cursor,
-    filter: {
-      property: "isRelease",
-      checkbox: {
-        equals: true,
+export const getAllPost = cache(
+  unstable_cache(async () => {
+    console.log("Fetching data from Notion API...")
+    const res = await notion.databases.query({
+      database_id: dbID,
+      // start_cursor: cursor,
+      filter: {
+        property: "isRelease",
+        checkbox: {
+          equals: true,
+        },
       },
-    },
-    sort: {
-      property: "createdTime",
-      direction: "descending",
-    },
-  })
+      sort: {
+        property: "createdTime",
+        direction: "descending",
+      },
+    })
 
-  /**
-   * cursor가 null이면 데이터가 더 이상 없다는 뜻이므로 빈 배열을 반환합니다.
-   * 나중에 게시글이 100개 이상이 되면 페이지네이션을 구현해야 함
-   * https://developers.notion.com/reference/intro#pagination
-   *   if (data.has_more === true) cursor = data.next_cursor
-   */
-  const data = res.results.map((page: any) => ({
-    id: page.id,
-    title: page.properties.title.title[0].plain_text,
-    description: page.properties.description.rich_text[0].plain_text,
-    hotAtcicle: page.properties.hotArticle.checkbox,
-    createdTime: parseDate(page.created_time),
-    slug: generateSlug(page.properties.title.title[0].plain_text),
-    category: page.properties.category.select.name,
-    tag: page.properties.tags.multi_select.map((tag: any) => tag.name),
-    thumbnail: page.properties.thumbnail.files[0].file.url,
-    blurThumbnail: "",
-  }))
-  return data
-  // return convertThumbnailImage(data)
-})
+    /**
+     * cursor가 null이면 데이터가 더 이상 없다는 뜻이므로 빈 배열을 반환합니다.
+     * 나중에 게시글이 100개 이상이 되면 페이지네이션을 구현해야 함
+     * https://developers.notion.com/reference/intro#pagination
+     *   if (data.has_more === true) cursor = data.next_cursor
+     */
+
+    const data = res.results.map((page: any) => {
+      const thumbnailFile = page.properties.thumbnail.files[0]
+
+      const thumbnailUrl = thumbnailFile.external
+        ? thumbnailFile.external.url
+        : thumbnailFile.file.url
+
+      return {
+        id: page.id,
+        title: page.properties.title.title[0].plain_text,
+        description: page.properties.description.rich_text[0].plain_text,
+        hotAtcicle: page.properties.hotArticle.checkbox,
+        createdTime: parseDate(page.created_time),
+        slug: generateSlug(page.properties.title.title[0].plain_text),
+        category: page.properties.category.select.name,
+        tag: page.properties.tags.multi_select.map((tag: any) => tag.name),
+        thumbnail: thumbnailUrl,
+        blurThumbnail: null,
+      }
+    })
+    return convertNotionImage(data)
+  }),
+)

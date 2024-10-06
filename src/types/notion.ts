@@ -1,5 +1,5 @@
 export type NotionData = {
-  id: number
+  id: string
   title: string
   description: string
   hotAtcicle: boolean
@@ -7,6 +7,6 @@ export type NotionData = {
   slug: string
   category: string
   tag: string[]
-  thumbnail: string | null
+  thumbnail: string
   blurThumbnail: string | null
 }
