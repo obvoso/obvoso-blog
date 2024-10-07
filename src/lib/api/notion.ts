@@ -74,6 +74,7 @@ export const getAllPost = cache(
         : thumbnailFile.file.url
 
       return {
+        index: page.properties.index.number,
         id: page.id,
         title: page.properties.title.title[0].plain_text,
         description: page.properties.description.rich_text[0].plain_text,
@@ -84,6 +85,8 @@ export const getAllPost = cache(
         tag: page.properties.tags.multi_select.map((tag: any) => tag.name),
         thumbnail: thumbnailUrl,
         blurThumbnail: "",
+        prevIndex: page.properties.prevIndex.number,
+        nextIndex: page.properties.nextIndex.number,
       }
     })
     return convertNotionImage(data)

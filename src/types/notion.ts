@@ -1,4 +1,5 @@
 export type NotionData = {
+  index: number
   id: string
   title: string
   description: string
@@ -9,4 +10,6 @@ export type NotionData = {
   tag: string[]
   thumbnail: string
   blurThumbnail: string
+  prevIndex: number | null
+  nextIndex: number | null
 }

@@ -1,7 +1,8 @@
 import { NotionData } from "@/types/notion"
+import { cache } from "react"
 import { getAllPost, getNotionArticleData } from "./notion"
 
-export async function getSlugPage(slug: string) {
+export const getSlugPage = cache(async (slug: string) => {
   const decodeSlug = decodeURIComponent(slug)
   const data = await getAllPost()
   const page = data.find(
@@ -12,6 +13,11 @@ export async function getSlugPage(slug: string) {
     throw new Error("Notion data not found")
   }
   return page
+})
+
+const getMataDataByIndex = async (id: number | null) => {
+  const data = await getAllPost()
+  return id ? data[id - 1] : null
 }
 
 export async function getArticleData(slug: string) {
@@ -34,6 +40,16 @@ export async function getArticleHeader(slug: string) {
     tag: page.tag,
     thumbnail: page.thumbnail,
     blurThumbnail: page.blurThumbnail,
+  }
+}
+
+export async function getArticleFooterNavigation(slug: string) {
+  const page = await getSlugPage(slug)
+  const prevMataData = await getMataDataByIndex(page.prevIndex)
+  const nextMataData = await getMataDataByIndex(page.nextIndex)
+  return {
+    prev: prevMataData,
+    next: nextMataData,
   }
 }
 
