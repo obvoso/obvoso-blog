@@ -1,9 +1,14 @@
 import { fetchTagArticles } from "@/app/(home)/articleSection/actions"
+import {
+  articleListCurrentPageSelector,
+  articleListHasMoreSelector,
+  articleListSelector,
+} from "@/atoms/article"
 import selectTagsState from "@/atoms/selectCategoryTags"
 import { NotionData } from "@/types/notion"
-import { useEffect, useLayoutEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useRef } from "react"
 import { useInView } from "react-intersection-observer"
-import { useRecoilValue } from "recoil"
+import { useRecoilState, useRecoilValue } from "recoil"
 
 type InfiniteScrollProps = {
   initialArticles: NotionData[]
@@ -12,11 +17,17 @@ export default function useInfiniteScroll({
   initialArticles,
 }: InfiniteScrollProps) {
   const tag = useRecoilValue(selectTagsState)
-  const [articleList, setArticleList] = useState<NotionData[]>(
-    tag.tagName === "전체보기" ? initialArticles : [],
-  )
-  const [page, setPage] = useState(0)
+  const [articleList, setArticleList] = useRecoilState(articleListSelector)
+  const [page, setPage] = useRecoilState(articleListCurrentPageSelector)
+  const [hasMore, setHasMore] = useRecoilState(articleListHasMoreSelector)
   const [ref, inView] = useInView()
+  const previousTag = useRef(tag)
+
+  useEffect(() => {
+    if (!articleList.length) {
+      setArticleList(initialArticles)
+    }
+  }, [])
 
   /**
    * Load more articles when the user scrolls to the bottom of the page
@@ -24,18 +35,20 @@ export default function useInfiniteScroll({
   async function loadMoreArticles() {
     const next = page + 1
     const articles = await fetchTagArticles({ tag, page: next })
-
+    console.log("call")
     if (articles?.length) {
       setPage(next)
       setArticleList((prev) => [...prev, ...articles])
+    } else {
+      setHasMore(false)
     }
   }
 
   useEffect(() => {
-    if (inView) {
+    if (inView && hasMore) {
       loadMoreArticles()
     }
-  }, [inView, tag])
+  }, [inView, tag, hasMore])
 
   /**
    * Load articles based on the selected tag
@@ -46,14 +59,16 @@ export default function useInfiniteScroll({
   }
 
   useLayoutEffect(() => {
-    loadTagArticles()
-    return () => {
+    if (previousTag.current !== tag) {
+      loadTagArticles()
       setPage(0)
+      previousTag.current = tag
+      setHasMore(true)
     }
   }, [tag])
 
   return {
-    articleList,
+    articleList: articleList.length ? articleList : initialArticles,
     ref,
   }
 }
