@@ -17,10 +17,7 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
         background: "var(--background)",
       }}
     >
-      <BlurImage
-        src={article.thumbnail!}
-        blurDataURL={article.blurThumbnail!}
-      />
+      <BlurImage src={article.thumbnail} blurDataURL={article.blurThumbnail} />
       <Box padding={1} paddingTop={3}>
         <CustomTypography size={20} weight={700} fontFamily="var(--noto">
           {article.title}

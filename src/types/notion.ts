@@ -8,5 +8,5 @@ export type NotionData = {
   category: string
   tag: string[]
   thumbnail: string
-  blurThumbnail: string | null
+  blurThumbnail: string
 }

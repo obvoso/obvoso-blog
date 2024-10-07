@@ -33,12 +33,8 @@ const getBlurImage = async (imageUrl: string) => {
   const arrayBuffer = await response.arrayBuffer()
   const body = Buffer.from(arrayBuffer)
 
-  // const { base64 } = await getPlaiceholder(body, { size: 10 })
   const { base64: blurDataURL } = await getPlaiceholder(body, { size: 10 })
   return blurDataURL
-  // const base64Data = base64.replace(/^data:image\/\w+;base64,/, "")
-  // const buffer = Buffer.from(base64Data, "base64")
-  // return buffer
 }
 
 /* 버킷에 이미지 업로드 함수 */

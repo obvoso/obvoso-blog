@@ -83,7 +83,7 @@ export const getAllPost = cache(
         category: page.properties.category.select.name,
         tag: page.properties.tags.multi_select.map((tag: any) => tag.name),
         thumbnail: thumbnailUrl,
-        blurThumbnail: null,
+        blurThumbnail: "",
       }
     })
     return convertNotionImage(data)

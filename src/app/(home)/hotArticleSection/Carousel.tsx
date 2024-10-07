@@ -52,8 +52,8 @@ export default function Carousel({ data }: CarouselProps) {
                 }}
               >
                 <BlurImage
-                  src={item.thumbnail || ""}
-                  blurDataURL={item.thumbnail || ""}
+                  src={item.thumbnail}
+                  blurDataURL={item.blurThumbnail}
                   imageStyle={{
                     borderRadius: "8px",
                   }}
