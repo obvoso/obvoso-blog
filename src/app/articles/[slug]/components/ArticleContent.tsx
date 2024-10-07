@@ -10,6 +10,7 @@ import Anchor from "./markdownRender/Anchor"
 import BlockQuote from "./markdownRender/BlockQuote"
 import Code from "./markdownRender/Code"
 import Heading from "./markdownRender/Heading"
+import Image from "./markdownRender/Image"
 import OrderedList from "./markdownRender/OrderedList"
 import { Table } from "./markdownRender/Table"
 import UnorderedList from "./markdownRender/UnorderedList"
@@ -73,6 +74,7 @@ export default async function ArticleContent({ slug }: ArticleProps) {
               {children}
             </Code>
           ),
+          img: ({ src, alt }) => <Image src={src!} alt={alt!} />,
         }}
       >
         {post}
