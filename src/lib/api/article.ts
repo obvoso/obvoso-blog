@@ -15,9 +15,9 @@ export const getSlugPage = cache(async (slug: string) => {
   return page
 })
 
-const getMataDataByIndex = async (id: number | null) => {
+const getMataDataByIndex = async (index: number | null) => {
   const data = await getAllPost()
-  return id ? data[id - 1] : null
+  return index ? data[data.length - index] : null
 }
 
 export async function getArticleData(slug: string) {
@@ -47,6 +47,7 @@ export async function getArticleFooterNavigation(slug: string) {
   const page = await getSlugPage(slug)
   const prevMataData = await getMataDataByIndex(page.prevIndex)
   const nextMataData = await getMataDataByIndex(page.nextIndex)
+
   return {
     prev: prevMataData,
     next: nextMataData,
