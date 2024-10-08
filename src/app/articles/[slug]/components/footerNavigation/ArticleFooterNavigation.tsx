@@ -10,13 +10,15 @@ export default async function ArticleFooterNavigation({
   slug,
 }: ArticleFooterNavigationProps) {
   const { prev, next } = await getArticleFooterNavigation(slug)
+  let justify = "space-between"
+  if (prev && !next) justify = "flex-start"
+  if (!prev && next) justify = "flex-end"
 
   return (
     <Box
       sx={{
         display: "flex",
-        justifyContent:
-          prev && next ? "space-between" : prev ? "flex-start" : "flex-end",
+        justifyContent: justify,
         alignItems: "center",
         textAlign: "center",
         flexDirection: { xs: "column", sm: "row" },

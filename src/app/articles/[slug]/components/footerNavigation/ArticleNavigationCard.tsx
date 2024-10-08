@@ -1,4 +1,5 @@
 "use client"
+
 import CustomBox from "@/app/components/common/CustomBox"
 import CustomTypography from "@/app/components/common/CustomTypography"
 import StarTextBox from "@/app/components/common/StarTextBox"
@@ -34,9 +35,7 @@ export default function ArticleNavigationCard({
         },
         alignSelf: cardType === "이전 포스트" ? "flex-start" : "flex-end",
         "&:hover .cardNavigationButton": {
-          animation:
-            (cardType === "이전 포스트" ? "moveLeft" : "moveRight") +
-            " 0.5s ease-in-out",
+          animation: `${cardType === "이전 포스트" ? "moveLeft" : "moveRight"} 0.5s ease-in-out`,
         },
       }}
     >
@@ -65,6 +64,7 @@ export default function ArticleNavigationCard({
           >
             <CustomTypography
               weight={600}
+              /* eslint-disable react/jsx-curly-brace-presence */
               size={18}
               sx={{
                 whiteSpace: "nowrap",
