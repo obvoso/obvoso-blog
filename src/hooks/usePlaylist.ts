@@ -18,15 +18,20 @@ export default function usePlaylist() {
   const [currentTrack, setCurrentTrack] = useRecoilState(currentTrackState)
 
   const onReady = (event: { target: YouTubePlayer }) => {
+    event.target.setVolume(volume)
     const deepCopyPlayer = cloneDeep(event.target)
     setPlayer(deepCopyPlayer)
-    event.target.setVolume(volume)
   }
 
   const onStateChange = (event: { target: YouTubePlayer; data: number }) => {
     if (event.data === 1) {
+      setIsPlaying(true)
       const currentIndex = event.target.getPlaylistIndex()
       if (currentIndex !== currentTrack) setCurrentTrack(currentIndex)
+    }
+    if (event.data === 2) {
+      setIsPlaying(false)
+      console.log(isPlaying)
     }
   }
 
@@ -91,7 +96,7 @@ export default function usePlaylist() {
     playerVars: {
       listType: "playlist",
       list: PLAYLIST_ID,
-      autoplay: 1,
+      autoplay: 0,
       controls: 1,
       loop: 1,
     },
