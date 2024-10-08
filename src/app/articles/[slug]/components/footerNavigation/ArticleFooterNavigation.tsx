@@ -21,6 +21,7 @@ export default async function ArticleFooterNavigation({
         textAlign: "center",
         flexDirection: { xs: "column", sm: "row" },
         gap: 2,
+        paddingTop: 4,
       }}
     >
       {prev && <ArticleNavigationCard {...prev} cardType="이전 포스트" />}

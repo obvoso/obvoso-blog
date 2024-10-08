@@ -19,7 +19,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${notoSansKr.className}`}>
-        {/* <body className={`${notoSansKr.className}, ${notoSerifKr.variable}`}> */}
         <ThemeProvider attribute="class" defaultTheme="system">
           <RecoilRootWrapper>
             <header>
