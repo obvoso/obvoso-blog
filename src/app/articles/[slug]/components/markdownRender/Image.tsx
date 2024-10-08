@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-default */
 import { default as NextImage } from "next/image"
 
 type ImageProps = {
