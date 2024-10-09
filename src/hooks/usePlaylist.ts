@@ -31,7 +31,6 @@ export default function usePlaylist() {
     }
     if (event.data === 2) {
       setIsPlaying(false)
-      console.log(isPlaying)
     }
   }
 
