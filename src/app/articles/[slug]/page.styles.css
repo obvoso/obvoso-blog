@@ -31,3 +31,7 @@ li {
 strong {
   font-weight: bold;
 }
+
+.active {
+  color: var(--primary);
+}
