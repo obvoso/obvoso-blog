@@ -95,7 +95,8 @@ export default function usePlaylist() {
     playerVars: {
       listType: "playlist",
       list: PLAYLIST_ID,
-      autoplay: 0,
+      autoplay: 1,
+      mute: 0,
       controls: 1,
       loop: 1,
     },
