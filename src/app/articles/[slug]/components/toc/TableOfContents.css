@@ -8,13 +8,14 @@
 @media (min-width: 600px) {
   .aside-container {
     top: 5%;
-    right: 32px;
+    right: 0;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1320px) {
   .aside-container {
     position: absolute;
+    right: 32px;
   }
 }
 
@@ -24,7 +25,7 @@ li {
 
 .active {
   color: var(--primary);
-  background: var(--background-secondary);
+  /* background: var(--background-secondary); */
 }
 
 .active::before {
@@ -35,4 +36,15 @@ li {
   width: 4px;
   height: 100%;
   background-color: var(--primary);
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
 }

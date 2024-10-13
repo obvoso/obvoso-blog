@@ -1,9 +1,9 @@
 "use client"
 
-import CustomBox from "@/app/components/common/CustomBox"
-import StarTextBox from "@/app/components/common/StarTextBox"
+import CustomTypography from "@/app/components/common/CustomTypography"
 import useScrollSpy from "@/hooks/useScrollSpy"
 import { Heading } from "@/types/heading"
+import { Box, useTheme } from "@mui/material"
 import "./TableOfContents.css"
 
 type TableOfContentsProps = {
@@ -12,7 +12,7 @@ type TableOfContentsProps = {
 
 export function TableOfContents({ initialHeadings }: TableOfContentsProps) {
   const { headings, activeIndexs } = useScrollSpy(initialHeadings)
-
+  const theme = useTheme()
   const handleScroll = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
     id: string,
@@ -36,21 +36,27 @@ export function TableOfContents({ initialHeadings }: TableOfContentsProps) {
 
   return (
     <aside className="aside-container">
-      <CustomBox
+      <Box
         sx={{
-          background: "var(--background)",
           position: "sticky",
           top: "10%",
           height: "fit-content",
           width: {
             xs: "100%",
-            lg: "200px",
           },
-          padding: 0,
           color: "var(--text-tertiatry)",
+          [theme.breakpoints.up(1320)]: {
+            width: "200px",
+          },
         }}
       >
-        <StarTextBox text="목차"></StarTextBox>
+        <CustomTypography color="var(--text-tertiatry)">목차</CustomTypography>
+        <hr
+          style={{
+            border: "0.1px solid var(--border)",
+            margin: "0.5rem 0 1rem 0",
+          }}
+        />
         <nav>
           <ul
             style={{
@@ -72,6 +78,9 @@ export function TableOfContents({ initialHeadings }: TableOfContentsProps) {
                 <a
                   href={`#${heading.id}`}
                   onClick={(e) => handleScroll(e, heading.id)}
+                  style={{
+                    fontSize: "0.8rem",
+                  }}
                 >
                   {heading.textContent}
                 </a>
@@ -79,7 +88,7 @@ export function TableOfContents({ initialHeadings }: TableOfContentsProps) {
             ))}
           </ul>
         </nav>
-      </CustomBox>
+      </Box>
     </aside>
   )
 }
