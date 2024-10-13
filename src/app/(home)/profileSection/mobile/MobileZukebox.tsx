@@ -7,7 +7,7 @@ import usePlaylist from "@/hooks/usePlaylist"
 import useShowPlaylist from "@/hooks/useShowPlaylist"
 import { playlist } from "@/lib/utils/playlist"
 import { Pause, PlayArrow } from "@mui/icons-material"
-import { Box, IconButton } from "@mui/material"
+import { Box, IconButton, Tooltip } from "@mui/material"
 import Image from "next/image"
 import YouTube from "react-youtube"
 import Playlist from "../desktop/component/jukebox/Playlist"
@@ -64,13 +64,15 @@ export default function MobileZukebox() {
             {`${title} - ${artist}`}
           </CustomTypography>
         </Box>
-        <Image
-          src={cd}
-          alt="cd"
-          width={20}
-          height={20}
-          onClick={handleShowPlayList}
-        />
+        <Tooltip title="Show Playlist">
+          <Image
+            src={cd}
+            alt="cd"
+            width={20}
+            height={20}
+            onClick={handleShowPlayList}
+          />
+        </Tooltip>
         <YouTube
           videoId=""
           opts={opts}

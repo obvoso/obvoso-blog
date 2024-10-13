@@ -3,7 +3,8 @@
 import CustomTypography from "@/app/components/common/CustomTypography"
 import ThemeToggle from "@/app/components/layout/ThemeToggle"
 import star from "@/assets/images/star.svg"
-import { Box, useMediaQuery, useTheme } from "@mui/material"
+import { onClickGithub } from "@/lib/utils/utils"
+import { Box, Tooltip, useMediaQuery, useTheme } from "@mui/material"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -21,10 +22,6 @@ export default function MobileHeader() {
     const isArticlePage = pathname.startsWith("/articles")
     setShow(isMobile || isArticlePage)
   }, [pathname, isMobile])
-
-  const onClickButton = () => {
-    window.open("https://github.com/obvoso", "_blank")
-  }
 
   return (
     <Box
@@ -71,13 +68,15 @@ export default function MobileHeader() {
             gap: 2,
           }}
         >
-          <Image
-            src={star}
-            alt="star"
-            width={26}
-            height={26}
-            onClick={onClickButton}
-          />
+          <Tooltip title="Go to GitHub" arrow>
+            <Image
+              src={star}
+              alt="star"
+              width={26}
+              height={26}
+              onClick={onClickGithub}
+            />
+          </Tooltip>
           <ThemeToggle scale={0.8} />
         </Box>
       </Box>
