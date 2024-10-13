@@ -21,7 +21,7 @@ export default async function Article({ params }: ArticleProps) {
           display: "flex",
           position: "relative",
           justifyContent: "center",
-          paddingY: 10,
+          paddingY: { xs: 4, md: 10 },
           background: "var(--background)",
         }}
       >

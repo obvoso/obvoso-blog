@@ -1,13 +1,13 @@
 import { Box } from "@mui/material"
 import Markdown from "react-markdown"
 // eslint-disable-next-line import/no-extraneous-dependencies
+import styles from "@/app/articles/[slug]/page.styles.module.css"
 import { getArticleData } from "@/lib/api/article"
 import rehypeHighlight from "rehype-highlight"
 import rehypeRaw from "rehype-raw"
 import rehypeSlug from "rehype-slug"
 import remarkBreaks from "remark-breaks"
 import remarkGfm from "remark-gfm"
-import "../page.styles.css"
 import Anchor from "./markdownRender/Anchor"
 import BlockQuote from "./markdownRender/BlockQuote"
 import Code from "./markdownRender/Code"
@@ -40,9 +40,21 @@ export default async function ArticleContent({ slug }: ArticleProps) {
         remarkPlugins={[remarkBreaks, remarkGfm]}
         rehypePlugins={[rehypeSlug, rehypeHighlight, rehypeRaw]}
         components={{
-          h1: ({ id, children }) => <h1 id={id}>{children}</h1>,
-          h2: ({ id, children }) => <h2 id={id}>{children}</h2>,
-          h3: ({ id, children }) => <h3 id={id}>{children}</h3>,
+          h1: ({ id, children }) => (
+            <h1 id={id} className={styles.h1}>
+              {children}
+            </h1>
+          ),
+          h2: ({ id, children }) => (
+            <h2 id={id} className={styles.h2}>
+              {children}
+            </h2>
+          ),
+          h3: ({ id, children }) => (
+            <h3 id={id} className={styles.h3}>
+              {children}
+            </h3>
+          ),
           a: ({ id, children, ...props }) => (
             // eslint-disable-next-line react/prop-types
             <Anchor href={props.href}>{children}</Anchor>
@@ -52,7 +64,7 @@ export default async function ArticleContent({ slug }: ArticleProps) {
           ),
           ul: ({ children }) => <UnorderedList>{children}</UnorderedList>,
           ol: ({ children }) => <OrderedList>{children}</OrderedList>,
-          li: ({ children, ...props }) => <li {...props}>{children}</li>,
+          li: ({ children }) => <li className={styles.li}>{children}</li>,
           table: ({ children, ...props }) => (
             <Table {...props}>{children}</Table>
           ),
@@ -62,8 +74,8 @@ export default async function ArticleContent({ slug }: ArticleProps) {
           td: ({ children, ...props }) => (
             <Table.Td {...props}>{children}</Table.Td>
           ),
-          strong: ({ children, ...props }) => (
-            <strong {...props}>{children}</strong>
+          strong: ({ children }) => (
+            <strong className={styles.strong}>{children}</strong>
           ),
           code: ({ className, children, ...props }) => (
             <Code className={className} {...props}>

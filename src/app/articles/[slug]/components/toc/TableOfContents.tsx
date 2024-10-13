@@ -51,12 +51,7 @@ export function TableOfContents({ initialHeadings }: TableOfContentsProps) {
         }}
       >
         <CustomTypography color="var(--text-tertiatry)">목차</CustomTypography>
-        <hr
-          style={{
-            border: "0.1px solid var(--border)",
-            margin: "0.5rem 0 1rem 0",
-          }}
-        />
+        <hr className="toc-hr" />
         <nav>
           <ul
             style={{
@@ -68,19 +63,15 @@ export function TableOfContents({ initialHeadings }: TableOfContentsProps) {
               <li
                 key={index}
                 style={{
-                  paddingLeft: `${(heading.level - 1) * 20}px`,
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
+                  paddingLeft: `${(heading.level - 1) * 10}px`,
                 }}
-                className={activeIndexs.includes(index) ? "active" : ""}
+                className={`heading-list ${
+                  activeIndexs.includes(index) ? "active" : ""
+                }`}
               >
                 <a
                   href={`#${heading.id}`}
                   onClick={(e) => handleScroll(e, heading.id)}
-                  style={{
-                    fontSize: "0.8rem",
-                  }}
                 >
                   {heading.textContent}
                 </a>

@@ -1,33 +1,33 @@
-h1 {
+.h1 {
   font-size: 30px;
   font-weight: 600;
   margin-top: 2rem;
   margin-bottom: 4px;
 }
 
-h2 {
+.h2 {
   font-size: 24px;
   font-weight: 600;
   margin-top: 1.4rem;
   margin-bottom: 1px;
 }
 
-h3 {
+.h3 {
   font-size: 20px;
   font-weight: 600;
   margin-top: 1rem;
   margin-bottom: 1px;
 }
 
-ul,
-ol {
+.ul,
+.ol {
   padding-left: 1.75rem;
 }
 
-li {
+.li {
   margin: 3px 2px;
 }
 
-strong {
+.strong {
   font-weight: bold;
 }

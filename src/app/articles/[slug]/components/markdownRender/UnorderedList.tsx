@@ -1,5 +1,6 @@
 "use client"
 
+import styles from "@/app/articles/[slug]/page.styles.module.css"
 import Box from "@mui/material/Box"
 import React, { createContext, useContext } from "react"
 
@@ -32,10 +33,10 @@ export default function UnorderedList({ children }: ListProps) {
     <ListContext.Provider value={false}>
       {isTopLevel ? (
         <ListWrapper>
-          <ul>{children}</ul>
+          <ul className={styles.ul}>{children}</ul>
         </ListWrapper>
       ) : (
-        <ul>{children}</ul>
+        <ul className={styles.ul}>{children}</ul>
       )}
     </ListContext.Provider>
   )
