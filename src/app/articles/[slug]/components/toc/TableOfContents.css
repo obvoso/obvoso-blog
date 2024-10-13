@@ -1,0 +1,38 @@
+.aside-container {
+  position: relative;
+  padding: 0;
+  height: 100%;
+  top: 0;
+}
+
+@media (min-width: 600px) {
+  .aside-container {
+    top: 5%;
+    right: 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .aside-container {
+    position: absolute;
+  }
+}
+
+li {
+  position: relative; /* li를 relative로 설정하여 ::before 가상 요소의 기준점으로 사용 */
+}
+
+.active {
+  color: var(--primary);
+  background: var(--background-secondary);
+}
+
+.active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background-color: var(--primary);
+}

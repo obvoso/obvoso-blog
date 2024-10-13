@@ -1,13 +1,8 @@
+import { Heading } from "@/types/heading"
 import { useEffect, useRef, useState } from "react"
 
-type Heading = {
-  id: string
-  textContent: string | null
-  level: number
-}
-
-const useScrollSpy = () => {
-  const [headings, setHeadings] = useState<Heading[]>([])
+const useScrollSpy = (initialHeadings: Heading[]) => {
+  const [headings, setHeadings] = useState<Heading[]>(initialHeadings)
   const [activeIndexs, setActiveIndexs] = useState<Number[]>([])
   const ElementRef = useRef<Element[]>([])
 
@@ -16,18 +11,14 @@ const useScrollSpy = () => {
    * Get all headings
    */
   useEffect(() => {
-    // h1, h2, h3 객체 다가져옴
-    const headingElements = Array.from(document.querySelectorAll("h1, h2, h3"))
-    // UI에 표시할 데이터로 변환
-    const mappedHeadings = headingElements.map((heading) => ({
-      id: heading.id,
-      textContent: heading.textContent,
-      level: parseInt(heading.tagName[1], 10),
-    }))
+    // initialHeadings와 매칭되는 DOM 요소를 찾음
+    const headingElements = initialHeadings.map(
+      (heading) => document.getElementById(heading.id) as Element,
+    )
 
-    setHeadings(mappedHeadings)
-    ElementRef.current = headingElements
-  }, [])
+    // DOM 요소를 참조하고 상태 업데이트
+    ElementRef.current = headingElements.filter((el) => el !== null)
+  }, [initialHeadings])
 
   /**
    * @description

@@ -1,7 +1,7 @@
-import { getArticleData } from "@/lib/api/article"
 import { Box } from "@mui/material"
 import Markdown from "react-markdown"
 // eslint-disable-next-line import/no-extraneous-dependencies
+import { getArticleData } from "@/lib/api/article"
 import rehypeHighlight from "rehype-highlight"
 import rehypeRaw from "rehype-raw"
 import rehypeSlug from "rehype-slug"
@@ -15,13 +15,14 @@ import Image from "./markdownRender/Image"
 import OrderedList from "./markdownRender/OrderedList"
 import { Table } from "./markdownRender/Table"
 import UnorderedList from "./markdownRender/UnorderedList"
+import { TableOfContents } from "./toc/TableOfContents"
 
 type ArticleProps = {
   slug: string
 }
 
 export default async function ArticleContent({ slug }: ArticleProps) {
-  const post = await getArticleData(slug)
+  const { post, headings } = await getArticleData(slug)
 
   return (
     <Box
@@ -29,12 +30,12 @@ export default async function ArticleContent({ slug }: ArticleProps) {
         display: "flex",
         flexDirection: "column",
         gap: 2,
-        width: "100%",
         paddingY: 4,
         wordBreak: "break-word",
         overflowWrap: "break-word",
       }}
     >
+      <TableOfContents initialHeadings={headings} />
       <Markdown
         remarkPlugins={[remarkBreaks, remarkGfm]}
         rehypePlugins={[rehypeSlug, rehypeHighlight, rehypeRaw]}

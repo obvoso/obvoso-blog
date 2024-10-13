@@ -5,7 +5,6 @@ import Box from "@mui/material/Box"
 import "highlight.js/styles/hybrid.css"
 import ArticleContent from "./components/ArticleContent"
 import ArticleHeader from "./components/ArticleHeader"
-import { TableOfContents } from "./components/TableOfContents"
 import ArticleFooterNavigation from "./components/footerNavigation/ArticleFooterNavigation"
 
 type ArticleProps = {
@@ -16,27 +15,28 @@ type ArticleProps = {
 
 export default async function Article({ params }: ArticleProps) {
   return (
-    <CustomBox
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        paddingX: 4,
-        paddingY: 10,
-        background: "var(--background)",
-      }}
-    >
-      <Box
+    <article>
+      <CustomBox
         sx={{
-          maxWidth: "800px",
-          width: "100%",
+          display: "flex",
+          position: "relative",
+          justifyContent: "center",
+          paddingY: 10,
+          background: "var(--background)",
         }}
       >
-        <ArticleHeader slug={params.slug} />
-        <ArticleContent slug={params.slug} />
-        <ArticleFooterNavigation slug={params.slug} />
-      </Box>
-      <TableOfContents />
-    </CustomBox>
+        <Box
+          sx={{
+            maxWidth: "800px",
+            width: "100%",
+          }}
+        >
+          <ArticleHeader slug={params.slug} />
+          <ArticleContent slug={params.slug} />
+          <ArticleFooterNavigation slug={params.slug} />
+        </Box>
+      </CustomBox>
+    </article>
   )
 }
 
