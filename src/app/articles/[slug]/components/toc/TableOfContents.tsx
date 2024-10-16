@@ -11,7 +11,10 @@ type TableOfContentsProps = {
 }
 
 export function TableOfContents({ initialHeadings }: TableOfContentsProps) {
-  const { headings, activeIndexs } = useScrollSpy(initialHeadings)
+  if (!initialHeadings) {
+    return null
+  }
+  const { activeIndexs } = useScrollSpy(initialHeadings)
   const theme = useTheme()
   const handleScroll = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
@@ -59,7 +62,7 @@ export function TableOfContents({ initialHeadings }: TableOfContentsProps) {
               padding: 0,
             }}
           >
-            {headings.map((heading, index) => (
+            {initialHeadings.map((heading, index) => (
               <li
                 key={index}
                 style={{

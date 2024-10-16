@@ -2,14 +2,14 @@ import { Heading } from "@/types/heading"
 import { useEffect, useRef, useState } from "react"
 
 const useScrollSpy = (initialHeadings: Heading[]) => {
-  const [headings, setHeadings] = useState<Heading[]>(initialHeadings)
-  const [activeIndexs, setActiveIndexs] = useState<Number[]>([])
+  const [activeIndexs, setActiveIndexs] = useState<number[]>([])
   const ElementRef = useRef<Element[]>([])
 
-  /**
-   * @description
-   * Get all headings
-   */
+  function handleIntersectionHeader(entries: IntersectionObserverEntry[]) {
+    addIntersectingEntries(entries)
+    removeUnintersectingEntries(entries)
+  }
+
   useEffect(() => {
     // initialHeadings와 매칭되는 DOM 요소를 찾음
     const headingElements = initialHeadings.map(
@@ -18,6 +18,15 @@ const useScrollSpy = (initialHeadings: Heading[]) => {
 
     // DOM 요소를 참조하고 상태 업데이트
     ElementRef.current = headingElements.filter((el) => el !== null)
+    const observer = new IntersectionObserver((entries) => {
+      handleIntersectionHeader(entries)
+    })
+
+    ElementRef.current.forEach((heading) => observer.observe(heading))
+
+    return () => {
+      ElementRef.current.forEach((heading) => observer.unobserve(heading))
+    }
   }, [initialHeadings])
 
   /**
@@ -58,29 +67,7 @@ const useScrollSpy = (initialHeadings: Heading[]) => {
     }
   }
 
-  /**
-   * @param entries
-   * @description intersectionObserver의 콜백함수
-   */
-  function handleIntersectionHeader(entries: IntersectionObserverEntry[]) {
-    addIntersectingEntries(entries)
-    removeUnintersectingEntries(entries)
-  }
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      handleIntersectionHeader(entries)
-    })
-
-    ElementRef.current.forEach((heading) => observer.observe(heading))
-
-    return () => {
-      ElementRef.current.forEach((heading) => observer.unobserve(heading))
-    }
-  }, [headings])
-
   return {
-    headings,
     activeIndexs,
   }
 }

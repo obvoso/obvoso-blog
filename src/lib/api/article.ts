@@ -6,7 +6,7 @@ import rehypeStringify from "rehype-stringify"
 import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
 import { unified } from "unified"
-import { extractHeadings } from "../utils/heading"
+import { rehypeExtractHeadings } from "../utils/heading"
 import { getAllPost, getNotionArticleData } from "./notion"
 
 export const getSlugPage = cache(async (slug: string) => {
@@ -27,16 +27,18 @@ const getMataDataByIndex = async (index: number | null) => {
   return index ? data[data.length - index] : null
 }
 
-async function getArticleHeadings(post: string): Promise<Heading[]> {
+async function getArticleHeadingsAndSection(post: string) {
   const result = await unified()
-    .use(remarkParse) // md 파싱
-    .use(remarkRehype) // html로 변환
-    .use(rehypeSlug) // 헤딩에 id 추가
-    .use(extractHeadings) // 헤딩 정보 추출
-    .use(rehypeStringify) // html 문자열로 변환
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeSlug)
+    .use(rehypeExtractHeadings)
+    .use(rehypeStringify)
     .process(post)
 
-  return (result.data as any).headings
+  return {
+    headings: result.data.headings as Heading[],
+  }
 }
 
 export async function getArticleData(slug: string) {
@@ -47,7 +49,7 @@ export async function getArticleData(slug: string) {
     throw new Error("Notion data not found")
   }
 
-  const headings = await getArticleHeadings(post)
+  const { headings } = await getArticleHeadingsAndSection(post)
 
   return { post, headings }
 }

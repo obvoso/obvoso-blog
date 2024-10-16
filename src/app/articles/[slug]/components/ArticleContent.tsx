@@ -3,6 +3,8 @@ import Markdown from "react-markdown"
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styles from "@/app/articles/[slug]/page.styles.module.css"
 import { getArticleData } from "@/lib/api/article"
+
+import { rehypeSection } from "@/lib/utils/heading"
 import rehypeHighlight from "rehype-highlight"
 import rehypeRaw from "rehype-raw"
 import rehypeSlug from "rehype-slug"
@@ -36,10 +38,12 @@ export default async function ArticleContent({ slug }: ArticleProps) {
       }}
     >
       <TableOfContents initialHeadings={headings} />
+
       <Markdown
         remarkPlugins={[remarkBreaks, remarkGfm]}
-        rehypePlugins={[rehypeSlug, rehypeHighlight, rehypeRaw]}
+        rehypePlugins={[rehypeSlug, rehypeHighlight, rehypeRaw, rehypeSection]}
         components={{
+          section: ({ id, children }) => <section id={id}>{children}</section>,
           h1: ({ id, children }) => (
             <h1 id={id} className={styles.h1}>
               {children}
