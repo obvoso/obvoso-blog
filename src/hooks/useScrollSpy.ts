@@ -8,7 +8,7 @@ const useScrollSpy = (initialHeadings: Heading[]) => {
   /**
    * @description
    * 뷰포트에 들어온 엘리먼트들을 activeIndexs에 추가
-   **/
+   * */
   function addIntersectingEntries(entries: IntersectionObserverEntry[]) {
     const intersectingEntries = entries.filter((entry) => entry.isIntersecting)
 
@@ -25,7 +25,7 @@ const useScrollSpy = (initialHeadings: Heading[]) => {
   /**
    * @description
    * 뷰포트에 나간 엘리먼트들을 activeIndexs에서 제거
-   * */
+   **/
   function removeUnintersectingEntries(entries: IntersectionObserverEntry[]) {
     const unIntersectingEntries = entries.filter(
       (entry) => !entry.isIntersecting,

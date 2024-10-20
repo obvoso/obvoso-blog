@@ -42,7 +42,7 @@ export function rehypeSection() {
   }
 }
 
-//<h2><a id="heading-1" href="#heading-1">Heading 1</a></h2>이 처리가 안되서 재귀적으로 텍스트를 추출하도록 수정
+// <h2><a id="heading-1" href="#heading-1">Heading 1</a></h2>이 처리가 안되서 재귀적으로 텍스트를 추출하도록 수정
 export function rehypeExtractHeadings() {
   return (tree: Node, file: VFile) => {
     const headings: Heading[] = []
