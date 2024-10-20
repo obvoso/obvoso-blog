@@ -27,7 +27,7 @@ const getMataDataByIndex = async (index: number | null) => {
   return index ? data[data.length - index] : null
 }
 
-async function getArticleHeadingsAndSection(post: string) {
+async function getArticleHeadings(post: string) {
   const result = await unified()
     .use(remarkParse)
     .use(remarkRehype)
@@ -49,7 +49,7 @@ export async function getArticleData(slug: string) {
     throw new Error("Notion data not found")
   }
 
-  const { headings } = await getArticleHeadingsAndSection(post)
+  const { headings } = await getArticleHeadings(post)
 
   return { post, headings }
 }
