@@ -87,6 +87,7 @@ export default async function ArticleContent({ slug }: ArticleProps) {
             </Code>
           ),
           img: ({ src, alt }) => <Image src={src!} alt={alt!} />,
+          p: ({ children }) => <p className={styles.p}>{children}</p>,
         }}
       >
         {post}

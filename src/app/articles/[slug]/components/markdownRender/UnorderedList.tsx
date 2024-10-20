@@ -15,6 +15,7 @@ function ListWrapper({ children }: { children: React.ReactNode }) {
   return (
     <Box
       sx={{
+        margin: "1rem 0 1rem 0",
         padding: "1.5rem",
         backgroundColor: "var(--background-secondary)",
         borderRadius: 4,

@@ -27,7 +27,13 @@ export default function Code({
       {children}
     </code>
   ) : (
-    <code {...props} className={className}>
+    <code
+      {...props}
+      className={className}
+      style={{
+        marginBottom: "1rem",
+      }}
+    >
       {children}
     </code>
   )
