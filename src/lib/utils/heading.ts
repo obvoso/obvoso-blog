@@ -3,6 +3,7 @@ import { Element, Parent } from "hast"
 import { isElement } from "hast-util-is-element"
 import { Node } from "unist"
 import { visit } from "unist-util-visit"
+import { VFile } from "vfile"
 
 export const rehypeSection = () => {
   return (tree: Parent) => {
@@ -41,7 +42,7 @@ export const rehypeSection = () => {
 }
 
 export const rehypeExtractHeadings = () => {
-  return (tree: any, file: any) => {
+  return (tree: Node, file: VFile) => {
     const headings: Heading[] = []
 
     visit(tree, "element", (node: Element) => {
