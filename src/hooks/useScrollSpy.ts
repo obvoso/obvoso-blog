@@ -5,30 +5,6 @@ const useScrollSpy = (initialHeadings: Heading[]) => {
   const [activeIndexs, setActiveIndexs] = useState<number[]>([])
   const ElementRef = useRef<Element[]>([])
 
-  function handleIntersectionHeader(entries: IntersectionObserverEntry[]) {
-    addIntersectingEntries(entries)
-    removeUnintersectingEntries(entries)
-  }
-
-  useEffect(() => {
-    // initialHeadings와 매칭되는 DOM 요소를 찾음
-    const headingElements = initialHeadings.map(
-      (heading) => document.getElementById(heading.id) as Element,
-    )
-
-    // DOM 요소를 참조하고 상태 업데이트
-    ElementRef.current = headingElements.filter((el) => el !== null)
-    const observer = new IntersectionObserver((entries) => {
-      handleIntersectionHeader(entries)
-    })
-
-    ElementRef.current.forEach((heading) => observer.observe(heading))
-
-    return () => {
-      ElementRef.current.forEach((heading) => observer.unobserve(heading))
-    }
-  }, [initialHeadings])
-
   /**
    * @description
    * 뷰포트에 들어온 엘리먼트들을 activeIndexs에 추가
@@ -66,6 +42,30 @@ const useScrollSpy = (initialHeadings: Heading[]) => {
       )
     }
   }
+
+  function handleIntersectionHeader(entries: IntersectionObserverEntry[]) {
+    addIntersectingEntries(entries)
+    removeUnintersectingEntries(entries)
+  }
+
+  useEffect(() => {
+    // initialHeadings와 매칭되는 DOM 요소를 찾음
+    const headingElements = initialHeadings.map(
+      (heading) => document.getElementById(heading.id) as Element,
+    )
+
+    // DOM 요소를 참조하고 상태 업데이트
+    ElementRef.current = headingElements.filter((el) => el !== null)
+    const observer = new IntersectionObserver((entries) => {
+      handleIntersectionHeader(entries)
+    })
+
+    ElementRef.current.forEach((heading) => observer.observe(heading))
+
+    return () => {
+      ElementRef.current.forEach((heading) => observer.unobserve(heading))
+    }
+  }, [initialHeadings])
 
   return {
     activeIndexs,
