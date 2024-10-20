@@ -5,7 +5,8 @@ import { Node } from "unist"
 import { visit } from "unist-util-visit"
 import { VFile } from "vfile"
 
-export const rehypeSection = () => {
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types, import/no-extraneous-dependencies, no-param-reassign */
+export function rehypeSection() {
   return (tree: Parent) => {
     const newChildren: Element[] = []
     let currentSection: Element | null = null
@@ -41,17 +42,27 @@ export const rehypeSection = () => {
   }
 }
 
-export const rehypeExtractHeadings = () => {
+//<h2><a id="heading-1" href="#heading-1">Heading 1</a></h2>이 처리가 안되서 재귀적으로 텍스트를 추출하도록 수정
+export function rehypeExtractHeadings() {
   return (tree: Node, file: VFile) => {
     const headings: Heading[] = []
+
+    const extractText = (node: Node): string => {
+      if (node.type === "text") {
+        return (node as any).value as string
+      }
+
+      if ("children" in node && Array.isArray(node.children)) {
+        return node.children.map(extractText).join("")
+      }
+
+      return ""
+    }
 
     visit(tree, "element", (node: Element) => {
       if (["h1", "h2", "h3"].includes(node.tagName)) {
         const id = node.properties?.id as string
-        const textContent = node.children
-          .filter((child) => child.type === "text")
-          .map((child: any) => child.value)
-          .join("")
+        const textContent = extractText(node)
 
         headings.push({
           id,
