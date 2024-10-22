@@ -6,7 +6,7 @@ import rehypeStringify from "rehype-stringify"
 import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
 import { unified } from "unified"
-import { rehypeExtractHeadings } from "../utils/heading"
+import { rehypeExtractHeadings } from "../utils/toc"
 import { getAllPost, getNotionArticleData } from "./notion"
 
 export const getSlugPage = cache(async (slug: string) => {

@@ -4,7 +4,7 @@ import Markdown from "react-markdown"
 import styles from "@/app/articles/[slug]/page.styles.module.css"
 import { getArticleData } from "@/lib/api/article"
 
-import { rehypeSection, remarkEscapeHtml } from "@/lib/utils/heading"
+import { rehypeSection, remarkEscapeHtml } from "@/lib/utils/toc"
 import rehypeHighlight from "rehype-highlight"
 import rehypeRaw from "rehype-raw"
 import rehypeSlug from "rehype-slug"
