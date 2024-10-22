@@ -1,6 +1,7 @@
 import { Heading } from "@/types/heading"
 import { Element, Parent } from "hast"
 import { isElement } from "hast-util-is-element"
+import { Html, List, ListItem, Root, Text } from "mdast"
 import { Node } from "unist"
 import { visit } from "unist-util-visit"
 import { VFile } from "vfile"
@@ -73,5 +74,25 @@ export function rehypeExtractHeadings() {
     })
 
     file.data = { headings }
+  }
+}
+
+export function remarkEscapeHtml() {
+  return (tree: Root) => {
+    visit(tree, "html", (node: Html) => {
+      if ("value" in node && typeof node.value === "string") {
+        node.value = node.value.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      }
+    })
+
+    visit(tree, "list", (node: List) => {
+      node.children.forEach((child: ListItem) => {
+        visit(child, "text", (textNode: Text) => {
+          textNode.value = textNode.value
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+        })
+      })
+    })
   }
 }

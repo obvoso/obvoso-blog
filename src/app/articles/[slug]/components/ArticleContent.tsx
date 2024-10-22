@@ -4,7 +4,7 @@ import Markdown from "react-markdown"
 import styles from "@/app/articles/[slug]/page.styles.module.css"
 import { getArticleData } from "@/lib/api/article"
 
-import { rehypeSection } from "@/lib/utils/heading"
+import { rehypeSection, remarkEscapeHtml } from "@/lib/utils/heading"
 import rehypeHighlight from "rehype-highlight"
 import rehypeRaw from "rehype-raw"
 import rehypeSlug from "rehype-slug"
@@ -40,7 +40,7 @@ export default async function ArticleContent({ slug }: ArticleProps) {
       <TableOfContents initialHeadings={headings} />
 
       <Markdown
-        remarkPlugins={[remarkBreaks, remarkGfm]}
+        remarkPlugins={[remarkBreaks, remarkGfm, remarkEscapeHtml]}
         rehypePlugins={[rehypeSlug, rehypeHighlight, rehypeRaw, rehypeSection]}
         components={{
           section: ({ id, children }) => <section id={id}>{children}</section>,
