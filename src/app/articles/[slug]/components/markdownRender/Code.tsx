@@ -16,7 +16,7 @@ export default function Code({
     <code
       {...props}
       style={{
-        backgroundColor: "var(--background-secondary)",
+        backgroundColor: "var(--background-tertiary)",
         padding: "0.2rem 0.4rem",
         borderRadius: "4px",
         fontSize: "0.9rem",
