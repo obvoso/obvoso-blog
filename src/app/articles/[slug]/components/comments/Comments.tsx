@@ -17,7 +17,6 @@ export default function Comments() {
     const repoId = process.env.NEXT_PUBLIC_GISCUS_REPO_ID
     const categoryId = process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID
 
-    console.log(repo, repoId, categoryId)
     if (!repo || !repoId || !categoryId) {
       return
     }
@@ -33,7 +32,8 @@ export default function Comments() {
     scriptElememt.setAttribute("data-mapping", "pathname")
     scriptElememt.setAttribute("data-strict", "0")
     scriptElememt.setAttribute("data-reactions-enabled", "1")
-    scriptElememt.setAttribute("data-emit-metadata", "top")
+    scriptElememt.setAttribute("data-emit-metadata", "0")
+    scriptElememt.setAttribute("data-input-position", "top")
     scriptElememt.setAttribute("data-theme", theme)
     scriptElememt.setAttribute("data-lang", "ko")
     scriptElememt.setAttribute("data-loading", "lazy")
@@ -41,13 +41,30 @@ export default function Comments() {
   }, [])
 
   useEffect(() => {
-    const iframe = document.querySelector<HTMLIFrameElement>(
-      "iframe.giscus-frame",
-    )
-    iframe?.contentWindow?.postMessage(
-      { giscus: { setConfig: { theme } } },
-      "https://giscus.app",
-    )
+    const giscusLoaded = () => {
+      const iframe = document.querySelector<HTMLIFrameElement>(
+        "iframe.giscus-frame",
+      )
+      iframe?.contentWindow?.postMessage(
+        { giscus: { setConfig: { theme } } },
+        "https://giscus.app",
+      )
+    }
+
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== "https://giscus.app") return
+
+      if (event.data?.giscus?.discussion) {
+        giscusLoaded()
+      }
+    }
+
+    giscusLoaded()
+    window.addEventListener("message", handleMessage)
+
+    return () => {
+      window.removeEventListener("message", handleMessage)
+    }
   }, [theme])
 
   return <section ref={ref} />
