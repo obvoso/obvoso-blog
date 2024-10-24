@@ -32,7 +32,7 @@ export const getAllTagsWithCategory = async () => {
 /**
  * 노션 페이지의 데이터를 마크다운 형식으로 변환합니다.
  */
-export const getNotionArticleData = unstable_cache(async (id: string) => {
+export const getNotionArticlePage = unstable_cache(async (id: string) => {
   const mdblocks = await n2m.pageToMarkdown(id)
   const mdString = n2m.toMarkdownString(mdblocks)
   return mdString.parent
