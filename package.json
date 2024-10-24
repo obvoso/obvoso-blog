@@ -9,8 +9,7 @@
     "lint": "next lint",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore .",
-    "lint:fix": "eslint --fix .",
-    "postinstall": "npm rebuild sharp"
+    "lint:fix": "eslint --fix ."
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.627.0",
