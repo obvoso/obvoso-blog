@@ -1,10 +1,17 @@
-import { revalidateTag } from "next/cache"
+import { revalidatePath, revalidateTag } from "next/cache"
 import { NextRequest } from "next/server"
 
 export async function POST(request: NextRequest) {
-  const { pageId } = await request.json()
+  const { id, revalidateAuthKey } = (await request.json()) as {
+    id: string
+    revalidateAuthKey: string
+  }
 
-  revalidateTag([pageId])
-
-  return Response.json({ revalidated: true })
+  if (revalidateAuthKey === process.env.REVALIDATE_AUTH_KEY && id) {
+    revalidateTag(id)
+    revalidateTag("posts")
+    revalidatePath("/", "page")
+    return Response.json({ revalidated: true, message: id, now: new Date() })
+  }
+  return Response.json({ revalidated: false, message: id, now: new Date() })
 }
