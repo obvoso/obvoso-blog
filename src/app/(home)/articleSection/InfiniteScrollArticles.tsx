@@ -5,6 +5,7 @@ import useInfiniteScroll from "@/hooks/useInfiniteScroll"
 import { NotionData } from "@/types/notion"
 import { Box, Grid } from "@mui/material"
 import Link from "next/link"
+import ArticleNotFound from "./ArticleNotFound"
 import ArticleThumbnail from "./ArticleThumbnail"
 
 type FilterArticleProps = {
@@ -32,6 +33,7 @@ export default function InfiniteScrollArticles({
         background: { xs: "none", md: "var(--background-opacity)" },
       }}
     >
+      {articleList.length === 0 && <ArticleNotFound />}
       <Grid
         container
         spacing={{

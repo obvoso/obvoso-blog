@@ -68,7 +68,11 @@ export default function useInfiniteScroll({
   }, [tag])
 
   return {
-    articleList: articleList.length ? articleList : initialArticles,
+    articleList: articleList.length
+      ? articleList
+      : tag.tagName === "전체보기"
+        ? initialArticles
+        : [],
     ref,
   }
 }
