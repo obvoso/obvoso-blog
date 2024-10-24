@@ -67,12 +67,16 @@ export default function useInfiniteScroll({
     }
   }, [tag])
 
+  let returnArticleList: NotionData[] = []
+
+  if (articleList.length) {
+    returnArticleList = articleList
+  } else if (tag.tagName === "전체보기") {
+    returnArticleList = initialArticles
+  }
+
   return {
-    articleList: articleList.length
-      ? articleList
-      : tag.tagName === "전체보기"
-        ? initialArticles
-        : [],
+    articleList: returnArticleList,
     ref,
   }
 }

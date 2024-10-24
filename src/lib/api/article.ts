@@ -22,12 +22,13 @@ export const getSlugPage = cache(async (slug: string) => {
   return page
 })
 
-const getMetaDataByIndex = async (index: number | null) => {
+async function getMetaDataByIndex(index: number | null) {
   const data = await getAllPost()
   if (index) {
     const page = data.find((item: NotionData) => item.index === index)
     return page
   }
+  return null
 }
 
 async function getArticleHeadings(post: string) {
@@ -46,7 +47,8 @@ async function getArticleHeadings(post: string) {
 
 export async function getArticleData(slug: string) {
   const page = await getSlugPage(slug)
-  const post = await getNotionArticlePage(String(page.id))
+  const getCachedPost = getNotionArticlePage(String(page.id))
+  const post = await getCachedPost()
 
   if (!post) {
     throw new Error("Notion data not found")
