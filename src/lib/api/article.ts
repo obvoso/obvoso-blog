@@ -22,6 +22,11 @@ export const getSlugPage = cache(async (slug: string) => {
   return page
 })
 
+/**
+ *
+ * 인덱스로 찾으면 안됨........
+ * 모든 게시글이 release가 아니니까....
+ */
 const getMataDataByIndex = async (index: number | null) => {
   const data = await getAllPost()
   return index ? data[data.length - index] : null
