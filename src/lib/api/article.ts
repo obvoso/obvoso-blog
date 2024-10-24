@@ -7,7 +7,7 @@ import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
 import { unified } from "unified"
 import { rehypeExtractHeadings } from "../utils/toc"
-import { getAllPost, getNotionArticleData } from "./notion"
+import { getAllPost, getNotionArticlePage } from "./notion"
 
 export const getSlugPage = cache(async (slug: string) => {
   const decodeSlug = decodeURIComponent(slug)
@@ -43,7 +43,7 @@ async function getArticleHeadings(post: string) {
 
 export async function getArticleData(slug: string) {
   const page = await getSlugPage(slug)
-  const post = await getNotionArticleData(String(page.id))
+  const post = await getNotionArticlePage(String(page.id))
 
   if (!post) {
     throw new Error("Notion data not found")
