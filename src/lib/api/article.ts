@@ -22,14 +22,12 @@ export const getSlugPage = cache(async (slug: string) => {
   return page
 })
 
-/**
- *
- * 인덱스로 찾으면 안됨........
- * 모든 게시글이 release가 아니니까....
- */
-const getMataDataByIndex = async (index: number | null) => {
+const getMetaDataByIndex = async (index: number | null) => {
   const data = await getAllPost()
-  return index ? data[data.length - index] : null
+  if (index) {
+    const page = data.find((item: NotionData) => item.index === index)
+    return page
+  }
 }
 
 async function getArticleHeadings(post: string) {
@@ -75,8 +73,8 @@ export async function getArticleHeader(slug: string) {
 
 export async function getArticleFooterNavigation(slug: string) {
   const page = await getSlugPage(slug)
-  const prevMataData = await getMataDataByIndex(page.prevIndex)
-  const nextMataData = await getMataDataByIndex(page.nextIndex)
+  const prevMataData = await getMetaDataByIndex(page.prevIndex)
+  const nextMataData = await getMetaDataByIndex(page.nextIndex)
 
   return {
     prev: prevMataData,
