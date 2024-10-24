@@ -3,6 +3,7 @@ import { getAllPost } from "@/lib/api/notion"
 import { NotionData } from "@/types/notion"
 import Box from "@mui/material/Box"
 import "highlight.js/styles/hybrid.css"
+import { Metadata } from "next"
 import ArticleContent from "./components/ArticleContent"
 import ArticleHeader from "./components/ArticleHeader"
 import Comments from "./components/comments/Comments"
@@ -49,14 +50,36 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: ArticleProps) {
+export async function generateMetadata({
+  params,
+}: ArticleProps): Promise<Metadata> {
   const data = await getAllPost()
   const decodeSlug = decodeURIComponent(params.slug)
   const post = data.find(
     (page: NotionData) => page.slug === decodeSlug || page.slug === params.slug,
   )
 
-  return data.map((page: NotionData) => ({
-    slug: post?.title,
-  }))
+  const metadata: Metadata = {
+    title: post?.title,
+    description: post?.description,
+    openGraph: {
+      title: post?.title,
+      description: post?.description,
+      type: "website",
+      url: `https://localhost:3000/articles/${params.slug}`,
+      images: [
+        {
+          url: post?.thumbnail!,
+          alt: post?.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post?.title,
+      description: post?.description,
+      images: [`https://localhost:3000/articles/${params.slug}`],
+    },
+  }
+  return metadata
 }
