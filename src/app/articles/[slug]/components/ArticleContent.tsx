@@ -1,25 +1,30 @@
-import { getArticleData } from "@/services/article"
 import { Box } from "@mui/material"
 import Markdown from "react-markdown"
 // eslint-disable-next-line import/no-extraneous-dependencies
-import remarkBreaks from "remark-breaks"
+import styles from "@/app/articles/[slug]/page.styles.module.css"
+import { getArticleData } from "@/lib/api/article"
+
+import { rehypeSection, remarkEscapeHtml } from "@/lib/utils/toc"
 import rehypeHighlight from "rehype-highlight"
 import rehypeRaw from "rehype-raw"
+import rehypeSlug from "rehype-slug"
+import remarkBreaks from "remark-breaks"
 import remarkGfm from "remark-gfm"
 import Anchor from "./markdownRender/Anchor"
 import BlockQuote from "./markdownRender/BlockQuote"
-import Heading from "./markdownRender/Heading"
-import OrderedList from "./markdownRender/OrderedList"
-import UnorderedList from "./markdownRender/UnorderedList"
 import Code from "./markdownRender/Code"
-import { Table } from "./Table"
+import Image from "./markdownRender/Image"
+import OrderedList from "./markdownRender/OrderedList"
+import { Table } from "./markdownRender/Table"
+import UnorderedList from "./markdownRender/UnorderedList"
+import { TableOfContents } from "./toc/TableOfContents"
 
 type ArticleProps = {
   slug: string
 }
 
 export default async function ArticleContent({ slug }: ArticleProps) {
-  const post = await getArticleData(slug)
+  const { post, headings } = await getArticleData(slug)
 
   return (
     <Box
@@ -27,18 +32,34 @@ export default async function ArticleContent({ slug }: ArticleProps) {
         display: "flex",
         flexDirection: "column",
         gap: 2,
-        width: "100%",
         paddingY: 4,
+        wordBreak: "break-word",
+        overflowWrap: "break-word",
       }}
     >
+      <TableOfContents initialHeadings={headings} />
+
       <Markdown
-        remarkPlugins={[remarkBreaks, remarkGfm]}
-        rehypePlugins={[rehypeHighlight, rehypeRaw]}
+        remarkPlugins={[remarkBreaks, remarkGfm, remarkEscapeHtml]}
+        rehypePlugins={[rehypeSlug, rehypeHighlight, rehypeRaw, rehypeSection]}
         components={{
-          h1: ({ children }) => <Heading level={1}>{children}</Heading>,
-          h2: ({ children }) => <Heading level={2}>{children}</Heading>,
-          h3: ({ children }) => <Heading level={3}>{children}</Heading>,
-          a: ({ children, ...props }) => (
+          section: ({ id, children }) => <section id={id}>{children}</section>,
+          h1: ({ id, children }) => (
+            <h1 id={id} className={styles.h1}>
+              {children}
+            </h1>
+          ),
+          h2: ({ id, children }) => (
+            <h2 id={id} className={styles.h2}>
+              {children}
+            </h2>
+          ),
+          h3: ({ id, children }) => (
+            <h3 id={id} className={styles.h3}>
+              {children}
+            </h3>
+          ),
+          a: ({ id, children, ...props }) => (
             // eslint-disable-next-line react/prop-types
             <Anchor href={props.href}>{children}</Anchor>
           ),
@@ -47,11 +68,7 @@ export default async function ArticleContent({ slug }: ArticleProps) {
           ),
           ul: ({ children }) => <UnorderedList>{children}</UnorderedList>,
           ol: ({ children }) => <OrderedList>{children}</OrderedList>,
-          li: ({ children, ...props }) => (
-            <li {...props} style={{ margin: "3px 2px" }}>
-              {children}
-            </li>
-          ),
+          li: ({ children }) => <li className={styles.li}>{children}</li>,
           table: ({ children, ...props }) => (
             <Table {...props}>{children}</Table>
           ),
@@ -61,16 +78,16 @@ export default async function ArticleContent({ slug }: ArticleProps) {
           td: ({ children, ...props }) => (
             <Table.Td {...props}>{children}</Table.Td>
           ),
-          strong: ({ children, ...props }) => (
-            <strong {...props} style={{ fontWeight: "bold" }}>
-              {children}
-            </strong>
+          strong: ({ children }) => (
+            <strong className={styles.strong}>{children}</strong>
           ),
           code: ({ className, children, ...props }) => (
             <Code className={className} {...props}>
               {children}
             </Code>
           ),
+          img: ({ src, alt }) => <Image src={src!} alt={alt!} />,
+          p: ({ children }) => <p className={styles.p}>{children}</p>,
         }}
       >
         {post}

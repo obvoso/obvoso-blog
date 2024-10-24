@@ -1,16 +1,22 @@
 import RecoilRootWrapper from "@/app/RecoilWrapper"
-import Header from "@/components/layout/Header"
-import { notoSansKr, notoSerifKr } from "@/styles/font"
+import { notoSansKr } from "@/styles/font"
 import "@/styles/globals.css"
 import "@/styles/themes.css"
-import type { Metadata } from "next"
+import { Metadata } from "next"
 import { ThemeProvider } from "next-themes"
+import MobileHeader from "./(home)/profileSection/mobile/MobileHeader"
+import Footer from "./components/layout/footer/Footer"
 
+/**
+ * @todo
+ * og tag 추가(이미지, 설명, 제목..이미지 만들어야됨)
+ */
 export const metadata: Metadata = {
-  title: "obvoso blog",
-  description: "hihi",
+  title: {
+    template: "%s | tetote105",
+    default: "tetote105",
+  },
 }
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -18,11 +24,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${notoSansKr.className}, ${notoSerifKr.variable}`}>
+      <body className={`${notoSansKr.className}`}>
         <ThemeProvider attribute="class" defaultTheme="system">
-          <Header />
           <RecoilRootWrapper>
-            <main>{children}</main>
+            <header>
+              <MobileHeader />
+            </header>
+            <main>
+              <div className="main-container">{children}</div>
+            </main>
+            <footer>
+              <Footer />
+            </footer>
           </RecoilRootWrapper>
         </ThemeProvider>
       </body>

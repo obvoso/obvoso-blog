@@ -1,19 +1,35 @@
+html {
+  --gray: #555;
+
+  --primary-gradient: linear-gradient(180deg, #aafaff 0%, #19c0c0 83%);
+  --hover-primary-gradient: linear-gradient(180deg, #ffffff 0%, #aafaff 83%);
+  --silver-gradient: linear-gradient(180deg, #fff 0%, #b7b7b7 65%, #fff 100%);
+  --radial-primary-gradient: radial-gradient(#61eded, #fff);
+  --dark-radial-primary-gradient: radial-gradient(#19c0c0, #00e6e6);
+}
+
 html.light {
   --background: #ffffff;
-  --background-secondary: #edf7f6;
+  --background-secondary: #eef9f8;
+  --background-tertiary: #e0f3f1;
+  --background-opacity: rgba(255, 255, 255, 0.5);
   --text: #333;
   --text-secondary: #555;
   --text-tertiatry: #999;
   --primary: #51b7ae;
   --secondary: #26a69a;
   --tertiary: #388079;
-  --border: #bfbfbf;
+  --border: #b7b7b7;
   --border-secondary: #212222;
+  --border-tertiary: #d9d9d9;
+  --gradient: var(--hover-primary-gradient);
 }
 
 html.dark {
   --background: #212222;
   --background-secondary: #2e4644;
+  --background-tertiary: #385553;
+  --background-opacity: rgba(33, 34, 34, 0.5);
   --text: #eee;
   --text-secondary: #ccc;
   --text-tertiatry: #aaa;
@@ -22,6 +38,8 @@ html.dark {
   --tertiary: #96d3ce;
   --border: #6f6f6f;
   --border-secondary: #fff;
+  --border-tertiary: #d9d9d9;
+  --gradient: var(--primary-gradient);
 }
 
 body {

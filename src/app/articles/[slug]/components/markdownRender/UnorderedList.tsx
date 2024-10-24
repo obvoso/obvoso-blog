@@ -1,7 +1,8 @@
 "use client"
 
-import React, { createContext, useContext } from "react"
+import styles from "@/app/articles/[slug]/page.styles.module.css"
 import Box from "@mui/material/Box"
+import React, { createContext, useContext } from "react"
 
 const ListContext = createContext(true)
 const useIsTopLevel = () => useContext(ListContext)
@@ -14,6 +15,7 @@ function ListWrapper({ children }: { children: React.ReactNode }) {
   return (
     <Box
       sx={{
+        margin: "1rem 0 1rem 0",
         padding: "1.5rem",
         backgroundColor: "var(--background-secondary)",
         borderRadius: 4,
@@ -32,10 +34,10 @@ export default function UnorderedList({ children }: ListProps) {
     <ListContext.Provider value={false}>
       {isTopLevel ? (
         <ListWrapper>
-          <ul style={{ paddingLeft: "1.75rem" }}>{children}</ul>
+          <ul className={styles.ul}>{children}</ul>
         </ListWrapper>
       ) : (
-        <ul style={{ paddingLeft: "1.75rem" }}>{children}</ul>
+        <ul className={styles.ul}>{children}</ul>
       )}
     </ListContext.Provider>
   )

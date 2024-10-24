@@ -6,12 +6,34 @@
   font-weight: 400;
 }
 
-html,
-body {
-  overflow-x: hidden;
-}
 main {
-  max-width: 1200px;
+  position: relative;
+  z-index: 1;
+  background-color: var(--background);
+  margin-bottom: 200px;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 1000px / 0 0 60px 60px;
+  padding-bottom: 32px;
+  background-image: url("../assets/images/ocean.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+html.dark main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 1000px / 0 0 60px 60px;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: -1;
+}
+
+.main-container {
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -19,6 +41,15 @@ main {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+footer {
+  z-index: 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 300px;
+  background: var(--background);
 }
 
 @keyframes scroll-text {

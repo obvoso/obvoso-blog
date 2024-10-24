@@ -1,9 +1,10 @@
-import React, { createContext, useContext } from "react"
+import styles from "@/app/articles/[slug]/page.styles.module.css"
+import React from "react"
 
 type ListProps = {
   children: React.ReactNode
 }
 
 export default function OrderedList({ children }: ListProps) {
-  return <ol style={{ paddingLeft: "1.75rem" }}>{children}</ol>
+  return <ol className={styles.ol}>{children}</ol>
 }

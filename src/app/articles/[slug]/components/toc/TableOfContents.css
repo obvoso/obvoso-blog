@@ -1,0 +1,62 @@
+.aside-container {
+  position: relative;
+  padding: 0;
+  height: 90%;
+  top: 0;
+}
+
+@media (min-width: 600px) and (max-width: 1319px) {
+  .aside-container {
+    right: 0;
+  }
+}
+
+@media (min-width: 1320px) {
+  .aside-container {
+    position: absolute;
+    top: 300px;
+    right: 32px;
+  }
+}
+
+.toc-hr {
+  margin: 0.5rem 0 1rem 0;
+  border-top: 0.1px solid var(--border);
+}
+
+.heading-list {
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 1px 0;
+}
+
+.active {
+  color: var(--primary);
+}
+
+.active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background-color: var(--primary);
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+.heading-list a {
+  padding-left: 20px;
+  font-size: 0.8rem;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
