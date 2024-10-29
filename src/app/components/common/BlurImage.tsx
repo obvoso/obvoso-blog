@@ -26,13 +26,12 @@ export default function BlurImage({
       }}
     >
       <Image
-        src={`${src}?_test`}
+        src={src}
         alt="thumbnail"
         placeholder="blur"
         blurDataURL={blurDataURL}
         width={1200}
         height={500}
-       // sizes="100vw"
         fill
         style={{
           objectFit: "cover",
