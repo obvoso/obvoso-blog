@@ -33,7 +33,7 @@ export default function BlurImage({
         blurDataURL={blurDataURL}
         width={0}
         height={0}
-        size="100vw"
+        sizes="100vw"
         fill
         style={{
           objectFit: "cover",
