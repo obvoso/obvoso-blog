@@ -17,6 +17,7 @@ export default function BlurImage({
   imageStyle,
 }: BlurImageProps) {
   return (
+    console.log(src)
     <Box
       sx={{
         position: "relative",
@@ -30,8 +31,9 @@ export default function BlurImage({
         alt="thumbnail"
         placeholder="blur"
         blurDataURL={blurDataURL}
-        width={200}
-        height={100}
+        width={0}
+        height={0}
+        size="100vw"
         fill
         style={{
           objectFit: "cover",
