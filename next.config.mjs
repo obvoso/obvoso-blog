@@ -2,28 +2,7 @@ import withPlaiceholder from "@plaiceholder/next"
 
 /** @type {import('next').NextConfig} */
 
-const isDev = process.env.NODE_ENV === "development"
-const devHttp = isDev ? " http:" : ""
-const devWs = isDev ? " ws://localhost:3000" : ""
-
-const cspHeader = `
-  default-src 'self' https:${devHttp};
-  connect-src 'self' https://www.obvoso.site https:${devHttp}${devWs};
-  img-src 'self' https://*.s3.amazonaws.com https://www.obvoso.site/_next/image data: blob: https:${devHttp};
-  font-src 'self' data: https:${devHttp};
-  style-src 'self' 'unsafe-inline' https:${devHttp};
-  script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""};
-`
-  .replace(/\n/g, "")
-  .trim()
-
 const nextConfig = {
-  webpack: (config, { dev, isServer }) => {
-    if (dev && !isServer) {
-      config.devtool = "inline-source-map"
-    }
-    return config
-  },
   images: {
     remotePatterns: [
       {
@@ -39,19 +18,6 @@ const nextConfig = {
         pathname: `/**`,
       },
     ],
-  },
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          {
-            key: "Content-Security-Policy",
-            value: cspHeader,
-          },
-        ],
-      },
-    ]
   },
 }
 
