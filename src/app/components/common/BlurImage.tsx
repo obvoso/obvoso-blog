@@ -26,7 +26,7 @@ export default function BlurImage({
       }}
     >
       <Image
-        src={src}
+        src={`${src}?_test`}
         alt="thumbnail"
         placeholder="blur"
         blurDataURL={blurDataURL}
