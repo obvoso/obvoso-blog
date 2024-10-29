@@ -2,6 +2,14 @@ import withPlaiceholder from "@plaiceholder/next"
 
 /** @type {import('next').NextConfig} */
 
+const cspHeader = `
+    default-src 'self';
+    img-src 'self' https://*.s3.amazonaws.com data: blob:;
+    upgrade-insecure-requests;
+`
+  .replace(/\n/g, "")
+  .trim()
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -18,7 +26,19 @@ const nextConfig = {
         pathname: `/**`,
       },
     ],
-    unoptimized: true,
+  },
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: cspHeader,
+          },
+        ],
+      },
+    ]
   },
 }
 
