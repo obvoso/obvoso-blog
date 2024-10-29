@@ -4,9 +4,6 @@ import withPlaiceholder from "@plaiceholder/next"
 
 const nextConfig = {
   images: {
-    domains: 
-      [`https://${process.env.AWS_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com`, "prod-files-secure.s3.us-west-2.amazonaws.com"]
-    ,
     remotePatterns: [
       {
         protocol: "https",
@@ -20,13 +17,8 @@ const nextConfig = {
         port: "",
         pathname: `/**`,
       },
-      {
-        protocol: 'https',
-        hostname: '**.vercel.app',
-      },
     ],
   },
-  experimental: { images: { layoutRaw: true } }
 }
 
 export default withPlaiceholder(nextConfig)
