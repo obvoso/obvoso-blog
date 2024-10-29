@@ -13,8 +13,11 @@ import Footer from "./components/layout/footer/Footer"
  */
 export const metadata: Metadata = {
   title: {
-    template: "%s | tetote105",
-    default: "tetote105",
+    template: "%s | obvoso",
+    default: "obvoso",
+  },
+  icons: {
+    icon: "/alien.ico",
   },
 }
 export default function RootLayout({
