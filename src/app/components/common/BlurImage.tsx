@@ -16,8 +16,8 @@ export default function BlurImage({
   ratio = "56.26%",
   imageStyle,
 }: BlurImageProps) {
+  console.log(src)
   return (
-    console.log(src)
     <Box
       sx={{
         position: "relative",
