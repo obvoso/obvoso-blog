@@ -30,8 +30,8 @@ export default function BlurImage({
         alt="thumbnail"
         placeholder="blur"
         blurDataURL={blurDataURL}
-        width={1200}
-        height={500}
+        width={200}
+        height={100}
         fill
         style={{
           objectFit: "cover",
