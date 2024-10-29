@@ -4,6 +4,9 @@ import withPlaiceholder from "@plaiceholder/next"
 
 const nextConfig = {
   images: {
+    domains: 
+      [`${process.env.AWS_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com`, "prod-files-secure.s3.us-west-2.amazonaws.com"]
+    ,
     remotePatterns: [
       {
         protocol: "https",
