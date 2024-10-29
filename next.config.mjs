@@ -26,6 +26,7 @@ const nextConfig = {
       },
     ],
   },
+  experimental: { images: { layoutRaw: true } }
 }
 
 export default withPlaiceholder(nextConfig)
