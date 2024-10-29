@@ -1,4 +1,4 @@
-import BlurImage from "@/app/components/common/BlurImage"
+import { BlurImage } from "@/app/components/common/BlurImage"
 import CustomBox from "@/app/components/common/CustomBox"
 import CustomTypography from "@/app/components/common/CustomTypography"
 import { NotionData } from "@/types/notion"
@@ -17,7 +17,7 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
         background: "var(--background)",
       }}
     >
-      <BlurImage src={article.thumbnail} blurDataURL={article.blurThumbnail} />
+      <BlurImage src={article.thumbnail} blurDataURL={article.blurThumbnail}  alt="thumbnail" />
       <Box
         padding={1}
         paddingTop={3}

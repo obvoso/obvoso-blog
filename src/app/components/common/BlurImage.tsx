@@ -1,22 +1,18 @@
 "use client"
 
 import { Box } from "@mui/material"
-import Image from "next/image"
+import Image, { type ImageProps } from "next/image"
+import { forwardRef, type ForwardedRef } from "react"
 
-type BlurImageProps = {
-  src: string
-  blurDataURL: string
-  ratio?: string
+interface BlurImageProps extends 
+Omit<ImageProps, 'placeholder' | 'blurDataURL'> {
+  blurDataURL?: ImageProps['blurDataURL'],
+  ratio?: string,
   imageStyle?: React.CSSProperties
 }
 
-export default function BlurImage({
-  src,
-  blurDataURL,
-  ratio = "56.26%",
-  imageStyle,
-}: BlurImageProps) {
-  console.log(src)
+export const BlurImage = forwardRef(
+  ({ ratio = "56.26%", imageStyle, ...props }: BlurImageProps, ref: ForwardedRef<HTMLImageElement>) => {
   return (
     <Box
       sx={{
@@ -27,13 +23,11 @@ export default function BlurImage({
       }}
     >
       <Image
-        src={src}
-        alt="thumbnail"
-        placeholder="blur"
-        blurDataURL={blurDataURL}
-        width={0}
+        {...props}
         height={0}
+        width={0}
         sizes="100vw"
+        placeholder="blur"
         fill
         style={{
           objectFit: "cover",
@@ -43,3 +37,4 @@ export default function BlurImage({
     </Box>
   )
 }
+)
