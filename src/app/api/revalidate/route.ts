@@ -1,12 +1,11 @@
 import { revalidatePath, revalidateTag } from "next/cache"
 import { NextRequest } from "next/server"
 
-export async function POST(request: NextRequest) {
+export async function PATCH(request: NextRequest) {
   const { id, revalidateAuthKey } = (await request.json()) as {
     id: string
     revalidateAuthKey: string
   }
-
   if (revalidateAuthKey === process.env.REVALIDATE_AUTH_KEY && id) {
     revalidateTag(id)
     revalidateTag("posts")
