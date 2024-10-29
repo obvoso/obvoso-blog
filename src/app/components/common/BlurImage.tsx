@@ -24,6 +24,7 @@ export default function BlurImage({
       }}
     >
       <Image
+        loader={() => src}
         src={src}
         alt="thumbnail"
         placeholder="blur"
