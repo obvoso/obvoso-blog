@@ -52,7 +52,6 @@ export default function MobileHeader() {
         <MobileZukebox />
         <CustomTypography
           color="var(--gray)"
-          size={20}
           sx={{
             letterSpacing: "-0.02em",
             position: "absolute",
