@@ -73,16 +73,32 @@ export default function Carousel({ data }: CarouselProps) {
                   color="black"
                   weight={600}
                   sx={{
-                    fontSize: { xs: 18, sm: 20, md: 22, lg: 24 },
+                    fontSize: { xs: 16, sm: 20, md: 22, lg: 24 },
+                    display: "-webkit-box",
+                    overflow: "hidden",
+                    WebkitBoxOrient: "vertical",
+                    WebkitLineClamp: {
+                      xs: 1,
+                      sm: 2,
+                    },
+                    textOverflow: "ellipsis",
                   }}
                 >
                   {item.title}
                 </CustomTypography>
                 <CustomTypography
-                  sx={{
-                    fontSize: { xs: 13, sm: 14, md: 16, lg: 18 },
-                  }}
                   color="var(--gray)"
+                  sx={{
+                    fontSize: { xs: 12, sm: 14, md: 16, lg: 18 },
+                    display: "-webkit-box",
+                    overflow: "hidden",
+                    WebkitBoxOrient: "vertical",
+                    WebkitLineClamp: {
+                      xs: 1,
+                      sm: 2,
+                    },
+                    textOverflow: "ellipsis",
+                  }}
                 >
                   {item.description}
                 </CustomTypography>
