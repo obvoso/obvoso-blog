@@ -8,12 +8,16 @@ import MobileTagNavigation from "./tagSection/mobile/MobileTagNavigation"
 export default async function Home() {
   return (
     <Box
-      paddingY={20}
       sx={{
         display: "flex",
         height: "100%",
         flexGrow: 1,
         flexDirection: { xs: "column", md: "row" },
+        paddingTop: {
+          xs: "56px",
+          sm: "80px",
+          md: "160px",
+        },
       }}
     >
       <DesktopSideProfile />
