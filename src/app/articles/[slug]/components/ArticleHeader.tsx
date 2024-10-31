@@ -1,4 +1,4 @@
-import { BlurImage } from "@/app/components/common/BlurImage"
+import BlurImage from "@/app/components/common/BlurImage"
 import CustomTypography from "@/app/components/common/CustomTypography"
 import { getArticleHeader } from "@/lib/api/article"
 import { Box } from "@mui/material"
@@ -56,7 +56,7 @@ export default async function ArticleHeader({ slug }: ArticleHeaderProps) {
       <CustomTypography size={14} color="gray" sx={{ paddingBottom: 2 }}>
         {createdTime}
       </CustomTypography>
-      <BlurImage src={thumbnail} blurDataURL={blurThumbnail} alt="thumbnail"/>
+      <BlurImage src={thumbnail} blurDataURL={blurThumbnail} />
     </Box>
   )
 }

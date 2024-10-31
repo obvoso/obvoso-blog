@@ -1,6 +1,6 @@
 "use client"
 
-import { BlurImage } from "@/app/components/common/BlurImage"
+import BlurImage from "@/app/components/common/BlurImage"
 import { Box } from "@mui/material"
 import { A11y, Autoplay, Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -57,7 +57,6 @@ export default function Carousel({ data }: CarouselProps) {
                   imageStyle={{
                     borderRadius: "8px",
                   }}
-                  alt="thumbnail"
                 />
               </Box>
               <Box
