@@ -18,9 +18,7 @@ const nextConfig = {
         pathname: `/**`,
       },
     ],
-  },
-  eslint: {
-    ignoreDuringBuilds: true
+    minimumCacheTTL: 31536000,
   },
 }
 

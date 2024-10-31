@@ -51,8 +51,8 @@ export default function MobileHeader() {
       >
         <MobileZukebox />
         <CustomTypography
+          size="1rem"
           color="var(--gray)"
-          size={20}
           sx={{
             letterSpacing: "-0.02em",
             position: "absolute",
@@ -66,6 +66,7 @@ export default function MobileHeader() {
           sx={{
             display: "flex",
             gap: 2,
+            alignItems: "center",
           }}
         >
           <Tooltip title="Go to GitHub" arrow>

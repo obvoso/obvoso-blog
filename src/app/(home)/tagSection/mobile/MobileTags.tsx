@@ -44,7 +44,7 @@ export default function MobileTags({ tags }: MobileTagsProps) {
         alignItems: "center",
         justifyContent: "center",
         gap: 1,
-        padding: 4,
+        paddingY: 4,
       }}
     >
       {tags.map((category) => (

@@ -24,7 +24,7 @@ export default function Introduce() {
         <CustomTypography size={24} weight={600}>
           obvoso
         </CustomTypography>
-        <CustomTypography>안뇽허삽니까</CustomTypography>
+        <CustomTypography>This is a desperate person</CustomTypography>
         <GradientBox type="button" onClick={onClickGithub}>
           <CustomTypography
             size={16}

@@ -2,8 +2,6 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-size: 1rem;
-  font-weight: 400;
 }
 
 main {
@@ -36,6 +34,9 @@ html.dark main::before {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
+  @media screen and (max-width: 600px) {
+    padding: 0px;
+  }
 }
 
 a {
