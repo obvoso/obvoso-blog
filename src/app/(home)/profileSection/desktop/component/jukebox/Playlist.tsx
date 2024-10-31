@@ -117,7 +117,6 @@ export default function Playlist({
                     sx={{
                       display: "flex",
                       width: "100%",
-                      justifyContent: "space-between",
                       textTransform: "none",
                       gap: 2,
                     }}
@@ -129,10 +128,30 @@ export default function Playlist({
                           ? "var(--primary)"
                           : "var(--text)"
                       }
+                      sx={{
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        width: "100%",
+                        textAlign: "left",
+                        fontSize: {
+                          xs: "0.75rem",
+                          sm: "1rem",
+                        },
+                      }}
                     >
                       {index}. {info.title} - {info.artist}
                     </CustomTypography>
-                    <CustomTypography>{info.time}</CustomTypography>
+                    <CustomTypography
+                      sx={{
+                        fontSize: {
+                          xs: "0.75rem",
+                          md: "1rem",
+                        },
+                      }}
+                    >
+                      {info.time}
+                    </CustomTypography>
                   </Button>
                 </Box>
               ))}
