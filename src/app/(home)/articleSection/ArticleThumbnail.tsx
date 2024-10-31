@@ -19,42 +19,54 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
     >
       <BlurImage src={article.thumbnail} blurDataURL={article.blurThumbnail} />
       <Box
-        padding={1}
-        paddingTop={3}
         sx={{
-          minHeight: { xs: 0, sm: "147px" },
+          minHeight: { xs: 0, sm: "138px" },
           display: "flex",
           flexDirection: "column",
+          paddingTop: { xs: 1.5, sm: 3 },
         }}
       >
         <CustomTypography
-          size={20}
           weight={700}
           sx={{
+            fontSize: {
+              xs: "16px",
+              sm: "20px",
+            },
             display: "-webkit-box",
             overflow: "hidden",
             WebkitBoxOrient: "vertical",
             WebkitLineClamp: 2,
             textOverflow: "ellipsis",
-            flex: 1,
           }}
         >
           {article.title}
         </CustomTypography>
         <CustomTypography
-          size={17}
           weight={500}
           color="var(--text-secondary)"
           sx={{
-            paddingTop: 1,
+            fontSize: {
+              xs: "13px",
+              sm: "17px",
+            },
             whiteSpace: "nowrap",
             overflow: "hidden",
             textOverflow: "ellipsis",
+            paddingTop: 1,
           }}
         >
           {article.description}
         </CustomTypography>
-        <CustomTypography size={14} color="gray">
+        <CustomTypography
+          color="gray"
+          sx={{
+            fontSize: {
+              xs: "12px",
+              sm: "14px",
+            },
+          }}
+        >
           {article.createdTime}
         </CustomTypography>
       </Box>
