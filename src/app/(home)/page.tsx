@@ -27,9 +27,8 @@ export default async function Home() {
           display: "flex",
           flexDirection: "column",
           paddingX: {
-            xs: "0px",
-            sm: "12px",
-            md: "32px",
+            xs: "1rem",
+            md: "2rem",
           },
         }}
       >
