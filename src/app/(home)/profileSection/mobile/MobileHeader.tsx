@@ -65,6 +65,7 @@ export default function MobileHeader() {
           sx={{
             display: "flex",
             gap: 2,
+            alignItems: "center",
           }}
         >
           <Tooltip title="Go to GitHub" arrow>
