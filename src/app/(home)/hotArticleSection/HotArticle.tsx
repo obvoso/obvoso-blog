@@ -26,7 +26,7 @@ export default async function HotArticle() {
             borderRadius: 2,
             boxShadow:
               "inset 0px 2px 4px rgba(0, 0, 0, 0.5), 0px 2px 4px rgba(0, 0, 0, 0.3)",
-            margin: 4,
+            margin: { xs: 2, sm: 4 },
             background: "var(--primary-gradient)",
           }}
         >

@@ -40,7 +40,13 @@ export default function GradientBox({
           borderRadius: 100,
           boxShadow: "inset 1px 2px 6px rgba(0, 0, 0, 0.3)",
           background: backgroundColor,
-          padding: type === "button" ? "5px 20px" : "0px",
+          padding:
+            type === "button"
+              ? {
+                  xs: "5px 10px",
+                  sm: "5px 20px",
+                }
+              : "0px",
           "&:hover": {
             background:
               type === "button"
