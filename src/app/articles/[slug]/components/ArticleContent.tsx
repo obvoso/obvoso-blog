@@ -33,7 +33,8 @@ export default async function ArticleContent({ slug }: ArticleProps) {
         flexDirection: "column",
         gap: 2,
         paddingY: 4,
-        wordBreak: "break-word",
+        wordWrap: "break-word",
+        wordBreak: "keep-all",
         overflowWrap: "break-word",
       }}
     >
