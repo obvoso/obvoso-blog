@@ -14,7 +14,7 @@ export default async function Home() {
         flexGrow: 1,
         flexDirection: { xs: "column", md: "row" },
         paddingTop: {
-          xs: "56px",
+          xs: "40px",
           sm: "80px",
           md: "160px",
         },
