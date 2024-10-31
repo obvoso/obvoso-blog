@@ -13,6 +13,15 @@
   align-items: center;
 }
 
+@media (max-width: 600px) {
+  .swiper-button-prev {
+    margin-left: -8px;
+  }
+  .swiper-button-next {
+    margin-right: -8px;
+  }
+}
+
 .swiper-button-next::after,
 .swiper-button-prev::after {
   color: white;

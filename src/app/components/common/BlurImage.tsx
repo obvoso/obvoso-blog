@@ -22,7 +22,6 @@ export default function BlurImage({
         position: "relative",
         width: "100%",
         paddingBottom: ratio,
-        background: "var(--primary)",
       }}
     >
       <Image
