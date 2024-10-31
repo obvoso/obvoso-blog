@@ -14,6 +14,7 @@ export default function Footer() {
       }}
     >
       <CustomTypography
+        size={20}
         sx={{
           letterSpacing: "-0.02em",
           transform: "scaleX(0.9)",
