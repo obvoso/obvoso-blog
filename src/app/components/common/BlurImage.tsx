@@ -8,6 +8,7 @@ type BlurImageProps = {
   blurDataURL: string
   ratio?: string
   imageStyle?: React.CSSProperties
+  className?: string
 }
 
 export default function BlurImage({
@@ -15,6 +16,7 @@ export default function BlurImage({
   blurDataURL,
   ratio = "56.26%",
   imageStyle,
+  className,
 }: BlurImageProps) {
   return (
     <Box
@@ -22,6 +24,7 @@ export default function BlurImage({
         position: "relative",
         width: "100%",
         paddingBottom: ratio,
+        overflow: "hidden",
       }}
     >
       <Image
@@ -33,6 +36,7 @@ export default function BlurImage({
         height={0}
         sizes="100vw"
         fill
+        className={className}
         style={{
           objectFit: "cover",
           ...imageStyle,

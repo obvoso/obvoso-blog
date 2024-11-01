@@ -17,12 +17,22 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
         background: "var(--background)",
         "&:hover": {
           "& .custom-typography": {
-            color: "var(--primary)",
+            color: "var(--secondary)",
+          },
+          "& .blur-image": {
+            transform: "scale(1.07)",
           },
         },
       }}
     >
-      <BlurImage src={article.thumbnail} blurDataURL={article.blurThumbnail} />
+      <BlurImage
+        src={article.thumbnail}
+        blurDataURL={article.blurThumbnail}
+        className="blur-image"
+        imageStyle={{
+          transition: "transform 0.3s ease",
+        }}
+      />
       <Box
         sx={{
           minHeight: { xs: 0, sm: "138px" },
