@@ -15,9 +15,24 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
         borderRadius: 2,
         padding: 2,
         background: "var(--background)",
+        "&:hover": {
+          "& .custom-typography": {
+            color: "var(--secondary)",
+          },
+          "& .blur-image": {
+            transform: "scale(1.07)",
+          },
+        },
       }}
     >
-      <BlurImage src={article.thumbnail} blurDataURL={article.blurThumbnail} />
+      <BlurImage
+        src={article.thumbnail}
+        blurDataURL={article.blurThumbnail}
+        className="blur-image"
+        imageStyle={{
+          transition: "transform 0.3s ease",
+        }}
+      />
       <Box
         sx={{
           minHeight: { xs: 0, sm: "138px" },
@@ -27,6 +42,7 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
         }}
       >
         <CustomTypography
+          className="custom-typography"
           weight={700}
           sx={{
             fontSize: {
@@ -43,6 +59,7 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
           {article.title}
         </CustomTypography>
         <CustomTypography
+          className="custom-typography"
           weight={500}
           color="var(--text-secondary)"
           sx={{
@@ -59,6 +76,7 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
           {article.description}
         </CustomTypography>
         <CustomTypography
+          className="custom-typography"
           color="gray"
           sx={{
             fontSize: {
