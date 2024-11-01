@@ -81,6 +81,10 @@ export default function ThemeToggle({ scale = 1 }: { scale?: number }) {
         display: "flex",
         justifyContent: "flex-end",
         alignItems: "flex-end",
+        WebkitTapHighlightColor: "transparent",
+        "&:focus, &:active": {
+          outline: "none",
+        },
         flexGrow: 1,
       }}
       onClick={handleToggle}
