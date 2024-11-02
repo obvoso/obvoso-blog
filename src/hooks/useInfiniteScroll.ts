@@ -1,4 +1,3 @@
-import { fetchTagArticles } from "@/app/(home)/articleSection/actions"
 import {
   articleListCurrentPageSelector,
   articleListHasMoreSelector,
@@ -34,7 +33,16 @@ export default function useInfiniteScroll({
    */
   async function loadMoreArticles() {
     const next = page + 1
-    const articles = await fetchTagArticles({ tag, page: next })
+    const data = await fetch(
+      `http://localhost:3000/tagSection/api/article?tagName=${tag.tagName}&type=${tag.type}&page=${next}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    )
+    const articles = await data.json()
 
     if (articles?.length) {
       setPage(next)
@@ -54,7 +62,16 @@ export default function useInfiniteScroll({
    * Load articles based on the selected tag
    */
   async function loadTagArticles() {
-    const articles = await fetchTagArticles({ tag, page: 0 })
+    const data = await fetch(
+      `http://localhost:3000/tagSection/api/article?tagName=${tag.tagName}&type=${tag.type}&page=0`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    )
+    const articles = await data.json()
     setArticleList(articles)
   }
 
