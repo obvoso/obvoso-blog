@@ -8,6 +8,7 @@ export default function LinkIcons() {
   return (
     <Box>
       <Button
+        aria-label="github-link"
         color="inherit"
         disableRipple
         onClick={onClickGithub}

@@ -77,12 +77,13 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
         </CustomTypography>
         <CustomTypography
           className="custom-typography"
-          color="gray"
+          color="var(--text-secondary)"
           sx={{
             fontSize: {
               xs: "12px",
               sm: "14px",
             },
+            paddingTop: 0.5,
           }}
         >
           {article.createdTime}

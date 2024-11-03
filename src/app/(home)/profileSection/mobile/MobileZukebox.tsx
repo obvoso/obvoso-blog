@@ -38,6 +38,7 @@ export default function MobileZukebox() {
       >
         <IconButton
           onClick={handlePlayPause}
+          aria-label="play-button"
           sx={{
             padding: 0,
           }}

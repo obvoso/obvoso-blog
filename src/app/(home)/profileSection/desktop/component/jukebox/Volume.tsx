@@ -10,7 +10,7 @@ export default function Volume({ onChange, value }: SliderProps) {
     <Slider
       value={value}
       onChange={onChange}
-      aria-labelledby="volume-slider"
+      aria-label="volume-slider"
       min={0}
       max={100}
       size="small"

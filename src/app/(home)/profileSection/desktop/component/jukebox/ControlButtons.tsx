@@ -16,6 +16,7 @@ function CircularButton({ transform, children }: CircularButtonProps) {
   return (
     <Box
       component="button"
+      aria-label="control-button"
       sx={{
         position: "absolute",
         width: "100%",
@@ -105,7 +106,7 @@ export default function ControlButtons({
             border: "none",
           }}
         >
-          <IconButton onClick={handlePlayPause}>
+          <IconButton onClick={handlePlayPause} aria-label="play-button">
             {isPlaying ? (
               <Pause fontSize="medium" />
             ) : (
