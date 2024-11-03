@@ -1,8 +1,8 @@
 import InfiniteScrollArticles from "./InfiniteScrollArticles"
-import pagenatedData from "./lib/paginatedData"
+import getPaginatedData from "./lib/paginatedData"
 
 export default async function ArticlesList() {
-  const paginatedData = await pagenatedData()
+  const paginatedData = await getPaginatedData()
 
   return <InfiniteScrollArticles initialArticles={paginatedData} />
 }

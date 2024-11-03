@@ -8,7 +8,7 @@ const itemsPerPage = 4
 /**
  * 게시물 데이터를 tag, category별로 페이지네이션하여 저장
  */
-export default async function paginatedData() {
+export default async function getPaginatedData() {
   const allPosts: NotionData[] = await getAllPost()
   const categoriesWithTags = await getAllTagsWithCategory()
 
