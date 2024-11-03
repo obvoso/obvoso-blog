@@ -15,7 +15,7 @@ const n2m = new NotionToMarkdown({
 /**
  * 노션 데이터베이스에서 모든 태그와 카테고리를 가져옵니다.
  */
-export const getAllTagsWithCategory = async () => {
+export const getAllTagsWithCategory = cache(async () => {
   const res = await notion.databases.retrieve({ database_id: dbID })
   const data = res.properties.category.select.options.map((category: any) => ({
     name: category.name,
@@ -28,7 +28,7 @@ export const getAllTagsWithCategory = async () => {
     tags: [],
   })
   return data
-}
+})
 /**
  * 노션 페이지의 데이터를 마크다운 형식으로 변환합니다.
  */
