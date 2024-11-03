@@ -2,14 +2,14 @@
 
 import CustomBox from "@/app/components/common/CustomBox"
 import useInfiniteScroll from "@/hooks/useInfiniteScroll"
-import { NotionData } from "@/types/notion"
+import { PaginationData } from "@/types/article"
 import { Box, Grid } from "@mui/material"
 import Link from "next/link"
 import ArticleNotFound from "./ArticleNotFound"
 import ArticleThumbnail from "./ArticleThumbnail"
 
 type FilterArticleProps = {
-  initialArticles: NotionData[]
+  initialArticles: PaginationData
 }
 
 export default function InfiniteScrollArticles({

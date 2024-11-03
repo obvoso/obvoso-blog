@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     template: "%s | obvoso",
     default: "obvoso",
   },
+  description: "기록장",
   icons: {
     icon: "/alien.ico",
   },

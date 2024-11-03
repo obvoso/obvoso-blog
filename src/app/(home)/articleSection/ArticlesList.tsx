@@ -1,11 +1,8 @@
-import { TagEnum } from "@/types/tags"
 import InfiniteScrollArticles from "./InfiniteScrollArticles"
-import { fetchTagArticles } from "./actions"
+import getPaginatedData from "./lib/paginatedData"
 
 export default async function ArticlesList() {
-  const initialArticles = await fetchTagArticles({
-    tag: { tagName: "전체보기", type: TagEnum.CATEGORY },
-  })
+  const paginatedData = await getPaginatedData()
 
-  return <InfiniteScrollArticles initialArticles={initialArticles} />
+  return <InfiniteScrollArticles initialArticles={paginatedData} />
 }

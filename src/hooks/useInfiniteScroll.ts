@@ -1,17 +1,17 @@
-import { fetchTagArticles } from "@/app/(home)/articleSection/actions"
 import {
   articleListCurrentPageSelector,
   articleListHasMoreSelector,
   articleListSelector,
 } from "@/atoms/article"
 import selectTagsState from "@/atoms/selectCategoryTags"
+import { PaginationData } from "@/types/article"
 import { NotionData } from "@/types/notion"
 import { useEffect, useLayoutEffect, useRef } from "react"
 import { useInView } from "react-intersection-observer"
 import { useRecoilState, useRecoilValue } from "recoil"
 
 type InfiniteScrollProps = {
-  initialArticles: NotionData[]
+  initialArticles: PaginationData
 }
 export default function useInfiniteScroll({
   initialArticles,
@@ -25,7 +25,8 @@ export default function useInfiniteScroll({
 
   useEffect(() => {
     if (!articleList.length) {
-      setArticleList(initialArticles)
+      const articles = initialArticles[tag.type]?.[tag.tagName]?.[0] || []
+      setArticleList(articles)
     }
   }, [])
 
@@ -34,7 +35,7 @@ export default function useInfiniteScroll({
    */
   async function loadMoreArticles() {
     const next = page + 1
-    const articles = await fetchTagArticles({ tag, page: next })
+    const articles = initialArticles[tag.type]?.[tag.tagName]?.[next] || []
 
     if (articles?.length) {
       setPage(next)
@@ -54,7 +55,7 @@ export default function useInfiniteScroll({
    * Load articles based on the selected tag
    */
   async function loadTagArticles() {
-    const articles = await fetchTagArticles({ tag, page: 0 })
+    const articles = initialArticles[tag.type]?.[tag.tagName]?.[0] || []
     setArticleList(articles)
   }
 
@@ -72,7 +73,7 @@ export default function useInfiniteScroll({
   if (articleList.length) {
     returnArticleList = articleList
   } else if (tag.tagName === "전체보기") {
-    returnArticleList = initialArticles
+    returnArticleList = initialArticles[tag.type]?.[tag.tagName]?.[0] || []
   }
 
   return {
