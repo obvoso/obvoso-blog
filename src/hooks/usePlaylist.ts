@@ -4,7 +4,7 @@ import {
   playerState,
   volumeState,
 } from "@/atoms/playlist"
-import { playlist } from "@/lib/utils/playlist"
+import { playlist } from "@/data/playlist"
 import { cloneDeep } from "lodash"
 import { YouTubePlayer, YouTubeProps } from "react-youtube"
 import { useRecoilState } from "recoil"

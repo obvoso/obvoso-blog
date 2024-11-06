@@ -1,11 +1,11 @@
-import RecoilRootWrapper from "@/app/RecoilWrapper"
+import RecoilRootWrapper from "@/providers/RecoilWrapper"
 import { notoSansKr } from "@/styles/font"
 import "@/styles/globals.css"
 import "@/styles/themes.css"
 import { Metadata } from "next"
 import { ThemeProvider } from "next-themes"
-import MobileHeader from "./(home)/profileSection/mobile/MobileHeader"
 import Footer from "./components/layout/footer/Footer"
+import MobileHeader from "./components/layout/header/MobileHeader"
 
 /**
  * @todo
