@@ -72,29 +72,6 @@ const upload = async (imageUrl: string, keyBase: string) => {
   return convertUrl
 }
 
-/* 버킷에서 이미지 다운로드 함수 */
-// const download = async (key: string) => {
-//   const urlCommand = new GetObjectCommand({
-//     Bucket: bucket,
-//     Key: key,
-//   })
-//   const blurUrlCommand = new GetObjectCommand({
-//     Bucket: bucket,
-//     Key: `${key}?blur`,
-//   })
-
-//   const [url, blurBuffer] = await Promise.all([
-//     getSignedUrl(s3, urlCommand, { expiresIn: 60 * 60 * 24 }),
-//     s3.send(blurUrlCommand).then((data) => data.Body?.transformToByteArray()),
-//   ])
-
-//   const blurBase64 = blurBuffer
-//     ? `data:image/svg+xml;base64,${Buffer.from(blurBuffer).toString("base64")}`
-//     : null
-
-//   return [url, blurBase64]
-// }
-
 export const getBlocks = async (blockId: string): Promise<NotionBlock[]> => {
   let cursor: string | null = null
   let hasMore = true

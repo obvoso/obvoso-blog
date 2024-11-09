@@ -6,3 +6,9 @@ export type Playlist = {
   volume: number
   currentTrack: number
 }
+
+export type PlayListInfo = {
+  title: string
+  artist: string
+  time: string
+}
