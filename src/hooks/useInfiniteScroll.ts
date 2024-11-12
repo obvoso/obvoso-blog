@@ -1,4 +1,8 @@
 import {
+  getPostsByCategoryAndPage,
+  getPostsByTagAndPage,
+} from "@/app/(route)/(home)/articleSection/lib/paginatedData"
+import {
   articleListCurrentPageSelector,
   articleListHasMoreSelector,
   articleListSelector,
@@ -25,7 +29,11 @@ export default function useInfiniteScroll({
 
   useEffect(() => {
     if (!articleList.length) {
-      const articles = initialArticles[tag.type]?.[tag.tagName]?.[0] || []
+      const articles = getPostsByCategoryAndPage(
+        tag.tagName,
+        0,
+        initialArticles,
+      )
       setArticleList(articles)
     }
   }, [])
@@ -35,7 +43,10 @@ export default function useInfiniteScroll({
    */
   async function loadMoreArticles() {
     const next = page + 1
-    const articles = initialArticles[tag.type]?.[tag.tagName]?.[next] || []
+    const articles =
+      tag.type === "category"
+        ? getPostsByCategoryAndPage(tag.tagName, next, initialArticles)
+        : getPostsByTagAndPage(tag.tagName, next, initialArticles)
 
     if (articles?.length) {
       setPage(next)
@@ -55,7 +66,10 @@ export default function useInfiniteScroll({
    * Load articles based on the selected tag
    */
   async function loadTagArticles() {
-    const articles = initialArticles[tag.type]?.[tag.tagName]?.[0] || []
+    const articles =
+      tag.type === "category"
+        ? getPostsByCategoryAndPage(tag.tagName, 0, initialArticles)
+        : getPostsByTagAndPage(tag.tagName, 0, initialArticles)
     setArticleList(articles)
   }
 
@@ -73,7 +87,11 @@ export default function useInfiniteScroll({
   if (articleList.length) {
     returnArticleList = articleList
   } else if (tag.tagName === "전체보기") {
-    returnArticleList = initialArticles[tag.type]?.[tag.tagName]?.[0] || []
+    returnArticleList = getPostsByCategoryAndPage(
+      tag.tagName,
+      0,
+      initialArticles,
+    )
   }
 
   return {
