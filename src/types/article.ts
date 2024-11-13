@@ -1,5 +1,7 @@
 import { NotionData } from "./notion"
 
 export type PaginationData = {
-  [category: string]: { [tag: string]: NotionData[][] }
+  postsById: { [id: string]: NotionData }
+  categoryIndex: { [categoryName: string]: string[] }
+  tagIndex: { [tagName: string]: string[] }
 }

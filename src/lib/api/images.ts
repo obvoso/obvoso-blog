@@ -1,3 +1,5 @@
+"use server"
+
 import { NotionData } from "@/types/notion"
 import { S3, S3Client } from "@aws-sdk/client-s3"
 import { getPlaiceholder } from "plaiceholder"
