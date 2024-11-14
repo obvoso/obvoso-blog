@@ -26,6 +26,8 @@ export default async function Article({ params }: ArticleProps) {
           justifyContent: "center",
           paddingY: { xs: 4, md: 10 },
           paddingX: { xs: "1rem", sm: "2rem" },
+          borderRadius: "0px 0px 32px 32px",
+          border: "none",
           background: "var(--background)",
         }}
       >
