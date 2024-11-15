@@ -1,3 +1,4 @@
+import GoogleAnalytics from "@/lib/utils/GoogleAnalytics"
 import RecoilRootWrapper from "@/providers/RecoilWrapper"
 import { notoSansKr } from "@/styles/font"
 import "@/styles/globals.css"
@@ -21,6 +22,9 @@ export const metadata: Metadata = {
     icon: "/alien.ico",
   },
 }
+
+const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,6 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${notoSansKr.className}`}>
+        <GoogleAnalytics gaId={gaId!} />
         <ThemeProvider attribute="class" defaultTheme="system">
           <RecoilRootWrapper>
             <header>
