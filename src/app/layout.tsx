@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
 }
 
-const gdID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
+const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
 
 export default function RootLayout({
   children,
@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${notoSansKr.className}`}>
-        <GoogleAnalytics gaId={gdID!} />
+        <GoogleAnalytics gaId={gaId!} />
         <ThemeProvider attribute="class" defaultTheme="system">
           <RecoilRootWrapper>
             <header>
