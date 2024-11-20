@@ -66,7 +66,7 @@ export async function generateMetadata({
       title: post?.title,
       description: post?.description,
       type: "website",
-      url: `https://obvoso.site/articles/${params.slug}`,
+      url: `https://www.obvoso.site/articles/${params.slug}`,
       images: [
         {
           url: post?.thumbnail!,
@@ -78,7 +78,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: post?.title,
       description: post?.description,
-      images: [`https://obvoso.site/articles/${params.slug}`],
+      images: [`https://www.obvoso.site/articles/${params.slug}`],
     },
   }
   return metadata
