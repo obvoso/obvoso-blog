@@ -16,7 +16,7 @@ export default async function sitemap({
 }: {
   id: number
 }): Promise<MetadataRoute.Sitemap> {
-  const BASE_URL = "https://obvoso.site"
+  const BASE_URL = "https://www.obvoso.site"
 
   const articles = await getAllPost()
   const url = articles.map((article) => ({
