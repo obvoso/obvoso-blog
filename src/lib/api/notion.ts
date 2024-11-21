@@ -1,7 +1,8 @@
 import { unstable_cache } from "next/cache"
 import { cache } from "react"
+import { numberDateParseToLocalDate } from "../utils/date"
 import { notion } from "../utils/notionClient"
-import { generateSlug, parseDate } from "../utils/utils"
+import { generateSlug } from "../utils/utils"
 import { convertNotionImage } from "./images"
 
 const { NotionToMarkdown } = require("notion-to-md")
@@ -85,7 +86,7 @@ export const getAllPost = cache(
           title: page.properties.title.title[0].plain_text,
           description: page.properties.description.rich_text[0].plain_text,
           hotAtcicle: page.properties.hotArticle.checkbox,
-          createdTime: parseDate(page.created_time),
+          createdTime: numberDateParseToLocalDate(page.created_time),
           slug: generateSlug(page.properties.title.title[0].plain_text),
           category: page.properties.category.select.name,
           tag: page.properties.tags.multi_select.map((tag: any) => tag.name),
