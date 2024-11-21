@@ -1,6 +1,7 @@
 import BlurImage from "@/app/components/common/BlurImage"
 import CustomTypography from "@/app/components/common/CustomTypography"
 import { getArticleHeader } from "@/lib/api/article"
+import { localDateParseToNumberDate } from "@/lib/utils/date"
 import { Box } from "@mui/material"
 
 type ArticleHeaderProps = {
@@ -34,6 +35,7 @@ export default async function ArticleHeader({ slug }: ArticleHeaderProps) {
     thumbnail,
     blurThumbnail,
   } = await getArticleHeader(slug)
+
   return (
     <Box
       sx={{
@@ -53,9 +55,19 @@ export default async function ArticleHeader({ slug }: ArticleHeaderProps) {
           <ArticleHeaderTag key={t} tag={t} />
         ))}
       </Box>
-      <CustomTypography size={14} color="gray" sx={{ paddingBottom: 2 }}>
+      <time
+        dateTime={new Date(
+          localDateParseToNumberDate(createdTime),
+        ).toISOString()}
+        style={{
+          display: "block",
+          paddingBottom: "16px",
+          color: "gray",
+          fontSize: 14,
+        }}
+      >
         {createdTime}
-      </CustomTypography>
+      </time>
       <BlurImage src={thumbnail} blurDataURL={blurThumbnail} />
     </Box>
   )
