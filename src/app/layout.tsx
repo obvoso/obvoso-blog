@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   description: "기록장",
   icons: {
-    icon: "/alien.ico",
+    icon: "/favicon.ico",
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
