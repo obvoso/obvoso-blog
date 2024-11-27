@@ -8,10 +8,6 @@ import { ThemeProvider } from "next-themes"
 import Footer from "./components/layout/footer/Footer"
 import MobileHeader from "./components/layout/header/MobileHeader"
 
-/**
- * @todo
- * og tag 추가(이미지, 설명, 제목..이미지 만들어야됨)
- */
 export const metadata: Metadata = {
   title: {
     template: "%s | obvoso",
@@ -23,6 +19,20 @@ export const metadata: Metadata = {
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
+  openGraph: {
+    title: "obvoso",
+    description: "기록장",
+    type: "website",
+    url: `https://www.obvoso.site/`,
+    images: [
+      {
+        url: "/ocean.jpeg",
+        alt: "obvoso",
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
 }
 
