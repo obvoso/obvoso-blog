@@ -13,7 +13,7 @@ Notion을 CMS로 사용하여 블로그 콘텐츠를 관리하고 Vercel을 사�
 - **Swiper**를 사용한 이미지 슬라이더 구현
 - **React Intersection Observer**를 이용한 인피니트 스크롤 구현
 - **Intersection Observer**를 이용한 TOC 구현
-- **react-youtube**를 사용한 zukebox 구현
+- **react-youtube**를 사용한 jukebox 구현
 - **다크 모드** 지원 (next-themes 사용)
 - **MUI**를 사용한 반응형 디자인 및 커스텀 스타일링
 
@@ -72,7 +72,7 @@ obvoso-blog/
 
 이 프로젝트는 **Vercel**을 사용하여 배포되었습니다. 배포된 블로그 도메인은 [https://www.obvoso.site](https://www.obvoso.site)입니다. 지속적인 배포를 위해 `Vercel GitHub Integration`을 사용하여 자동 배포를 설정하였습니다.
 
-**Notion Database**를 CMS로 사용하여 블로그 게시글을 작성하며, **Zapier**를 통해 데이터베이스의 변경사항을 감지하여 자동으로 페이지를 업데이트합니다.
+**Notion Database**를 CMS로 사용하여 글을 작성하며, **Zapier**를 통해 데이터베이스의 변경사항을 감지하여 자동으로 페이지를 업데이트합니다.
 Zapier 내에 만들어둔 Webhook이 호출되어 정적인 페이지에서 사용된 데이터를 태그 기반으로 **ISR**을 적용하여 자동으로 업데이트되며, Vercel에서 배포된 사이트의 변경된 페이지가 자동으로 갱신되도록 캐시를 무효화합니다.
 
 ## Lighthouse Performance
