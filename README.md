@@ -29,6 +29,7 @@ Notion을 CMS로 사용하여 블로그 콘텐츠를 관리하고 Vercel을 사�
 - **Infinite Scroll**: react-intersection-observer
 - **Other Tools**: Prettier, ESLint, Zapier, Notion
 
+<!--
 ## 📂Folder Structure
 
 ```
@@ -65,6 +66,7 @@ obvoso-blog/
 - **swiper**: 슬라이더 구현
 
 자세한 종속성 정보는 [`package.json`](./package.json)을 참고해주세요.
+-->
 
 ## Deployment
 
