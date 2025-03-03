@@ -17,10 +17,29 @@ export default function usePlaylist() {
   const [volume, setVolume] = useRecoilState(volumeState)
   const [currentTrack, setCurrentTrack] = useRecoilState(currentTrackState)
 
+  const waitForYouTubeData = (player: YouTubePlayer, attempts = 5) => {
+    if (attempts === 0) {
+      console.warn("YouTube API failed to load video data.")
+      return
+    }
+
+    try {
+      const videoData = player.getVideoData()
+      if (!videoData || typeof videoData.title === "undefined") {
+        console.warn("Retrying to fetch YouTube data")
+        waitForYouTubeData(player, attempts - 1)
+      } else {
+        const deepCopyPlayer = cloneDeep(player)
+        setPlayer(deepCopyPlayer)
+      }
+    } catch (error) {
+      console.error("Error accessing YouTube API:", error)
+    }
+  }
+
   const onReady = (event: { target: YouTubePlayer }) => {
     event.target.setVolume(volume)
-    const deepCopyPlayer = cloneDeep(event.target)
-    setPlayer(deepCopyPlayer)
+    waitForYouTubeData(event.target)
   }
 
   const onStateChange = (event: { target: YouTubePlayer; data: number }) => {
@@ -99,6 +118,7 @@ export default function usePlaylist() {
       mute: 0,
       controls: 1,
       loop: 1,
+      enablejsapi: 1,
     },
   }
   return {
