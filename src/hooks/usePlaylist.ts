@@ -17,19 +17,19 @@ export default function usePlaylist() {
   const [volume, setVolume] = useRecoilState(volumeState)
   const [currentTrack, setCurrentTrack] = useRecoilState(currentTrackState)
 
-  const waitForYouTubeData = (player: YouTubePlayer, attempts = 5) => {
+  const waitForYouTubeData = (youtubePlayer: YouTubePlayer, attempts = 5) => {
     if (attempts === 0) {
       console.warn("YouTube API failed to load video data.")
       return
     }
 
     try {
-      const videoData = player.getVideoData()
+      const videoData = youtubePlayer.getVideoData()
       if (!videoData || typeof videoData.title === "undefined") {
         console.warn("Retrying to fetch YouTube data")
-        waitForYouTubeData(player, attempts - 1)
+        waitForYouTubeData(youtubePlayer, attempts - 1)
       } else {
-        const deepCopyPlayer = cloneDeep(player)
+        const deepCopyPlayer = cloneDeep(youtubePlayer)
         setPlayer(deepCopyPlayer)
       }
     } catch (error) {
