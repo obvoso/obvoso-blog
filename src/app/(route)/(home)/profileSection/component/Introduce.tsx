@@ -18,16 +18,22 @@ export default function Introduce() {
           justifyContent: "center",
           flexDirection: "column",
           gap: 0.5,
-          paddingY: 2,
+          paddingTop: 1,
+          paddingBottom: 2,
         }}
       >
-        <CustomTypography size={24} weight={600}>
+        <CustomTypography size={18} weight={600}>
           obvoso
         </CustomTypography>
-        <CustomTypography>This is a desperate person</CustomTypography>
+        <CustomTypography size={12}>
+          This is a desperate person
+        </CustomTypography>
+        <CustomTypography size={12} sx={{ marginTop: "-4px" }}>
+          FrontEnd Developer
+        </CustomTypography>
         <GradientBox type="button" onClick={onClickGithub}>
           <CustomTypography
-            size={16}
+            size={12}
             color="white"
             sx={{
               textShadow: "1px 1px 2px rgba(0, 0, 0, 0.7)",
@@ -36,9 +42,6 @@ export default function Introduce() {
             GitHub
           </CustomTypography>
         </GradientBox>
-        <CustomTypography sx={{ marginTop: 1 }}>
-          FrontEnd Developer
-        </CustomTypography>
       </Box>
     </CustomBox>
   )

@@ -17,7 +17,7 @@ export default function Avatar() {
           borderRadius: 6.5,
           position: "relative",
           width: "100%",
-          paddingBottom: "100%",
+          paddingBottom: "70%",
           background: "var(--primary-gradient)",
         }}
       >

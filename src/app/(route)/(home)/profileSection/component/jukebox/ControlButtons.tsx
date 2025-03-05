@@ -83,8 +83,8 @@ export default function ControlButtons({
       <Box
         sx={{
           position: "relative",
-          width: 70,
-          height: 70,
+          width: 60,
+          height: 60,
           borderRadius: "50%",
           cursor: "pointer",
         }}
