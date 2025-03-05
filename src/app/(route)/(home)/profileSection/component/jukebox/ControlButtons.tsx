@@ -2,7 +2,7 @@ import useShowPlaylist from "@/hooks/useShowPlaylist"
 import { Pause, PlayArrow, SkipNext } from "@mui/icons-material"
 import AttachFileIcon from "@mui/icons-material/AttachFile"
 import StopCircleIcon from "@mui/icons-material/StopCircle"
-import { Box, IconButton } from "@mui/material"
+import { Box, IconButton, Tooltip } from "@mui/material"
 import Playlist from "../../../../../components/common/Playlist"
 
 type CircularButtonProps = {
@@ -124,7 +124,9 @@ export default function ControlButtons({
           <SkipNext onClick={handlePrevious} fontSize="inherit" />
         </CircularButton>
         <CircularButton transform={270}>
-          <AttachFileIcon onClick={handleShowPlayList} fontSize="inherit" />
+          <Tooltip title="Show Playlist" arrow>
+            <AttachFileIcon onClick={handleShowPlayList} fontSize="inherit" />
+          </Tooltip>
         </CircularButton>
       </Box>
       <Playlist

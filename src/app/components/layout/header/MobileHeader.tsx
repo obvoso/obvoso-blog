@@ -70,6 +70,7 @@ export default function MobileHeader() {
             display: "flex",
             gap: 2,
             alignItems: "center",
+            cursor: "pointer",
           }}
         >
           <Tooltip title="Go to GitHub" arrow>
