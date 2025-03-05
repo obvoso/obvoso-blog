@@ -1,5 +1,5 @@
 import CustomBox from "@/app/components/common/CustomBox"
-import avatar from "@/assets/images/profile.png"
+import avatar from "@/assets/images/profile2.png"
 import { Box } from "@mui/material"
 import Image from "next/image"
 
