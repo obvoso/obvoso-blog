@@ -10,7 +10,7 @@ export default function DesktopSideProfile() {
       sx={{
         display: {
           xs: "none",
-          md: "flex",
+          lg: "flex",
         },
         backgroundColor: "var(--background-opacity)",
         flexDirection: "column",

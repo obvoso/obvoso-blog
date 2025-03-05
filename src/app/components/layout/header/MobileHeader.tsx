@@ -14,7 +14,7 @@ import MobileZukebox from "./MobileZukebox"
 export default function MobileHeader() {
   const pathname = usePathname()
   const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"))
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"))
 
   const [show, setShow] = useState(false)
 
