@@ -73,7 +73,7 @@ export default function Carousel({ data }: CarouselProps) {
                   color="black"
                   weight={600}
                   sx={{
-                    fontSize: { xs: 16, sm: 20, md: 22, lg: 24 },
+                    fontSize: { xs: 16, sm: 18, md: 20 },
                     display: "-webkit-box",
                     overflow: "hidden",
                     WebkitBoxOrient: "vertical",
@@ -89,7 +89,7 @@ export default function Carousel({ data }: CarouselProps) {
                 <CustomTypography
                   color="var(--gray)"
                   sx={{
-                    fontSize: { xs: 12, sm: 14, md: 16, lg: 18 },
+                    fontSize: { xs: 12, sm: 14, md: 16 },
                     display: "-webkit-box",
                     overflow: "hidden",
                     WebkitBoxOrient: "vertical",

@@ -17,11 +17,12 @@ export default function StarTextBox({ text }: StarTextBoxProps) {
         borderBottom: "2px solid var(--border-tertiary)",
         borderRadius: "8px",
         paddingX: 2,
+        paddingY: 0.2,
         gap: 1,
       }}
     >
       <Image src={star} alt="star" width={24} height={24} />
-      <CustomTypography size={20} color="var(--gray)">
+      <CustomTypography size={18} color="var(--gray)">
         {text}
       </CustomTypography>
     </Box>
