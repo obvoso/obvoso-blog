@@ -43,7 +43,7 @@ export default async function ArticleHeader({ slug }: ArticleHeaderProps) {
         paddingBottom: 4,
       }}
     >
-      <CustomTypography weight={900} size={"2rem"}>
+      <CustomTypography weight={900} size="2rem">
         {title}
       </CustomTypography>
       <CustomTypography size={"1rem"} weight={500} color="var(--tertiary)">
