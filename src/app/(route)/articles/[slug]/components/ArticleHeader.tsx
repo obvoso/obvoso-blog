@@ -46,7 +46,7 @@ export default async function ArticleHeader({ slug }: ArticleHeaderProps) {
       <CustomTypography weight={900} size={"2rem"}>
         {title}
       </CustomTypography>
-      <CustomTypography size={"1.25rem"} weight={500} color="var(--tertiary)">
+      <CustomTypography size={"1rem"} weight={500} color="var(--tertiary)">
         {description}
       </CustomTypography>
       <Box sx={{ display: "flex", gap: 1, paddingY: 3 }}>
