@@ -65,13 +65,16 @@ export default function MobileZukebox() {
             {`${title} - ${artist}`}
           </CustomTypography>
         </Box>
-        <Tooltip title="Show Playlist">
+        <Tooltip title="Show Playlist" arrow>
           <Image
             src={cd}
             alt="cd"
             width={20}
             height={20}
             onClick={handleShowPlayList}
+            style={{
+              cursor: "pointer",
+            }}
           />
         </Tooltip>
         <YouTube

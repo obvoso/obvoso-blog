@@ -1,5 +1,5 @@
 import CustomBox from "@/app/components/common/CustomBox"
-import avatar from "@/assets/images/profile.png"
+import avatar from "@/assets/images/profile2.png"
 import { Box } from "@mui/material"
 import Image from "next/image"
 
@@ -17,7 +17,7 @@ export default function Avatar() {
           borderRadius: 6.5,
           position: "relative",
           width: "100%",
-          paddingBottom: "100%",
+          paddingBottom: "70%",
           background: "var(--primary-gradient)",
         }}
       >

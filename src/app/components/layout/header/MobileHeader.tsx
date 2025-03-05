@@ -14,7 +14,7 @@ import MobileZukebox from "./MobileZukebox"
 export default function MobileHeader() {
   const pathname = usePathname()
   const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"))
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"))
 
   const [show, setShow] = useState(false)
 
@@ -54,7 +54,7 @@ export default function MobileHeader() {
       >
         <MobileZukebox />
         <CustomTypography
-          size="1rem"
+          size="16px"
           color="var(--gray)"
           sx={{
             letterSpacing: "-0.02em",
@@ -70,6 +70,7 @@ export default function MobileHeader() {
             display: "flex",
             gap: 2,
             alignItems: "center",
+            cursor: "pointer",
           }}
         >
           <Tooltip title="Go to GitHub" arrow>

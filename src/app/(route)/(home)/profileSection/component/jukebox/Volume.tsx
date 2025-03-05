@@ -17,10 +17,10 @@ export default function Volume({ onChange, value }: SliderProps) {
       sx={{
         position: "absolute",
         width: "80%",
-        left: "-12%",
-        bottom: "-37%",
+        left: "-14%",
+        bottom: "-29%",
         color: "transparent",
-        height: 8,
+        height: 6,
         "& .MuiSlider-track": {
           background: "var(--primary-gradient)",
           boxShadow: "inset 1px 1px 1px rgba(0, 0, 0, 0.4)",
@@ -30,8 +30,8 @@ export default function Volume({ onChange, value }: SliderProps) {
           opacity: 1,
         },
         "& .MuiSlider-thumb": {
-          width: 12,
-          height: 8,
+          width: 10,
+          height: 6,
           backgroundColor: "white",
           border: "2px solid #b3cde3",
           boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.5)",

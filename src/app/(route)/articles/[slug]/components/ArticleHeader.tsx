@@ -43,10 +43,10 @@ export default async function ArticleHeader({ slug }: ArticleHeaderProps) {
         paddingBottom: 4,
       }}
     >
-      <CustomTypography weight={900} size={32}>
+      <CustomTypography weight={900} size="2rem">
         {title}
       </CustomTypography>
-      <CustomTypography size={18} weight={500} color="var(--tertiary)">
+      <CustomTypography size="1rem" weight={500} color="var(--tertiary)">
         {description}
       </CustomTypography>
       <Box sx={{ display: "flex", gap: 1, paddingY: 3 }}>
@@ -63,7 +63,7 @@ export default async function ArticleHeader({ slug }: ArticleHeaderProps) {
           display: "block",
           paddingBottom: "16px",
           color: "gray",
-          fontSize: 14,
+          fontSize: "0.875rem",
         }}
       >
         {createdTime}

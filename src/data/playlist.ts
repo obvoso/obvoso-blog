@@ -7,6 +7,11 @@ export const playlist: PlayListInfo[] = [
     time: "3:33",
   },
   {
+    title: "sculpture",
+    artist: "きのこ帝国",
+    time: "3:57",
+  },
+  {
     title: "めまい",
     artist: "ミツメ",
     time: "3:56",
@@ -52,11 +57,6 @@ export const playlist: PlayListInfo[] = [
     time: "3:47",
   },
   {
-    title: "Stairway Generation",
-    artist: "Base Ball Bear",
-    time: "3:37",
-  },
-  {
     title: "パレイド",
     artist: "syh",
     time: "2:42",
@@ -80,6 +80,11 @@ export const playlist: PlayListInfo[] = [
     title: "Fallin'",
     artist: "Suchmos",
     time: "4:50",
+  },
+  {
+    title: "MASCARA",
+    artist: "King Gnu",
+    time: "3:36",
   },
   {
     title: "Rafstraumur",

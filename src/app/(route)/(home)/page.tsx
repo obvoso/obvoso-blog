@@ -12,12 +12,17 @@ export default async function Home() {
         display: "flex",
         height: "100%",
         flexGrow: 1,
-        flexDirection: { xs: "column", md: "row" },
+        flexDirection: { xs: "column", lg: "row" },
         paddingTop: {
           xs: "40px",
           sm: "80px",
-          md: "160px",
+          md: "120px",
         },
+        maxWidth: {
+          xs: "800px",
+          lg: "1200px",
+        },
+        marginX: "auto",
       }}
     >
       <DesktopSideProfile />

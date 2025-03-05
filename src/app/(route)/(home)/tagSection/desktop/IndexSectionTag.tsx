@@ -18,7 +18,7 @@ export default function IndexSectionTag({
       sx={{ minWidth: 0, "&:hover": { background: "none" } }}
     >
       <CustomTypography
-        size={15}
+        size={12}
         color={isSelected ? "black" : "var(--gray)"}
         sx={{
           cursor: "pointer",

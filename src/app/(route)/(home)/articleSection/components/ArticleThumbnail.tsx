@@ -45,10 +45,7 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
           className="custom-typography"
           weight={700}
           sx={{
-            fontSize: {
-              xs: "16px",
-              sm: "20px",
-            },
+            fontSize: "1.2rem",
             display: "-webkit-box",
             overflow: "hidden",
             WebkitBoxOrient: "vertical",
@@ -63,10 +60,7 @@ export default function ArticleThumbnail({ article }: ArticleProps) {
           weight={500}
           color="var(--text-secondary)"
           sx={{
-            fontSize: {
-              xs: "13px",
-              sm: "17px",
-            },
+            fontSize: "1rem",
             whiteSpace: "nowrap",
             overflow: "hidden",
             textOverflow: "ellipsis",

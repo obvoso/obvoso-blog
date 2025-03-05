@@ -36,7 +36,7 @@ export default function DesktopJukebox() {
           justifyContent: "center",
           flexDirection: "column",
           gap: 0.5,
-          padding: 2,
+          padding: 1,
         }}
       >
         <Box
@@ -56,14 +56,13 @@ export default function DesktopJukebox() {
             sx={{
               display: "flex",
               width: "100%",
-              marginLeft: 2,
+              marginLeft: 1,
               alignItems: "center",
               gap: 1,
-              paddingY: 0.2,
             }}
           >
-            <Image src={cd} alt="cd" width={20} height={20} />
-            <CustomTypography size={12} weight={500} color="var(--tertiary)">
+            <Image src={cd} alt="cd" width={16} height={16} />
+            <CustomTypography size={10} weight={500} color="var(--tertiary)">
               media player
             </CustomTypography>
           </Box>

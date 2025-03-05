@@ -10,11 +10,11 @@ export default function DesktopSideProfile() {
       sx={{
         display: {
           xs: "none",
-          md: "flex",
+          lg: "flex",
         },
         backgroundColor: "var(--background-opacity)",
         flexDirection: "column",
-        paddingTop: 4,
+        padding: 3,
         gap: 3,
         height: "fit-content",
         position: "sticky",
@@ -24,7 +24,7 @@ export default function DesktopSideProfile() {
       <Avatar />
       <Introduce />
       <DesktopJukebox />
-      <ThemeToggle />
+      <ThemeToggle scale={0.8} />
     </CustomBox>
   )
 }

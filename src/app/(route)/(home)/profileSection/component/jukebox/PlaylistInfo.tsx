@@ -16,7 +16,7 @@ export default function PlaylistInfo({ info, isPlaying }: NewType) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: "120px",
+        width: "100px",
         height: "fit-content",
         background: "var(--primary-gradient)",
         borderRadius: "50% / 20% 50% 50% 20%",
@@ -33,6 +33,7 @@ export default function PlaylistInfo({ info, isPlaying }: NewType) {
       >
         <CustomTypography
           sx={{
+            fontSize: "0.8rem",
             color: "var(--border-tertiatry)",
             display: "inline-block",
             animation: isPlaying ? "scroll-text 10s linear infinite" : "none",
