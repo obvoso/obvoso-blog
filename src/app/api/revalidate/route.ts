@@ -11,12 +11,12 @@ export async function PATCH(request: NextRequest) {
     revalidateTag("posts")
     revalidatePath("/", "page")
 
-    const pageUrl = `https://www.obvoso.site`
-    setTimeout(() => {
-      fetch(pageUrl, { method: "GET", cache: "no-cache" })
-        .then(() => console.log(`Successfully fetched ${pageUrl}`))
-        .catch((err) => console.error(`Failed to fetch ${pageUrl}`, err))
-    }, 1000)
+    try {
+      await fetch("https://www.obvoso.site/api/preload", { method: "GET" })
+    } catch (error) {
+      console.error(`Preload API call failed:`, error)
+    }
+
     return Response.json({ revalidated: true, message: id, now: new Date() })
   }
   return Response.json({ revalidated: false, message: id, now: new Date() })
