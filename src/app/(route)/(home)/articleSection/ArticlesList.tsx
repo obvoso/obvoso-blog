@@ -1,8 +1,8 @@
+import { getAllPost } from "@/lib/api/notion"
 import InfiniteScrollArticles from "./components/InfiniteScrollArticles"
-import { getPaginatedData } from "./lib/paginatedData"
 
 export default async function ArticlesList() {
-  const paginatedData = await getPaginatedData()
+  const articles = await getAllPost()
 
-  return <InfiniteScrollArticles initialArticles={paginatedData} />
+  return <InfiniteScrollArticles initialArticles={articles} />
 }
