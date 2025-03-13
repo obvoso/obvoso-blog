@@ -12,7 +12,7 @@ type FilterArticleProps = {
   initialArticles: NotionData[]
 }
 
-export default function InfiniteScrollArticles({
+export default function FilteredArticles({
   initialArticles,
 }: FilterArticleProps) {
   const articles = useArticleList(initialArticles)

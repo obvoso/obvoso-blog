@@ -1,8 +1,8 @@
 import { getAllPost } from "@/lib/api/notion"
-import InfiniteScrollArticles from "./components/InfiniteScrollArticles"
+import FilteredArticles from "./components/FilteredArticles"
 
 export default async function ArticlesList() {
   const articles = await getAllPost()
 
-  return <InfiniteScrollArticles initialArticles={articles} />
+  return <FilteredArticles initialArticles={articles} />
 }
