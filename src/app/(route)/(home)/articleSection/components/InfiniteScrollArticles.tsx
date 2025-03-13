@@ -6,6 +6,7 @@ import Link from "next/link"
 import ArticleNotFound from "./ArticleNotFound"
 import ArticleThumbnail from "./ArticleThumbnail"
 import { NotionData } from "@/types/notion"
+import useArticleList from "@/hooks/useArticleList"
 
 type FilterArticleProps = {
   initialArticles: NotionData[]
@@ -14,6 +15,8 @@ type FilterArticleProps = {
 export default function InfiniteScrollArticles({
   initialArticles,
 }: FilterArticleProps) {
+  const articles = useArticleList(initialArticles)
+
   return (
     <CustomBox
       sx={{
@@ -30,7 +33,7 @@ export default function InfiniteScrollArticles({
         background: { xs: "none", md: "var(--background-opacity)" },
       }}
     >
-      {initialArticles.length === 0 && <ArticleNotFound />}
+      {articles.length === 0 && <ArticleNotFound />}
       <Grid
         container
         spacing={{
@@ -44,7 +47,7 @@ export default function InfiniteScrollArticles({
           },
         }}
       >
-        {initialArticles.map((post) => (
+        {articles.map((post) => (
           <Grid item xs={12} sm={6} key={post.id}>
             <Link href={`/articles/${post.slug}`}>
               <ArticleThumbnail article={post} />
