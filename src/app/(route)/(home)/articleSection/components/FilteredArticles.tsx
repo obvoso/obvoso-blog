@@ -3,10 +3,10 @@
 import CustomBox from "@/app/components/common/CustomBox"
 import { Grid } from "@mui/material"
 import Link from "next/link"
-import ArticleNotFound from "./ArticleNotFound"
-import ArticleThumbnail from "./ArticleThumbnail"
 import { NotionData } from "@/types/notion"
 import useArticleList from "@/hooks/useArticleList"
+import ArticleNotFound from "./ArticleNotFound"
+import ArticleThumbnail from "./ArticleThumbnail"
 
 type FilterArticleProps = {
   initialArticles: NotionData[]
