@@ -107,7 +107,7 @@ export const playlist: PlayListInfo[] = [
     time: "5:16",
   },
   {
-    title: "Paryer X",
+    title: "Prayer X",
     artist: "King Gnu",
     time: "3:18",
   },

@@ -5,7 +5,7 @@ import GradientBox from "@/app/components/common/GradientBox"
 import { CategoryTag, TagEnum } from "@/types/tags"
 import { Box } from "@mui/material"
 import React from "react"
-import Tag from "../components/Tag"
+import SelectableTag from "../components/SelectableTag"
 
 type ButtonTagProps = {
   tagName: string
@@ -49,7 +49,7 @@ export default function MobileTags({ tags }: MobileTagsProps) {
     >
       {tags.map((category) => (
         <React.Fragment key={category.name}>
-          <Tag tagName={category.name} type={TagEnum.CATEGORY}>
+          <SelectableTag tagName={category.name} type={TagEnum.CATEGORY}>
             {({ isSelected, onClick }) => (
               <ButtonTag
                 tagName={category.name}
@@ -57,9 +57,9 @@ export default function MobileTags({ tags }: MobileTagsProps) {
                 onClick={onClick}
               />
             )}
-          </Tag>
+          </SelectableTag>
           {category.tags.map((tag) => (
-            <Tag key={tag} tagName={tag} type={TagEnum.TAG}>
+            <SelectableTag key={tag} tagName={tag} type={TagEnum.TAG}>
               {({ isSelected, onClick }) => (
                 <ButtonTag
                   tagName={tag}
@@ -67,7 +67,7 @@ export default function MobileTags({ tags }: MobileTagsProps) {
                   onClick={onClick}
                 />
               )}
-            </Tag>
+            </SelectableTag>
           ))}
         </React.Fragment>
       ))}

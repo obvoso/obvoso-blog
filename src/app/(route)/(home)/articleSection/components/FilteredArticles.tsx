@@ -1,21 +1,21 @@
 "use client"
 
 import CustomBox from "@/app/components/common/CustomBox"
-import useInfiniteScroll from "@/hooks/useInfiniteScroll"
-import { PaginationData } from "@/types/article"
-import { Box, Grid } from "@mui/material"
+import { Grid } from "@mui/material"
 import Link from "next/link"
+import { NotionData } from "@/types/notion"
+import useArticleList from "@/hooks/useArticleList"
 import ArticleNotFound from "./ArticleNotFound"
 import ArticleThumbnail from "./ArticleThumbnail"
 
 type FilterArticleProps = {
-  initialArticles: PaginationData
+  initialArticles: NotionData[]
 }
 
-export default function InfiniteScrollArticles({
+export default function FilteredArticles({
   initialArticles,
 }: FilterArticleProps) {
-  const { articleList, ref } = useInfiniteScroll({ initialArticles })
+  const articles = useArticleList(initialArticles)
 
   return (
     <CustomBox
@@ -33,7 +33,7 @@ export default function InfiniteScrollArticles({
         background: { xs: "none", md: "var(--background-opacity)" },
       }}
     >
-      {articleList.length === 0 && <ArticleNotFound />}
+      {articles.length === 0 && <ArticleNotFound />}
       <Grid
         container
         spacing={{
@@ -47,7 +47,7 @@ export default function InfiniteScrollArticles({
           },
         }}
       >
-        {articleList.map((post) => (
+        {articles.map((post) => (
           <Grid item xs={12} sm={6} key={post.id}>
             <Link href={`/articles/${post.slug}`}>
               <ArticleThumbnail article={post} />
@@ -55,7 +55,6 @@ export default function InfiniteScrollArticles({
           </Grid>
         ))}
       </Grid>
-      <Box ref={ref} />
     </CustomBox>
   )
 }

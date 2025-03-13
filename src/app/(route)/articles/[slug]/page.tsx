@@ -1,5 +1,5 @@
 import CustomBox from "@/app/components/common/CustomBox"
-import { getSlugPage } from "@/lib/api/article"
+import { getPageBySlug } from "@/lib/api/article"
 import { getAllPost } from "@/lib/api/notion"
 import { NotionData } from "@/types/notion"
 import Box from "@mui/material/Box"
@@ -57,7 +57,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: ArticleProps): Promise<Metadata> {
-  const post = await getSlugPage(params.slug)
+  const post = await getPageBySlug(params.slug)
 
   const metadata: Metadata = {
     title: post?.title,

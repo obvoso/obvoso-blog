@@ -11,7 +11,7 @@ type TagProps = {
   type: TagEnum
 }
 
-export default function Tag({ tagName, type, children }: TagProps) {
+export default function SelectableTag({ tagName, type, children }: TagProps) {
   const [tag, setTag] = useRecoilState(selectTagsState)
   const isSelected = tag.tagName === tagName && tag.type === type
 
