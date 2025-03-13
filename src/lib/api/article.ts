@@ -9,7 +9,7 @@ import { unified } from "unified"
 import { rehypeExtractHeadings } from "../utils/toc"
 import { getAllPost, getNotionArticlePage } from "./notion"
 
-export const getSlugPage = cache(async (slug: string) => {
+export const getPageBySlug = cache(async (slug: string) => {
   const decodeSlug = decodeURIComponent(slug)
   const data = await getAllPost()
   const page = data.find(
@@ -46,7 +46,7 @@ async function getArticleHeadings(post: string) {
 }
 
 export async function getArticleData(slug: string) {
-  const page = await getSlugPage(slug)
+  const page = await getPageBySlug(slug)
   const getCachedPost = getNotionArticlePage(String(page.id))
   const post = await getCachedPost()
 
@@ -60,7 +60,7 @@ export async function getArticleData(slug: string) {
 }
 
 export async function getArticleHeader(slug: string) {
-  const page = await getSlugPage(slug)
+  const page = await getPageBySlug(slug)
 
   return {
     title: page.title,
@@ -74,7 +74,7 @@ export async function getArticleHeader(slug: string) {
 }
 
 export async function getArticleFooterNavigation(slug: string) {
-  const page = await getSlugPage(slug)
+  const page = await getPageBySlug(slug)
   const prevMataData = await getMetaDataByIndex(page.prevIndex)
   const nextMataData = await getMetaDataByIndex(page.nextIndex)
 
