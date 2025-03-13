@@ -4,9 +4,10 @@ import { CategoryTag, TagEnum } from "@/types/tags"
 import { Box, ListItem } from "@mui/material"
 import List from "@mui/material/List"
 import { useState } from "react"
-import Tag from "../components/Tag"
+
 import IndexSectionTag from "./IndexSectionTag"
 import SelectTag from "./SelectTag"
+import SelectableTag from "../components/SelectableTag"
 
 /**
  * @description 배열 크기 커지면 인덱스 시그니처로 변경 고려해야됨.. 탐색 오래걸릴수도 있음
@@ -67,7 +68,7 @@ function SelectCategory({ data }: SelectCategoryProps) {
               zIndex: openCategories === category.name ? 1 : "auto",
             }}
           >
-            <Tag tagName={category.name} type={TagEnum.CATEGORY}>
+            <SelectableTag tagName={category.name} type={TagEnum.CATEGORY}>
               {({ isSelected, onClick }) => (
                 <IndexSectionTag
                   tagName={category.name}
@@ -75,7 +76,7 @@ function SelectCategory({ data }: SelectCategoryProps) {
                   onClick={onClick}
                 />
               )}
-            </Tag>
+            </SelectableTag>
           </ListItem>
         ))}
       </List>

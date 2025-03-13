@@ -50,7 +50,6 @@ export const getNotionArticlePage = (id: string) =>
 export const getAllPost = cache(
   unstable_cache(
     async () => {
-      console.log("Fetching data from Notion API...")
       const res = await notion.databases.query({
         database_id: dbID,
         // start_cursor: cursor,

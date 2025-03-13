@@ -1,8 +1,9 @@
 import { TagEnum } from "@/types/tags"
 
 import Box from "@mui/material/Box"
-import Tag from "../components/Tag"
+
 import IndexSectionTag from "./IndexSectionTag"
+import SelectableTag from "../components/SelectableTag"
 
 type SelectTagsProps = {
   data: string[]
@@ -25,7 +26,7 @@ export default function SelectTag({ data }: SelectTagsProps) {
       }}
     >
       {data.map((tag) => (
-        <Tag key={tag} tagName={tag} type={TagEnum.TAG}>
+        <SelectableTag key={tag} tagName={tag} type={TagEnum.TAG}>
           {({ isSelected, onClick }) => (
             <IndexSectionTag
               tagName={tag}
@@ -33,7 +34,7 @@ export default function SelectTag({ data }: SelectTagsProps) {
               onClick={onClick}
             />
           )}
-        </Tag>
+        </SelectableTag>
       ))}
     </Box>
   )
