@@ -22,7 +22,7 @@ export const getPageBySlug = cache(async (slug: string) => {
   return page
 })
 
-async function getMetaDataByIndex(index: number | null) {
+async function getPageByIndex(index: number | null) {
   const data = await getAllPost()
   if (index) {
     const page = data.find((item: NotionData) => item.index === index)
@@ -75,8 +75,8 @@ export async function getArticleHeader(slug: string) {
 
 export async function getArticleFooterNavigation(slug: string) {
   const page = await getPageBySlug(slug)
-  const prevMataData = await getMetaDataByIndex(page.prevIndex)
-  const nextMataData = await getMetaDataByIndex(page.nextIndex)
+  const prevMataData = await getPageByIndex(page.prevIndex)
+  const nextMataData = await getPageByIndex(page.nextIndex)
 
   return {
     prev: prevMataData,
