@@ -12,7 +12,11 @@ export async function PATCH(request: NextRequest) {
     revalidatePath("/", "page")
 
     const pageUrl = `https://www.obvoso.site`
-    fetch(pageUrl, { method: "GET", cache: "no-store" }).catch(() => {})
+    setTimeout(() => {
+      fetch(pageUrl, { method: "GET", cache: "no-cache" })
+        .then(() => console.log(`Successfully fetched ${pageUrl}`))
+        .catch((err) => console.error(`Failed to fetch ${pageUrl}`, err))
+    }, 1000)
     return Response.json({ revalidated: true, message: id, now: new Date() })
   }
   return Response.json({ revalidated: false, message: id, now: new Date() })
