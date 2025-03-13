@@ -10,6 +10,9 @@ export async function PATCH(request: NextRequest) {
     revalidateTag(id)
     revalidateTag("posts")
     revalidatePath("/", "page")
+
+    const pageUrl = `https://www.obvoso.site`
+    fetch(pageUrl, { method: "GET", cache: "no-store" }).catch(() => {})
     return Response.json({ revalidated: true, message: id, now: new Date() })
   }
   return Response.json({ revalidated: false, message: id, now: new Date() })
