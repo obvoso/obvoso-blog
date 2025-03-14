@@ -11,19 +11,22 @@ export async function GET(request: NextRequest) {
     console.log(`Preloading page`)
     console.log(`Page URL: ${slug}`)
     console.log(`Encoded URL: ${encodedSlug}`)
-    const rootResponse = await fetch(pageUrl, {
-      method: "GET",
-      cache: "no-cache",
-    })
-    const pageResponse = await fetch(`${pageUrl}/articles/${encodedSlug}`, {
-      method: "GET",
-      cache: "no-cache",
-    })
+
+    const [rootResponse, pageResponse] = await Promise.all([
+      fetch(pageUrl, { method: "GET", cache: "no-cache" }),
+      fetch(`${pageUrl}/articles/${encodedSlug}`, {
+        method: "GET",
+        cache: "no-cache",
+      }),
+    ])
+
     console.log(`Fetch root response status: ${rootResponse.status}`)
     console.log(`Fetch page response status: ${pageResponse.status}`)
+
     return NextResponse.json({
       success: true,
-      status: rootResponse.status && pageResponse.status,
+      rootStatus: rootResponse.status,
+      pageStatus: pageResponse.status,
     })
   } catch (error) {
     console.error("Preload failed:", error)
