@@ -4,7 +4,9 @@ export async function GET(request: NextRequest) {
   const pageUrl = "https://www.obvoso.site"
   const { searchParams } = new URL(request.url)
   const slug = searchParams.get("slug")
-  const encodedSlug = encodeURIComponent(slug || "")
+  const encodedSlug = slug
+    ? encodeURIComponent(slug.toLowerCase().replace(/ /g, "-"))
+    : ""
 
   try {
     console.log(`Preloading page`)
