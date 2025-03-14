@@ -4,15 +4,17 @@ export async function GET(request: NextRequest) {
   const pageUrl = "https://www.obvoso.site"
   const { searchParams } = new URL(request.url)
   const slug = searchParams.get("slug")
+  const encodedSlug = encodeURIComponent(slug || "")
 
   try {
     console.log(`Preloading page`)
     console.log(`Page URL: ${slug}`)
+    console.log(`Encoded URL: ${encodedSlug}`)
     const rootResponse = await fetch(pageUrl, {
       method: "GET",
       cache: "no-cache",
     })
-    const pageResponse = await fetch(`${pageUrl}/articles/${slug}`, {
+    const pageResponse = await fetch(`${pageUrl}/articles/${encodedSlug}`, {
       method: "GET",
       cache: "no-cache",
     })
