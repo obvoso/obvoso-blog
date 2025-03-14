@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from "next/server"
+import { generateSlug } from "@/lib/utils/utils"
 
 export async function GET(request: NextRequest) {
   const pageUrl = "https://www.obvoso.site"
   const { searchParams } = new URL(request.url)
   const slug = searchParams.get("slug")
-  const encodedSlug = slug
-    ? encodeURIComponent(slug.toLowerCase().replace(/ /g, "-"))
-    : ""
+  const encodedSlug = generateSlug(slug ?? "")
 
   try {
     console.log(`Preloading page`)
