@@ -47,8 +47,7 @@ async function getArticleHeadings(post: string) {
 
 export async function getArticleData(slug: string) {
   const page = await getPageBySlug(slug)
-  const getCachedPost = getNotionArticlePage(String(page.id))
-  const post = await getCachedPost()
+  const post = await getNotionArticlePage(String(page.id))()
 
   if (!post) {
     throw new Error("Notion data not found")
