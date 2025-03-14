@@ -78,7 +78,7 @@ export const getBlocks = async (blockId: string): Promise<NotionBlock[]> => {
   let cursor: string | null = null
   let hasMore = true
   const blocks: NotionBlock[] = []
-
+  console.time("getBlocks")
   while (hasMore) {
     /* eslint-disable no-await-in-loop, @typescript-eslint/naming-convention */
     const { has_more, next_cursor, results }: NotionBlockChildList =
@@ -99,6 +99,7 @@ export const getBlocks = async (blockId: string): Promise<NotionBlock[]> => {
         return childBlock
       }),
   )
+  console.timeEnd("getBlocks")
   return [...blocks, ...childBlocks.flat()]
 }
 
@@ -106,6 +107,7 @@ export async function getAllNotionImageBlocks(
   blockId: string,
 ): Promise<NotionImageBlock[]> {
   const allNotionBlocks = await getBlocks(blockId)
+  console.time("getAllNotionImageBlocks")
 
   const imageBlocks = allNotionBlocks.filter(
     (block) => "type" in block && block.type === "image",
@@ -115,13 +117,14 @@ export async function getAllNotionImageBlocks(
     id: block.id,
     image: block.image,
   }))
+  console.timeEnd("getAllNotionImageBlocks")
   return ret
 }
 
 export const convertThumbnail = async (notionData: NotionData) => {
   let convertImageUrl = notionData.thumbnail
   const isExist = checkIsExist(notionData.thumbnail, notionData.id)
-
+  console.time("convertThumbnail")
   if (!isExist) {
     const imageUrl = notionData.thumbnail
     try {
@@ -147,6 +150,7 @@ export const convertThumbnail = async (notionData: NotionData) => {
       throw new Error(`Failed to fetch image from Notion: ${e}`)
     }
   }
+  console.timeEnd("convertThumbnail")
   return {
     thumbnail: convertImageUrl,
     blurThumbnail: await getBlurImage(convertImageUrl),
@@ -161,6 +165,7 @@ export const convertThumbnail = async (notionData: NotionData) => {
 export const convertImageBlocks = async (id: string) => {
   const imageBlocks = await getAllNotionImageBlocks(id)
 
+  console.time("convertImageBlocks")
   await Promise.all(
     Array.from(imageBlocks).map(async (block, idx) => {
       const { id: blockId, image } = block
@@ -184,6 +189,7 @@ export const convertImageBlocks = async (id: string) => {
       }
     }),
   )
+  console.timeEnd("convertImageBlocks")
 }
 
 /**
@@ -192,6 +198,7 @@ export const convertImageBlocks = async (id: string) => {
  */
 export const convertNotionImage = cache(
   async (stream: NotionData[]): Promise<NotionData[]> => {
+    console.time("convertNotionImage")
     const ret = await Promise.all(
       stream.map(async (data) => {
         await convertImageBlocks(data.id)
@@ -203,7 +210,7 @@ export const convertNotionImage = cache(
         }
       }),
     )
-
+    console.timeEnd("convertNotionImage")
     return ret
   },
 )
