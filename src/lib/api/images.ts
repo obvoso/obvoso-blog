@@ -159,10 +159,10 @@ export const convertThumbnail = async (notionData: NotionData) => {
 
 /**
  * @param id 노션 페이지의 id
- * 이미지 블록을 변환하는 함수
+ * 노션의 이미지 블록(링크)을 s3의 이미지로 변환하는 함수
  * 이미지 블록의 url을 변환하여 Notion에 업데이트
  */
-export const convertImageBlocks = async (id: string) => {
+export const convertNotionImageBlocks = async (id: string) => {
   const imageBlocks = await getAllNotionImageBlocks(id)
 
   console.time("convertImageBlocks")
@@ -193,15 +193,15 @@ export const convertImageBlocks = async (id: string) => {
 }
 
 /**
- * 이미지 변환의 전체 흐름을 담당하는 함수
+ * 썸네일 이미지 변환 함수
  * 변환된 url을 thumbnail에 할당하여 반환
  */
-export const convertNotionImage = cache(
+export const convertThumbnailImage = cache(
   async (stream: NotionData[]): Promise<NotionData[]> => {
     console.time("convertNotionImage")
     const ret = await Promise.all(
       stream.map(async (data) => {
-        await convertImageBlocks(data.id)
+        //await convertImageBlocks(data.id)
         const { thumbnail, blurThumbnail } = await convertThumbnail(data)
         return {
           ...data,
