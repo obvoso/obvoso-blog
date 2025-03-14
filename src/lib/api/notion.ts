@@ -3,7 +3,7 @@ import { cache } from "react"
 import { numberDateParseToLocalDate } from "../utils/date"
 import { notion } from "../utils/notionClient"
 import { generateSlug } from "../utils/utils"
-import { convertNotionImage } from "./images"
+import { convertNotionImageBlocks, convertThumbnailImage } from "./images"
 
 const { NotionToMarkdown } = require("notion-to-md")
 
@@ -32,12 +32,14 @@ export const getAllTagsWithCategory = cache(async () => {
 })
 /**
  * 노션 페이지의 데이터를 마크다운 형식으로 변환합니다.
+ * 노션의 이미지 블록(링크)을 s3의 이미지로 변환합니다.
  */
 export const getNotionArticlePage = (id: string) =>
   unstable_cache(
     async () => {
       const mdblocks = await n2m.pageToMarkdown(id)
       const mdString = n2m.toMarkdownString(mdblocks)
+      await convertNotionImageBlocks(id)
       return mdString.parent
     },
     [id],
@@ -97,7 +99,7 @@ export const getAllPost = cache(
           nextIndex: page.properties.nextIndex.number,
         }
       })
-      return convertNotionImage(data)
+      return convertThumbnailImage(data)
     },
     ["posts"],
     { tags: ["posts"] },
