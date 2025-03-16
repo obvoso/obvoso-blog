@@ -52,7 +52,9 @@ export const getNotionArticlePage = (id: string) =>
 export const getAllPost = cache(
   unstable_cache(
     async () => {
-      console.time("❗️notion-fetch")
+      const uuid = new Date().getTime()
+      console.time(`❗️notion-fetch ${uuid}`)
+
       const res = await notion.databases.query({
         database_id: dbID,
         // start_cursor: cursor,
@@ -67,7 +69,7 @@ export const getAllPost = cache(
           direction: "descending",
         },
       })
-      console.timeEnd("notion-fetch")
+      console.timeEnd(`❗️notion-fetch ${uuid}`)
 
       /**
        * cursor가 null이면 데이터가 더 이상 없다는 뜻이므로 빈 배열을 반환합니다.
@@ -75,7 +77,7 @@ export const getAllPost = cache(
        * https://developers.notion.com/reference/intro#pagination
        *   if (data.has_more === true) cursor = data.next_cursor
        */
-      console.time("❗️notion-fetch-map")
+      console.time(`❗️notion-fetch ${uuid}`)
       const data = res.results.map((page: any) => {
         const thumbnailFile = page.properties.thumbnail.files[0]
 
@@ -100,10 +102,10 @@ export const getAllPost = cache(
         }
       })
       const ret = await convertThumbnailImage(data)
-      console.timeEnd("❗️notion-fetch-map")
+      console.timeEnd(`❗️notion-fetch ${uuid}`)
       return ret
     },
     ["posts"],
-    { tags: ["posts"] },
+    { tags: ["posts"], revalidate: false },
   ),
 )

@@ -31,15 +31,12 @@ const checkIsExist = (url: string, id: string) =>
 
 /* 이미지 블러 처리 함수 */
 export const getBlurImage = async (imageUrl: string) => {
-  console.time(`❗️getBlurImage ${imageUrl}`)
-
   const response = await fetch(imageUrl)
 
   const arrayBuffer = await response.arrayBuffer()
   const body = Buffer.from(arrayBuffer)
 
   const { base64: blurDataURL } = await getPlaiceholder(body, { size: 10 })
-  console.timeEnd(`❗️getBlurImage ${imageUrl}`)
   return blurDataURL
 }
 
