@@ -31,29 +31,15 @@ const checkIsExist = (url: string, id: string) =>
 
 /* 이미지 블러 처리 함수 */
 export const getBlurImage = async (imageUrl: string) => {
-  const startTime = performance.now()
-  console.log(`⏳ getBlurImage 시작: ${startTime.toFixed(2)}ms`)
+  console.time(`❗️getBlurImage ${imageUrl}`)
 
-  console.time("❗️getBlurImage")
-
-  console.time("fetch-image")
   const response = await fetch(imageUrl)
-  console.timeEnd("fetch-image")
 
-  console.time("convert-to-buffer")
   const arrayBuffer = await response.arrayBuffer()
   const body = Buffer.from(arrayBuffer)
-  console.timeEnd("convert-to-buffer")
 
-  console.time("generate-blur")
   const { base64: blurDataURL } = await getPlaiceholder(body, { size: 10 })
-  console.timeEnd("generate-blur")
-
-  console.timeEnd("❗️getBlurImage")
-
-  const endTime = performance.now()
-  console.log(`✅ getBlurImage 완료: ${(endTime - startTime).toFixed(2)}ms`)
-
+  console.timeEnd(`❗️getBlurImage ${imageUrl}`)
   return blurDataURL
 }
 
@@ -96,7 +82,6 @@ export const getBlocks = async (blockId: string): Promise<NotionBlock[]> => {
   let cursor: string | null = null
   let hasMore = true
   const blocks: NotionBlock[] = []
-  console.time("getBlocks")
   while (hasMore) {
     /* eslint-disable no-await-in-loop, @typescript-eslint/naming-convention */
     const { has_more, next_cursor, results }: NotionBlockChildList =
@@ -117,7 +102,6 @@ export const getBlocks = async (blockId: string): Promise<NotionBlock[]> => {
         return childBlock
       }),
   )
-  console.timeEnd("getBlocks")
   return [...blocks, ...childBlocks.flat()]
 }
 
@@ -125,7 +109,6 @@ export async function getAllNotionImageBlocks(
   blockId: string,
 ): Promise<NotionImageBlock[]> {
   const allNotionBlocks = await getBlocks(blockId)
-  console.time("getAllNotionImageBlocks")
 
   const imageBlocks = allNotionBlocks.filter(
     (block) => "type" in block && block.type === "image",
@@ -135,12 +118,10 @@ export async function getAllNotionImageBlocks(
     id: block.id,
     image: block.image,
   }))
-  console.timeEnd("getAllNotionImageBlocks")
   return ret
 }
 
 export const convertThumbnail = async (notionData: NotionData) => {
-  console.time("convertThumbnail")
   let convertImageUrl = notionData.thumbnail
   const isExist = checkIsExist(notionData.thumbnail, notionData.id)
   if (!isExist) {
@@ -168,7 +149,6 @@ export const convertThumbnail = async (notionData: NotionData) => {
       throw new Error(`Failed to fetch image from Notion: ${e}`)
     }
   }
-  console.timeEnd("❗️convertThumbnail")
   return {
     thumbnail: convertImageUrl,
     blurThumbnail: await getBlurImage(convertImageUrl),
@@ -183,7 +163,6 @@ export const convertThumbnail = async (notionData: NotionData) => {
 export const convertNotionImageBlocks = async (id: string) => {
   const imageBlocks = await getAllNotionImageBlocks(id)
 
-  console.time("convertImageBlocks")
   await Promise.all(
     Array.from(imageBlocks).map(async (block, idx) => {
       const { id: blockId, image } = block
@@ -207,7 +186,6 @@ export const convertNotionImageBlocks = async (id: string) => {
       }
     }),
   )
-  console.timeEnd("convertImageBlocks")
 }
 
 /**
@@ -216,7 +194,6 @@ export const convertNotionImageBlocks = async (id: string) => {
  */
 export const convertThumbnailImage = cache(
   async (stream: NotionData[]): Promise<NotionData[]> => {
-    console.time("convertNotionImage")
     const ret = await Promise.all(
       stream.map(async (data) => {
         const { thumbnail, blurThumbnail } = await convertThumbnail(data)
@@ -227,7 +204,6 @@ export const convertThumbnailImage = cache(
         }
       }),
     )
-    console.timeEnd("convertNotionImage")
     return ret
   },
 )
