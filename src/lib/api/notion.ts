@@ -75,7 +75,7 @@ export const getAllPost = cache(
        * https://developers.notion.com/reference/intro#pagination
        *   if (data.has_more === true) cursor = data.next_cursor
        */
-
+      console.time("notion-fetch-map")
       const data = res.results.map((page: any) => {
         const thumbnailFile = page.properties.thumbnail.files[0]
 
@@ -99,7 +99,9 @@ export const getAllPost = cache(
           nextIndex: page.properties.nextIndex.number,
         }
       })
-      return convertThumbnailImage(data)
+      const ret = await convertThumbnailImage(data)
+      console.timeEnd("notion-fetch-map")
+      return ret
     },
     ["posts"],
     { tags: ["posts"] },
