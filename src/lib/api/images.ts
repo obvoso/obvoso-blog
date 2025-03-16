@@ -30,12 +30,30 @@ const checkIsExist = (url: string, id: string) =>
   url.includes(`/image/thumbnail/${id}`)
 
 /* 이미지 블러 처리 함수 */
-const getBlurImage = async (imageUrl: string) => {
+export const getBlurImage = async (imageUrl: string) => {
+  const startTime = performance.now()
+  console.log(`⏳ getBlurImage 시작: ${startTime.toFixed(2)}ms`)
+
+  console.time("❗️getBlurImage")
+
+  console.time("fetch-image")
   const response = await fetch(imageUrl)
+  console.timeEnd("fetch-image")
+
+  console.time("convert-to-buffer")
   const arrayBuffer = await response.arrayBuffer()
   const body = Buffer.from(arrayBuffer)
+  console.timeEnd("convert-to-buffer")
 
+  console.time("generate-blur")
   const { base64: blurDataURL } = await getPlaiceholder(body, { size: 10 })
+  console.timeEnd("generate-blur")
+
+  console.timeEnd("❗️getBlurImage")
+
+  const endTime = performance.now()
+  console.log(`✅ getBlurImage 완료: ${(endTime - startTime).toFixed(2)}ms`)
+
   return blurDataURL
 }
 
@@ -122,9 +140,9 @@ export async function getAllNotionImageBlocks(
 }
 
 export const convertThumbnail = async (notionData: NotionData) => {
+  console.time("convertThumbnail")
   let convertImageUrl = notionData.thumbnail
   const isExist = checkIsExist(notionData.thumbnail, notionData.id)
-  console.time("convertThumbnail")
   if (!isExist) {
     const imageUrl = notionData.thumbnail
     try {
@@ -201,7 +219,6 @@ export const convertThumbnailImage = cache(
     console.time("convertNotionImage")
     const ret = await Promise.all(
       stream.map(async (data) => {
-        //await convertImageBlocks(data.id)
         const { thumbnail, blurThumbnail } = await convertThumbnail(data)
         return {
           ...data,
