@@ -16,7 +16,7 @@ export async function PATCH(request: NextRequest) {
     revalidateTag("posts")
     console.time(`❗️preload ${uuid}`)
     try {
-      await fetch(`http://localhost:3000/articles/${generateSlug(title)}`, {
+      await fetch(`https://www.obvoso.site/articles/${generateSlug(title)}`, {
         method: "GET",
       })
       console.timeEnd(`❗️preload ${uuid}`)
