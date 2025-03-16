@@ -52,7 +52,8 @@ export const getNotionArticlePage = (id: string) =>
 export const getAllPost = cache(
   unstable_cache(
     async () => {
-      console.time("notion-fetch")
+      console.log("fetch all posts")
+      console.time("❗️notion-fetch")
       const res = await notion.databases.query({
         database_id: dbID,
         // start_cursor: cursor,
@@ -67,7 +68,7 @@ export const getAllPost = cache(
           direction: "descending",
         },
       })
-      console.timeEnd("notion-fetch")
+      console.timeEnd("❗️notion-fetch")
 
       /**
        * cursor가 null이면 데이터가 더 이상 없다는 뜻이므로 빈 배열을 반환합니다.

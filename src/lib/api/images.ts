@@ -168,7 +168,7 @@ export const convertThumbnail = async (notionData: NotionData) => {
       throw new Error(`Failed to fetch image from Notion: ${e}`)
     }
   }
-  console.timeEnd("convertThumbnail")
+  console.timeEnd("❗️convertThumbnail")
   return {
     thumbnail: convertImageUrl,
     blurThumbnail: await getBlurImage(convertImageUrl),
