@@ -1,9 +1,9 @@
 import CustomBox from "@/app/components/common/CustomBox"
 import ThemeToggle from "@/app/components/common/ThemeToggle"
+import { Box } from "@mui/material"
 import Avatar from "./component/Avatar"
 import DesktopJukebox from "./component/DesktopZukebox"
 import Introduce from "./component/Introduce"
-import { Box } from "@mui/material"
 
 export default function DesktopSideProfile() {
   return (
