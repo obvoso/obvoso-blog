@@ -10,7 +10,7 @@ export default function Footer() {
         height: "100%",
         flexDirection: "column",
         alignItems: "center",
-        marginTop: "150px",
+        marginTop: "10px",
       }}
     >
       <CustomTypography
