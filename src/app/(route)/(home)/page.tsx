@@ -31,10 +31,7 @@ export default async function Home() {
         sx={{
           display: "flex",
           flexDirection: "column",
-          paddingX: {
-            xs: "1rem",
-            md: "2rem",
-          },
+          paddingX: "1rem",
         }}
       >
         <HotArticle />
